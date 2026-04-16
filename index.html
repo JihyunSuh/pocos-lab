@@ -231,6 +231,11 @@
       width: 56px; height: 56px; border-radius: 50%;
       object-fit: cover; border: 2px solid var(--border);
       flex-shrink: 0;
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+    .pi-card.open .pi-photo {
+      width: 168px; height: 168px;
+      border-width: 3px;
     }
     .pi-card {
       background: var(--bg-card);
