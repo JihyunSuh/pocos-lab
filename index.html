@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POSTECH Cognitive Science Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-deep:    #F7F7F5;
+      --bg:         #FFFFFF;
+      --bg-card:    #FFFFFF;
+      --bg-card-h:  #F5F5F2;
+      --border:     #E2E2DD;
+      --border-h:   #D0D0C8;
+      --text:       #1A1A1A;
+      --text-dim:   #5A5A5A;
+      --text-muted: #9A9A94;
+      --accent:     #1A7A6D;
+      --accent-dim: rgba(26,122,109,0.08);
+      --accent-glow:rgba(26,122,109,0.15);
+      --warm:       #B8860B;
+      --heading:    'Outfit', sans-serif;
+      --body:       'Outfit', sans-serif;
+      --mono:       'JetBrains Mono', monospace;
+      --serif:      'Source Serif 4', Georgia, serif;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--body);
+      background: var(--bg-deep);
+      color: var(--text);
+      line-height: 1.7;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 70%);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(247, 247, 245, 0.8);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 2rem;
+      height: 60px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-weight: 600; font-size: 0.95rem;
+    }
+    .nav-logo .dot {
+      width: 8px; height: 8px; background: var(--accent);
+      border-radius: 50%; box-shadow: 0 0 10px var(--accent-glow);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.4; }
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 400; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-dim); transition: color 0.25s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--accent); transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { width: 100%; }
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .menu-toggle span { display: block; width: 20px; height: 1.5px; background: var(--text-dim); margin: 5px 0; }
+
+    /* HERO */
+    .hero {
+      position: relative; min-height: 100vh; display: flex;
+      align-items: center; padding: 0 2rem; overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; width: 600px; height: 600px;
+      border-radius: 50%; filter: blur(140px); opacity: 0.12; pointer-events: none;
+    }
+    .hero-glow.g1 { background: var(--accent); top: -100px; right: -100px; opacity: 0.08; }
+    .hero-glow.g2 { background: #7B61FF; bottom: -150px; left: -200px; opacity: 0.05; }
+    .hero-content {
+      max-width: 1120px; margin: 0 auto; width: 100%;
+      position: relative; z-index: 1; animation: heroIn 1s ease-out;
+    }
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      background: var(--accent-dim); padding: 0.45rem 1rem;
+      border-radius: 100px; border: 1px solid rgba(60,223,207,0.15);
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-family: var(--heading); font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+      font-weight: 700; line-height: 1.1; letter-spacing: -0.04em;
+      margin-bottom: 1.5rem; max-width: 700px;
+    }
+    .hero h1 .hl {
+      background: linear-gradient(135deg, #1A7A6D, #2DB5A5);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-desc {
+      font-size: 1.08rem; color: var(--text-dim);
+      max-width: 520px; line-height: 1.8;
+    }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 3.5rem;
+      padding-top: 2.5rem; border-top: 1px solid var(--border);
+    }
+    .hero-stat .num {
+      font-family: var(--heading); font-size: 2rem; font-weight: 600;
+      color: var(--accent); letter-spacing: -0.03em;
+    }
+    .hero-stat .label {
+      font-size: 0.78rem; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem;
+    }
+
+    /* SECTIONS */
+    .section {
+      max-width: 1120px; margin: 0 auto; padding: 7rem 2rem;
+      position: relative; z-index: 1;
+    }
+    .section-label {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    .section-label::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+    .section-title {
+      font-family: var(--heading); font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 600; letter-spacing: -0.03em; margin-bottom: 1rem;
+    }
+    .section-desc {
+      font-size: 1rem; color: var(--text-dim);
+      max-width: none; margin-bottom: 3.5rem; line-height: 1.8;
+    }
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .about-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2.2rem; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .about-card:hover { border-color: var(--border-h); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
+    .about-card .icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--accent-dim); display: flex; align-items: center;
+      justify-content: center; margin-bottom: 1.2rem; font-size: 1.1rem;
+    }
+    .about-card h3 { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.6rem; }
+    .about-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.75; }
+
+    /* PEOPLE */
+    .people-role { margin-bottom: 3rem; }
+    .people-role-title {
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border);
+    }
+    .people-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem;
+    }
+    .person-card {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.2rem 1.4rem; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 12px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .person-card:hover { border-color: var(--border-h); background: var(--bg-card-h); }
+    .person-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-dim), rgba(123,97,255,0.08));
+      border: 1px solid var(--border); display: flex; align-items: center;
+      justify-content: center; font-weight: 600; font-size: 0.85rem;
+      color: var(--accent); flex-shrink: 0;
+    }
+    .person-info h4 { font-size: 0.92rem; font-weight: 500; }
+    .person-info .role { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.15rem; }
+    .person-info .interest {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--text-muted); margin-top: 0.35rem;
+    }
+
+    /* PI EXPANDABLE CARD */
+    .pi-photo {
+      width: 56px; height: 56px; border-radius: 50%;
+      object-fit: cover; border: 2px solid var(--border);
+      flex-shrink: 0;
+    }
+    .pi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .pi-card:hover { border-color: var(--border-h); }
+    .pi-header {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.4rem 1.6rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .pi-header .expand-icon {
+      margin-left: auto;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      transition: transform 0.3s;
+    }
+    .pi-card.open .pi-header .expand-icon { transform: rotate(90deg); }
+    .pi-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .pi-card.open .pi-detail {
+      max-height: 800px;
+    }
+    .pi-detail-inner {
+      padding: 0 1.6rem 1.6rem;
+      border-top: 1px solid var(--border);
+    }
+    .pi-section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 1.4rem;
+      margin-bottom: 0.7rem;
+    }
+    .pi-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .pi-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1rem;
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+    .pi-row .yr {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding-top: 0.1rem;
+    }
+    .pi-row .desc { color: var(--text-dim); }
+    .pi-row .desc strong { color: var(--text); font-weight: 500; }
+
+    @media (max-width: 640px) {
+      .pi-row { grid-template-columns: 1fr; gap: 0.15rem; }
+    }
+
+    /* PUBLICATIONS */
+    .research-tabs { display: flex; gap: 0.5rem; margin-bottom: 2.5rem; }
+    .tab-btn {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 0.5rem 1.1rem;
+      border: 1px solid var(--border); border-radius: 100px;
+      background: transparent; color: var(--text-dim); cursor: pointer; transition: all 0.25s;
+    }
+    .tab-btn:hover { border-color: var(--border-h); color: var(--text); }
+    .tab-btn.active {
+      background: var(--accent-dim); border-color: rgba(60,223,207,0.2); color: var(--accent);
+    }
+    .pub-list { display: flex; flex-direction: column; }
+    .pub-item {
+      padding: 1.6rem 0; border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 70px 1fr auto;
+      gap: 1.5rem; align-items: start;
+    }
+    .pub-item:first-child { border-top: 1px solid var(--border); }
+    .pub-year {
+      font-family: var(--mono); font-size: 0.78rem;
+      color: var(--text-muted); padding-top: 0.2rem;
+    }
+    .pub-content h4 {
+      font-size: 0.95rem; font-weight: 500;
+      margin-bottom: 0.35rem; line-height: 1.5;
+    }
+    .pub-authors { font-size: 0.8rem; color: var(--text-dim); }
+    .pub-authors strong { color: var(--text); font-weight: 500; }
+    .pub-venue {
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.82rem; color: var(--warm); margin-top: 0.3rem;
+    }
+    .pub-badge {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 6px;
+      border: 1px solid var(--border); color: var(--text-dim);
+      white-space: nowrap; align-self: center;
+    }
+
+    /* FOOTER */
+    .footer-section {
+      background: var(--bg); border-top: 1px solid var(--border); margin-top: 4rem;
+    }
+    .footer-inner {
+      max-width: 1120px; margin: 0 auto; padding: 4rem 2rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    }
+    .footer-left h3 {
+      font-family: var(--heading); font-size: 1.6rem;
+      font-weight: 600; margin-bottom: 1rem;
+    }
+    .footer-left p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.8; max-width: 380px; }
+    .footer-right { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.2rem; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 10px;
+      transition: border-color 0.25s; font-size: 0.88rem;
+    }
+    .contact-row:hover { border-color: var(--border-h); }
+    .contact-row .c-label {
+      font-family: var(--mono); font-size: 0.65rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-muted); min-width: 60px;
+    }
+    .contact-row .c-value { color: var(--text-dim); }
+    .contact-row .c-value a { color: var(--accent); transition: opacity 0.2s; }
+    .contact-row .c-value a:hover { opacity: 0.75; }
+    .copyright {
+      max-width: 1120px; margin: 0 auto; padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border); font-size: 0.72rem;
+      color: var(--text-muted); display: flex; justify-content: space-between;
+    }
+
+    /* LANG TOGGLE */
+    .lang-toggle {
+      display: flex; gap: 0.25rem; margin-left: 1.5rem;
+      border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+    }
+    .lang-btn {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.06em;
+      padding: 0.3rem 0.6rem; border: none; background: transparent;
+      color: var(--text-muted); cursor: pointer; transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--accent); color: #fff;
+    }
+
+    /* NEWS */
+    .news-list { display: flex; flex-direction: column; gap: 1rem; }
+    .news-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden; transition: border-color 0.3s;
+    }
+    .news-card:hover { border-color: var(--border-h); }
+    .news-header {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.3rem 1.6rem; cursor: pointer; user-select: none;
+    }
+    .news-date {
+      font-family: var(--mono); font-size: 0.7rem;
+      color: var(--text-muted); white-space: nowrap; min-width: 90px;
+    }
+    .news-title {
+      font-size: 0.95rem; font-weight: 500; flex: 1;
+    }
+    .news-badge {
+      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 100px;
+      background: var(--accent-dim); color: var(--accent); white-space: nowrap;
+    }
+    .news-expand-icon {
+      font-size: 0.7rem; color: var(--text-muted);
+      transition: transform 0.3s; margin-left: 0.5rem;
+    }
+    .news-card.open .news-expand-icon { transform: rotate(90deg); }
+    .news-detail {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .news-card.open .news-detail { max-height: 600px; }
+    .news-detail-inner {
+      padding: 0 1.6rem 1.6rem;
+      border-top: 1px solid var(--border);
+    }
+    .news-detail-inner p {
+      font-size: 0.88rem; color: var(--text-dim);
+      line-height: 1.8; margin-top: 1.2rem;
+    }
+    .news-detail-inner img {
+      width: 100%; border-radius: 10px; margin-top: 1rem;
+      border: 1px solid var(--border);
+    }
+    .news-placeholder {
+      width: 100%; height: 200px; border-radius: 10px; margin-top: 1rem;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--bg-card-h) 0%, var(--border) 100%);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: 0.78rem; font-family: var(--mono);
+      letter-spacing: 0.05em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: absolute;
+        top: 60px; left: 0; right: 0; background: rgba(247,247,245,0.96);
+        backdrop-filter: blur(20px); padding: 1.5rem 2rem; gap: 1.2rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .menu-toggle { display: block; }
+      .lang-toggle { margin-left: auto; margin-right: 0.5rem; }
+      .news-header { flex-wrap: wrap; }
+      .news-date { min-width: auto; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; }
+      .about-grid { grid-template-columns: 1fr; }
+      .people-grid { grid-template-columns: 1fr; }
+      .pub-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .pub-year { display: none; }
+      .pub-badge { align-self: start; display: inline-block; margin-top: 0.5rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .copyright { flex-direction: column; gap: 0.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <span class="dot"></span>
+        <span>POSTECH Cognitive Science Lab</span>
+      </div>
+      <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="메뉴">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#news" data-ko="뉴스" data-en="News">News</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#people">People</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-btn" onclick="setLang('ko')" id="btnKo">KOR</button>
+        <button class="lang-btn active" onclick="setLang('en')" id="btnEn">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow g1"></div>
+    <div class="hero-glow g2"></div>
+    <div class="hero-content">
+      <div class="hero-tag">◆ POSTECH Cognitive Science Lab</div>
+      <h1 data-ko="<span class='hl'>주의</span>와 <span class='hl'>인지통제</span>의<br/>신경 메커니즘을 탐구합니다" data-en="Exploring the Neural Mechanisms of <span class='hl'>Attention</span> and <span class='hl'>Cognitive Control</span>"><span class="hl">Attention</span> and <span class="hl">Cognitive Control</span><br/>Neural Mechanisms</h1>
+      <p class="hero-desc" data-ko="POSTECH 인지과학 연구실은 인간의 주의 통제와 인지 제어 과정을 행동 실험, 뇌영상, 계산 모델링을 통해 탐구합니다. 뇌가 정보를 선택하고 행동을 조절하는 원리를 밝혀냅니다." data-en="The POSTECH Cognitive Science Lab investigates human attentional control and cognitive regulation through behavioral experiments, neuroimaging, and computational modeling. We uncover the principles by which the brain selects information and regulates behavior.">
+        The POSTECH Cognitive Science Lab investigates human attentional control and cognitive regulation through behavioral experiments, neuroimaging, and computational modeling. We uncover the principles by which the brain selects information and regulates behavior.
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- NEWS -->
+  <section class="section reveal" id="news">
+    <div class="section-label">01 — News</div>
+    <h2 class="section-title" data-ko="소식" data-en="News">News</h2>
+    <p class="section-desc" data-ko="연구실의 최근 소식을 전합니다." data-en="Latest updates from the lab.">Latest updates from the lab.</p>
+
+    <div class="news-list">
+      <!-- News 1: Website Launch -->
+      <div class="news-card" onclick="this.classList.toggle('open')">
+        <div class="news-header">
+          <span class="news-date">2026.04</span>
+          <span class="news-title" data-ko="POCOS Lab 웹사이트가 오픈되었습니다" data-en="POCOS Lab website has been launched">POCOS Lab website has been launched</span>
+          <span class="news-badge">New</span>
+          <span class="news-expand-icon">▸</span>
+        </div>
+        <div class="news-detail">
+          <div class="news-detail-inner">
+            <p data-ko="POSTECH Cognitive Science Lab (POCOS Lab)의 공식 웹사이트가 오픈되었습니다. 웹사이트를 통해 연구실 소개, 구성원, 연구 논문 등의 정보를 확인하실 수 있습니다. 연구실에 관심 있는 분들의 많은 방문 바랍니다." data-en="The official website of POSTECH Cognitive Science Lab (POCOS Lab) has been launched. You can find information about our lab, members, and publications on this website. We welcome visits from those interested in our research.">The official website of POSTECH Cognitive Science Lab (POCOS Lab) has been launched. You can find information about our lab, members, and publications on this website. We welcome visits from those interested in our research.</p>
+            <div class="news-placeholder" data-ko="📷 사진 준비 중" data-en="📷 Photo coming soon">📷 Photo coming soon</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- News 2: Psychonomic Society -->
+      <div class="news-card" onclick="this.classList.toggle('open')">
+        <div class="news-header">
+          <span class="news-date">2025.11</span>
+          <span class="news-title" data-ko="Psychonomic Society 2025에서 포스터 발표" data-en="Poster presentation at Psychonomic Society 2025">Poster presentation at Psychonomic Society 2025</span>
+          <span class="news-expand-icon">▸</span>
+        </div>
+        <div class="news-detail">
+          <div class="news-detail-inner">
+            <p data-ko="신호정, 서지현 교수가 Psychonomic Society 2025 (New York, USA)에서 fNIRS를 활용한 과제 관련 사고와 과제 무관 사고의 결합 및 분리에 관한 연구를 포스터로 발표하였습니다." data-en="Hojeong Shin and Prof. Jihyun Suh presented a poster on coupling and decoupling of task-related and task-unrelated thoughts using fNIRS at the Psychonomic Society 2025 Annual Meeting in New York, USA.">Hojeong Shin and Prof. Jihyun Suh presented a poster on coupling and decoupling of task-related and task-unrelated thoughts using fNIRS at the Psychonomic Society 2025 Annual Meeting in New York, USA.</p>
+            <div class="news-placeholder" data-ko="📷 사진 준비 중" data-en="📷 Photo coming soon">📷 Photo coming soon</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- News 3: Publication -->
+      <div class="news-card" onclick="this.classList.toggle('open')">
+        <div class="news-header">
+          <span class="news-date">2025.03</span>
+          <span class="news-title" data-ko="JEP:HPP 논문 출판" data-en="New paper published in JEP:HPP">New paper published in JEP:HPP</span>
+          <span class="news-expand-icon">▸</span>
+        </div>
+        <div class="news-detail">
+          <div class="news-detail-inner">
+            <p data-ko="Ileri-Tayar*, Suh* 등의 공동 1저자 논문 'Does an external distractor interfere with the triggering of item-specific control?'이 Journal of Experimental Psychology: Human Perception and Performance에 게재되었습니다." data-en="Our co-first-author paper 'Does an external distractor interfere with the triggering of item-specific control?' by Ileri-Tayar*, Suh*, et al. has been published in the Journal of Experimental Psychology: Human Perception and Performance.">Our co-first-author paper "Does an external distractor interfere with the triggering of item-specific control?" by Ileri-Tayar*, Suh*, et al. has been published in the Journal of Experimental Psychology: Human Perception and Performance.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- News 4: Alumni -->
+      <div class="news-card" onclick="this.classList.toggle('open')">
+        <div class="news-header">
+          <span class="news-date">2025.02</span>
+          <span class="news-title" data-ko="신호정 석사 졸업 및 SK Hynix 입사" data-en="Hojeong Shin graduates and joins SK Hynix">Hojeong Shin graduates and joins SK Hynix</span>
+          <span class="news-expand-icon">▸</span>
+        </div>
+        <div class="news-detail">
+          <div class="news-detail-inner">
+            <p data-ko="신호정 연구원이 Social Data Science Program 석사 과정을 성공적으로 마치고 SK Hynix에 합류하였습니다. 앞으로의 활약을 응원합니다!" data-en="Hojeong Shin has successfully completed her M.S. in the Social Data Science Program and joined SK Hynix. We wish her all the best in her future career!">Hojeong Shin has successfully completed her M.S. in the Social Data Science Program and joined SK Hynix. We wish her all the best in her future career!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section class="section reveal" id="about">
+    <div class="section-label">02 — About</div>
+    <h2 class="section-title" data-ko="연구 분야" data-en="Research Areas">Research Areas</h2>
+    <p class="section-desc" data-ko="우리 연구실은 주의와 인지통제의 핵심 문제들을 다학제적 접근으로 탐구합니다. 심리학, 신경과학, 컴퓨터과학의 교차점에서 새로운 통찰을 만들어갑니다." data-en="Our lab explores core questions in attention and cognitive control through multidisciplinary approaches, creating new insights at the intersection of psychology, neuroscience, and computer science.">
+      Our lab explores core questions in attention and cognitive control through multidisciplinary approaches, creating new insights at the intersection of psychology, neuroscience, and computer science.
+    </p>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="icon">🧠</div>
+        <h3 data-ko="인지 모델링" data-en="Computational Modeling">Computational Modeling</h3>
+        <p data-ko="베이지안 추론과 강화학습 프레임워크를 활용하여 인간의 학습, 추론, 의사결정 과정을 계산적으로 모델링합니다." data-en="We computationally model human learning, reasoning, and decision-making processes using Bayesian inference and reinforcement learning frameworks.">We computationally model human learning, reasoning, and decision-making processes using Bayesian inference and reinforcement learning frameworks.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">👁️</div>
+        <h3 data-ko="시지각 & 주의" data-en="Visual Perception & Attention">Visual Perception & Attention</h3>
+        <p data-ko="시각적 주의, 장면 인식, 물체 인지 메커니즘을 eye-tracking과 행동 실험을 통해 연구합니다." data-en="We study visual attention, scene recognition, and object perception mechanisms through eye-tracking and behavioral experiments.">We study visual attention, scene recognition, and object perception mechanisms through eye-tracking and behavioral experiments.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🔬</div>
+        <h3 data-ko="fNIRS 뇌영상 연구" data-en="fNIRS Neuroimaging">fNIRS Neuroimaging</h3>
+        <p data-ko="기능적 근적외선 분광법(fNIRS)을 활용하여 주의 통제와 인지통제 과정에서의 전두-두정 네트워크 활성화 패턴을 실시간으로 측정하고 분석합니다." data-en="Using functional near-infrared spectroscopy (fNIRS), we measure and analyze real-time fronto-parietal network activation patterns during attentional and cognitive control processes.">Using functional near-infrared spectroscopy (fNIRS), we measure and analyze real-time fronto-parietal network activation patterns during attentional and cognitive control processes.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🤖</div>
+        <h3 data-ko="인간-AI 상호작용" data-en="Human-AI Interaction">Human-AI Interaction</h3>
+        <p data-ko="인간 인지 원리에 기반한 직관적인 AI 시스템 설계와, AI 도구 사용 시 인간의 인지적 변화를 연구합니다." data-en="We design intuitive AI systems based on human cognitive principles and study cognitive changes in humans when using AI tools.">We design intuitive AI systems based on human cognitive principles and study cognitive changes in humans when using AI tools.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PEOPLE -->
+  <section class="section reveal" id="people">
+    <div class="section-label">03 — People</div>
+    <h2 class="section-title" data-ko="구성원" data-en="Members">Members</h2>
+    <p class="section-desc" data-ko="다양한 배경의 연구자들이 함께 인지과학의 미래를 만들어갑니다." data-en="Researchers from diverse backgrounds work together to shape the future of cognitive science.">Researchers from diverse backgrounds work together to shape the future of cognitive science.</p>
+
+    <div class="people-role">
+      <div class="people-role-title">Principal Investigator</div>
+      <div class="pi-card" id="piCard">
+        <div class="pi-header" onclick="document.getElementById('piCard').classList.toggle('open')">
+          <img src="profile.jpg" alt="서지현 교수" class="pi-photo" />
+          <div class="person-info">
+            <h4>서지현 (Jihyun Suh)</h4>
+            <div class="role">Assistant Professor, Dept. of Humanities & Social Sciences, POSTECH</div>
+            <div class="interest">cognitive control · attention · computational modeling · aging</div>
+          </div>
+          <span class="expand-icon">▸</span>
+        </div>
+        <div class="pi-detail">
+          <div class="pi-detail-inner">
+            <div class="pi-section-label">Positions</div>
+            <div class="pi-timeline">
+              <div class="pi-row">
+                <span class="yr">2021 — 현재</span>
+                <span class="desc"><strong>Assistant Professor</strong>, POSTECH Dept. of Humanities & Social Sciences</span>
+              </div>
+              <div class="pi-row">
+                <span class="yr">2018 — 2021</span>
+                <span class="desc"><strong>Postdoctoral Research Fellow</strong>, Washington University in St. Louis (advisor: Julie M. Bugg)</span>
+              </div>
+            </div>
+
+            <div class="pi-section-label">Education</div>
+            <div class="pi-timeline">
+              <div class="pi-row">
+                <span class="yr">2012 — 2018</span>
+                <span class="desc"><strong>Ph.D. in Psychology</strong>, Washington University in St. Louis (advisor: Richard A. Abrams)</span>
+              </div>
+              <div class="pi-row">
+                <span class="yr">2012 — 2015</span>
+                <span class="desc"><strong>M.A. in Psychology</strong>, Washington University in St. Louis</span>
+              </div>
+              <div class="pi-row">
+                <span class="yr">2009 — 2011</span>
+                <span class="desc"><strong>M.S. in Experimental Psychology</strong>, Korea University (advisor: Yang Seok Cho)</span>
+              </div>
+              <div class="pi-row">
+                <span class="yr">2005 — 2009</span>
+                <span class="desc"><strong>B.A. in Psychology / B.B.A.</strong>, Korea University</span>
+              </div>
+            </div>
+
+            <div class="pi-section-label">Contact</div>
+            <div class="pi-timeline">
+              <div class="pi-row">
+                <span class="yr">Email</span>
+                <span class="desc"><a href="mailto:jihyunsuh@postech.ac.kr" style="color: var(--accent);">jihyunsuh@postech.ac.kr</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="people-role">
+      <div class="people-role-title">Undergraduate RA</div>
+      <div class="person-card" style="max-width: none;">
+        <div class="person-avatar">—</div>
+        <div class="person-info">
+          <h4 data-ko="모집 중" data-en="Open Position">Open Position</h4>
+          <div class="role" data-ko="학부 연구생을 모집하고 있습니다" data-en="We are recruiting undergraduate research assistants">We are recruiting undergraduate research assistants</div>
+        </div>
+      </div>
+    </div>
+
+    <details style="margin-top: 1.5rem;">
+      <summary style="font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); cursor: pointer; padding: 0.8rem 0;">▸ Alumni (1)</summary>
+      <div style="margin-top: 0.8rem;">
+        <div class="person-card" style="max-width: none;">
+          <div class="person-avatar">신</div>
+          <div class="person-info"><h4>신호정</h4><div class="role">M.S. 2025 Social Data Science Program → SK Hynix</div></div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- RESEARCH -->
+  <section class="section reveal" id="research">
+    <div class="section-label">04 — Research</div>
+    <h2 class="section-title" data-ko="논문 & 연구" data-en="Publications">Publications</h2>
+    <p class="section-desc" data-ko="최근 발표된 주요 논문들입니다. 전체 목록은 Google Scholar를 참고하세요." data-en="Selected recent publications. See Google Scholar for the full list.">Selected recent publications. See Google Scholar for the full list.</p>
+
+    <div class="research-tabs">
+      <button class="tab-btn active" onclick="filterPubs('all', this)">All</button>
+      <button class="tab-btn" onclick="filterPubs('journal', this)">Journal</button>
+      <button class="tab-btn" onclick="filterPubs('conference', this)">Conference</button>
+      <button class="tab-btn" onclick="filterPubs('book', this)">Book Chapter</button>
+    </div>
+
+    <div class="pub-list" id="pubList">
+      <div class="pub-item" data-type="journal">
+        <div class="pub-year">2025</div>
+        <div class="pub-content">
+          <h4>Does an external distractor interfere with the triggering of item-specific control?</h4>
+          <div class="pub-authors">Ileri-Tayar*, M., <strong>Suh, J.*</strong>, Stern, A., Whitsitt, L., & Bugg, J. M.</div>
+          <div class="pub-venue">Journal of Experimental Psychology: Human Perception and Performance</div>
+        </div>
+        <span class="pub-badge">Journal</span>
+      </div>
+      <div class="pub-item" data-type="conference">
+        <div class="pub-year">2025</div>
+        <div class="pub-content">
+          <h4>Coupling and decoupling of task-related and task-unrelated thoughts using fNIRS</h4>
+          <div class="pub-authors">Shin, H. & <strong>Suh, J.</strong></div>
+          <div class="pub-venue">Psychonomic Society Annual Meeting, New York, USA</div>
+        </div>
+        <span class="pub-badge">Conference</span>
+      </div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-year">2022</div>
+        <div class="pub-content">
+          <h4>When global and local information about attentional demands collide: Evidence for global dominance</h4>
+          <div class="pub-authors"><strong>Suh, J.</strong>, Ileri Tayar, M., & Bugg, J. M.</div>
+          <div class="pub-venue">Attention, Perception, & Psychophysics</div>
+        </div>
+        <span class="pub-badge">Journal</span>
+      </div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-year">2021</div>
+        <div class="pub-content">
+          <h4>The dominance of item learning in the location-specific proportion congruence paradigm</h4>
+          <div class="pub-authors">Bugg, J. M., <strong>Suh, J.</strong>, & Colvett, J. S.</div>
+          <div class="pub-venue">Quarterly Journal of Experimental Psychology</div>
+        </div>
+        <span class="pub-badge">Journal</span>
+      </div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-year">2021</div>
+        <div class="pub-content">
+          <h4>The shaping of cognitive control based on the adaptive weighting of expectations and experience</h4>
+          <div class="pub-authors"><strong>Suh, J.</strong> & Bugg, J. M.</div>
+          <div class="pub-venue">Journal of Experimental Psychology: Learning, Memory, and Cognition</div>
+        </div>
+        <span class="pub-badge">Journal</span>
+      </div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-year">2021</div>
+        <div class="pub-content">
+          <h4>On the automaticity of reactive item-specific control as evidenced by its efficiency under load</h4>
+          <div class="pub-authors"><strong>Suh, J.</strong> & Bugg, J. M.</div>
+          <div class="pub-venue">Journal of Experimental Psychology: Human Perception and Performance, 47(7), 908–933</div>
+        </div>
+        <span class="pub-badge">Journal</span>
+      </div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-year">2020</div>
+        <div class="pub-content">
+          <h4>What can be learned in a context-specific proportion congruence paradigm? Implications for reproducibility</h4>
+          <div class="pub-authors">Bugg, J. M., <strong>Suh, J.</strong>, Colvett, J. S., & Lehmann, S. G.</div>
+          <div class="pub-venue">Journal of Experimental Psychology: Human Perception and Performance, 46(9), 1029–1050</div>
+        </div>
+        <span class="pub-badge">Journal</span>
+      </div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-year">2020</div>
+        <div class="pub-content">
+          <h4>Approach and avoidance movements modulate value-driven attentional capture</h4>
+          <div class="pub-authors"><strong>Suh, J.</strong> & Abrams, R. A.</div>
+          <div class="pub-venue">Journal of Experimental Psychology: Human Perception and Performance, 46(1), 105–123</div>
+        </div>
+        <span class="pub-badge">Journal</span>
+      </div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-year">2020</div>
+        <div class="pub-content">
+          <h4>The crude ostracism detection system: Pupils react to minimal cues of exclusion</h4>
+          <div class="pub-authors">Hwang, H. G., <strong>Suh, J.</strong>, Balbona, J., Sodhi, S., & Markson, L.</div>
+          <div class="pub-venue">Journal of Social and Personal Relationships, 37(4), 1225–1244</div>
+        </div>
+        <span class="pub-badge">Journal</span>
+      </div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-year">2019</div>
+        <div class="pub-content">
+          <h4>Assessing the temporal learning account of the list-wide proportion congruence effect</h4>
+          <div class="pub-authors">Cohen-Shikora, E. R., <strong>Suh, J.</strong>, & Bugg, J. M.</div>
+          <div class="pub-venue">Journal of Experimental Psychology: Learning, Memory, and Cognition, 45(9), 1703–1723</div>
+        </div>
+        <span class="pub-badge">Journal</span>
+      </div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-year">2018</div>
+        <div class="pub-content">
+          <h4>Action influences unconscious visual processing</h4>
+          <div class="pub-authors"><strong>Suh, J.</strong> & Abrams, R. A.</div>
+          <div class="pub-venue">Attention, Perception, & Psychophysics, 80(6), 1599–1608</div>
+        </div>
+        <span class="pub-badge">Journal</span>
+      </div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-year">2018</div>
+        <div class="pub-content">
+          <h4>Simple actions influence eye movements</h4>
+          <div class="pub-authors">Weidler, B., <strong>Suh, J.</strong>, & Abrams, R. A.</div>
+          <div class="pub-venue">Visual Cognition, 26(5), 299–312</div>
+        </div>
+        <span class="pub-badge">Journal</span>
+      </div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-year">2018</div>
+        <div class="pub-content">
+          <h4>Tool use produces a size illusion revealing action-specific perceptual mechanisms</h4>
+          <div class="pub-authors"><strong>Suh, J.</strong> & Abrams, R. A.</div>
+          <div class="pub-venue">Acta Psychologica, 183, 10–18</div>
+        </div>
+        <span class="pub-badge">Journal</span>
+      </div>
+      <div class="pub-item" data-type="journal">
+        <div class="pub-year">2015</div>
+        <div class="pub-content">
+          <h4>Reduced object-based perception in the near-hand space</h4>
+          <div class="pub-authors"><strong>Suh, J.</strong> & Abrams, R. A.</div>
+          <div class="pub-venue">Experimental Brain Research, 233(12), 3403–3412</div>
+        </div>
+        <span class="pub-badge">Journal</span>
+      </div>
+      <div class="pub-item" data-type="book">
+        <div class="pub-year">2015</div>
+        <div class="pub-content">
+          <h4>Embodied seeing: The space near the hands</h4>
+          <div class="pub-authors">Abrams, R. A., Weidler, B. J., & <strong>Suh, J.</strong></div>
+          <div class="pub-venue">Psychology of Learning and Motivation, 63, 141–172</div>
+        </div>
+        <span class="pub-badge">Chapter</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer-section" id="contact">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <h3 data-ko="함께 연구하고 싶다면" data-en="Join Our Lab">Join Our Lab</h3>
+        <p data-ko="석·박사 과정 학생 및 학부 인턴을 모집하고 있습니다. 인지과학, 심리학, 컴퓨터과학 배경의 열정적인 연구자를 환영합니다. CV와 간단한 자기소개를 이메일로 보내주세요." data-en="We are recruiting graduate students and undergraduate interns. We welcome passionate researchers with backgrounds in cognitive science, psychology, or computer science. Please send your CV and a brief introduction via email.">We are recruiting graduate students and undergraduate interns. We welcome passionate researchers with backgrounds in cognitive science, psychology, or computer science. Please send your CV and a brief introduction via email.</p>
+      </div>
+      <div class="footer-right">
+        <div class="contact-row">
+          <span class="c-label">Email</span>
+          <span class="c-value"><a href="mailto:jihyunsuh@postech.ac.kr">jihyunsuh@postech.ac.kr</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="c-label">Office</span>
+          <span class="c-value">POSTECH 무은재기념관 404호, 77 Cheongam, Nam-Gu, Pohang</span>
+        </div>
+        <div class="contact-row">
+          <span class="c-label">GitHub</span>
+          <span class="c-value"><a href="https://github.com/cogneuro-lab" target="_blank">github.com/cogneuro-lab</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="c-label">Scholar</span>
+          <span class="c-value"><a href="https://scholar.google.com/citations?user=aWaAs5oAAAAJ&hl=en" target="_blank">Google Scholar</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>&copy; 2026 POSTECH Cognitive Science Lab. Built with HTML/CSS/JS.</span>
+      <span>POSTECH 인지과학 연구실</span>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Mobile menu close
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
+    });
+
+    // Publication filter
+    function filterPubs(type, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.pub-item').forEach(item => {
+        item.style.display = (type === 'all' || item.dataset.type === type) ? 'grid' : 'none';
+      });
+    }
+
+    // Language toggle
+    let currentLang = 'en';
+    function setLang(lang) {
+      currentLang = lang;
+      document.getElementById('btnKo').classList.toggle('active', lang === 'ko');
+      document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-ko][data-en]').forEach(el => {
+        const text = el.getAttribute('data-' + lang);
+        if (text) el.innerHTML = text;
+      });
+    }
+    // Initialize with English
+    setLang('en');
+  </script>
+</body>
+</html>
