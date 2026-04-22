@@ -101,15 +101,30 @@
       position: relative; min-height: 100vh; display: flex;
       align-items: center; padding: 0 2rem; overflow: hidden;
     }
+    .hero-video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(247, 247, 245, 0.75);
+      z-index: 0;
+    }
     .hero-glow {
       position: absolute; width: 600px; height: 600px;
       border-radius: 50%; filter: blur(140px); opacity: 0.12; pointer-events: none;
+      z-index: 1;
     }
     .hero-glow.g1 { background: var(--accent); top: -100px; right: -100px; opacity: 0.08; }
     .hero-glow.g2 { background: #7B61FF; bottom: -150px; left: -200px; opacity: 0.05; }
     .hero-content {
       max-width: 1120px; margin: 0 auto; width: 100%;
-      position: relative; z-index: 1; animation: heroIn 1s ease-out;
+      position: relative; z-index: 2; animation: heroIn 1s ease-out;
     }
     @keyframes heroIn {
       from { opacity: 0; transform: translateY(30px); }
@@ -502,6 +517,10 @@
 
   <!-- HERO -->
   <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
     <div class="hero-glow g1"></div>
     <div class="hero-glow g2"></div>
     <div class="hero-content">
