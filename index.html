@@ -227,6 +227,11 @@
       transition: border-color 0.3s, background 0.3s;
     }
     .person-card:hover { border-color: var(--border-h); background: var(--bg-card-h); }
+    .member-photo {
+      width: 48px; height: 48px; border-radius: 50%;
+      object-fit: cover; border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
     .person-avatar {
       width: 48px; height: 48px; border-radius: 50%;
       background: linear-gradient(135deg, var(--accent-dim), rgba(123,97,255,0.08));
@@ -704,10 +709,17 @@
     <div class="people-role">
       <div class="people-role-title">Undergraduate RA</div>
       <div class="person-card" style="max-width: none;">
-        <div class="person-avatar">—</div>
+        <img src="jaehyeon_park.jpg" alt="박재현" class="member-photo" />
         <div class="person-info">
-          <h4 data-ko="모집 중" data-en="Open Position">Open Position</h4>
-          <div class="role" data-ko="학부 연구생을 모집하고 있습니다" data-en="We are recruiting undergraduate research assistants">We are recruiting undergraduate research assistants</div>
+          <h4>박재현 (Jaehyeon Park)</h4>
+          <div class="role">POSTECH</div>
+        </div>
+      </div>
+      <div class="person-card" style="max-width: none; margin-top: 0.8rem;">
+        <img src="jeonghun_kim.jpg" alt="김정훈" class="member-photo" />
+        <div class="person-info">
+          <h4>김정훈 (Jeonghun Kim)</h4>
+          <div class="role">POSTECH</div>
         </div>
       </div>
     </div>
