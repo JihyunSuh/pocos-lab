@@ -96,6 +96,83 @@
     .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
     .menu-toggle span { display: block; width: 20px; height: 1.5px; background: var(--text-dim); margin: 5px 0; }
 
+    /* NAV DROPDOWN */
+    .nav-links li { position: relative; }
+    .dd-toggle { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+    .dd-caret { font-size: 0.55rem; transition: transform 0.25s; }
+    .has-dropdown::after {
+      content: ''; position: absolute; top: 100%; left: -0.5rem; right: -0.5rem; height: 18px;
+    }
+    .dropdown {
+      list-style: none; position: absolute; top: calc(100% + 14px); left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      min-width: 300px; padding: 0.45rem;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border); border-radius: 12px;
+      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.09);
+      display: flex; flex-direction: column; gap: 0.1rem;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    }
+    .has-dropdown:hover .dropdown,
+    .has-dropdown:focus-within .dropdown,
+    .has-dropdown.open .dropdown {
+      opacity: 1; visibility: visible; pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .has-dropdown:hover .dd-caret,
+    .has-dropdown.open .dd-caret { transform: rotate(180deg); }
+    .dropdown a {
+      display: flex; align-items: baseline; gap: 0.6rem;
+      padding: 0.6rem 0.8rem; border-radius: 8px;
+      font-size: 0.82rem; font-weight: 400; letter-spacing: 0;
+      text-transform: none; color: var(--text-dim); white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dropdown a::after { display: none; }
+    .dropdown a:hover { background: var(--accent-dim); color: var(--accent); }
+    .dropdown .code {
+      font-family: var(--mono); font-size: 0.66rem; color: var(--text-muted);
+      letter-spacing: 0.04em; min-width: 84px; flex-shrink: 0;
+    }
+    .dropdown a:hover .code { color: var(--accent); }
+
+    /* TEACHING */
+    .course-list { display: flex; flex-direction: column; gap: 1rem; }
+    .course-card {
+      display: grid; grid-template-columns: 116px 1fr auto;
+      gap: 1.5rem; align-items: center;
+      padding: 1.4rem 1.6rem; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 14px;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    a.course-card:hover {
+      border-color: var(--border-h); transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    }
+    .course-code {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em;
+      color: var(--accent); background: var(--accent-dim);
+      padding: 0.35rem 0.6rem; border-radius: 6px; text-align: center;
+    }
+    .course-body h3 { font-size: 1.02rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .course-meta { font-size: 0.8rem; color: var(--text-dim); }
+    .course-go {
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--accent); white-space: nowrap;
+    }
+    .course-soon {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--text-muted);
+      border: 1px solid var(--border); border-radius: 100px;
+      padding: 0.3rem 0.7rem; white-space: nowrap;
+    }
+    @media (max-width: 640px) {
+      .course-card { grid-template-columns: 1fr; gap: 0.7rem; }
+      .course-code { justify-self: start; }
+    }
+
     /* HERO */
     .hero {
       position: relative; min-height: 100vh; display: flex;
@@ -480,6 +557,15 @@
         border-bottom: 1px solid var(--border);
       }
       .menu-toggle { display: block; }
+      .has-dropdown::after { display: none; }
+      .dropdown {
+        position: static; transform: none; opacity: 1; visibility: visible;
+        pointer-events: auto; display: none; min-width: 0;
+        background: transparent; border: none; box-shadow: none; backdrop-filter: none;
+        padding: 0.5rem 0 0 0.9rem; border-left: 1px solid var(--border); margin-top: 0.6rem;
+      }
+      .has-dropdown.open .dropdown { display: flex; transform: none; }
+      .dropdown a { white-space: normal; padding: 0.5rem 0.4rem; }
       .lang-toggle { margin-left: auto; margin-right: 0.5rem; }
       .news-header { flex-wrap: wrap; }
       .news-date { min-width: auto; }
@@ -508,10 +594,18 @@
       </button>
       <ul class="nav-links">
         <li><a href="#news" data-ko="뉴스" data-en="News">News</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#people">People</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about" data-ko="소개" data-en="About">About</a></li>
+        <li><a href="#people" data-ko="구성원" data-en="People">People</a></li>
+        <li><a href="#research" data-ko="논문" data-en="Research">Research</a></li>
+        <li class="has-dropdown">
+          <a href="#teaching" class="dd-toggle" aria-haspopup="true" aria-expanded="false"><span data-ko="강의" data-en="Teaching">Teaching</span><span class="dd-caret" aria-hidden="true">▾</span></a>
+          <ul class="dropdown">
+            <li><a href="business-statistics-2026f.html"><span class="code">MSIP506-01</span><span data-ko="비즈니스 통계 · 2026 가을" data-en="Business Statistics · Fall 2026">Business Statistics · Fall 2026</span></a></li>
+            <li><a href="#teaching"><span class="code">SOSC449</span><span data-ko="인지신경과학" data-en="Cognitive Neuroscience">Cognitive Neuroscience</span></a></li>
+            <li><a href="#teaching"><span class="code">SOSC341</span><span data-ko="심리학개론" data-en="Introduction to Psychology">Introduction to Psychology</span></a></li>
+          </ul>
+        </li>
+        <li><a href="#contact" data-ko="연락처" data-en="Contact">Contact</a></li>
       </ul>
       <div class="lang-toggle">
         <button class="lang-btn" onclick="setLang('ko')" id="btnKo">KOR</button>
@@ -889,6 +983,44 @@
     </div>
   </section>
 
+  <div class="divider"></div>
+
+  <!-- TEACHING -->
+  <section class="section reveal" id="teaching">
+    <div class="section-label">05 — Teaching</div>
+    <h2 class="section-title" data-ko="강의" data-en="Teaching">Teaching</h2>
+    <p class="section-desc" data-ko="POSTECH에서 진행하는 학부 및 대학원 강의입니다. 진도표와 강의 자료는 각 과목 페이지에서 확인할 수 있습니다." data-en="Undergraduate and graduate courses taught at POSTECH. Schedules and materials are on each course page.">Undergraduate and graduate courses taught at POSTECH. Schedules and materials are on each course page.</p>
+
+    <div class="course-list">
+      <a class="course-card" href="business-statistics-2026f.html">
+        <span class="course-code">MSIP506-01</span>
+        <span class="course-body">
+          <h3 data-ko="비즈니스 통계" data-en="Business Statistics">Business Statistics</h3>
+          <span class="course-meta" data-ko="2026 가을 · 매주 금요일" data-en="Fall 2026 · Fridays">Fall 2026 · Fridays</span>
+        </span>
+        <span class="course-go" data-ko="진도표 →" data-en="Schedule →">Schedule →</span>
+      </a>
+
+      <div class="course-card">
+        <span class="course-code">SOSC449</span>
+        <span class="course-body">
+          <h3 data-ko="인지신경과학" data-en="Cognitive Neuroscience">Cognitive Neuroscience</h3>
+          <span class="course-meta" data-ko="학부" data-en="Undergraduate">Undergraduate</span>
+        </span>
+        <span class="course-soon" data-ko="준비 중" data-en="Coming soon">Coming soon</span>
+      </div>
+
+      <div class="course-card">
+        <span class="course-code">SOSC341</span>
+        <span class="course-body">
+          <h3 data-ko="심리학개론" data-en="Introduction to Psychology">Introduction to Psychology</h3>
+          <span class="course-meta" data-ko="학부" data-en="Undergraduate">Undergraduate</span>
+        </span>
+        <span class="course-soon" data-ko="준비 중" data-en="Coming soon">Coming soon</span>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer-section" id="contact">
     <div class="footer-inner">
@@ -928,9 +1060,24 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Mobile menu close
+    // Mobile menu close (the Teaching toggle opens its submenu instead)
     document.querySelectorAll('.nav-links a').forEach(a => {
-      a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
+      if (a.classList.contains('dd-toggle')) return;
+      a.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('open');
+        document.querySelectorAll('.has-dropdown').forEach(li => li.classList.remove('open'));
+      });
+    });
+
+    // Teaching submenu: hover on desktop, tap to expand on narrow screens
+    document.querySelectorAll('.dd-toggle').forEach(toggle => {
+      toggle.addEventListener('click', e => {
+        if (!window.matchMedia('(max-width: 768px)').matches) return;
+        e.preventDefault();
+        const li = toggle.parentElement;
+        li.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', li.classList.contains('open'));
+      });
     });
 
     // Publication filter
