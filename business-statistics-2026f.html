@@ -168,7 +168,14 @@ h1{font-family:var(--display);font-weight:600;font-size:clamp(28px,5.2vw,42px);l
   font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
 .row-now{background:var(--now-bg);box-shadow:inset 3px 0 0 var(--accent)}
 .row-past .wk,.row-past .dt,.row-past .tp{opacity:.5}
-.row-holiday .tp{color:var(--muted);font-style:italic}
+/* No class: hatched ground, so the week reads as an interruption at a glance */
+.row-holiday{
+  background:repeating-linear-gradient(135deg,transparent 0 8px,var(--surface-2) 8px 9px),var(--surface);
+  box-shadow:inset 3px 0 0 var(--line-strong)}
+.row-holiday.row-now{box-shadow:inset 3px 0 0 var(--accent)}
+.row-holiday .tp{color:var(--ink-2);font-weight:500}
+.chip-off{background:transparent;color:var(--muted);border:1px dashed var(--line-strong);
+  border-radius:6px;padding:1px 8px;font-weight:600}
 
 .wk{font-family:var(--display);font-size:19px;font-weight:600;line-height:1.25;
   letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--ink-2)}
@@ -284,7 +291,7 @@ footer.foot{margin-top:22px;display:flex;justify-content:space-between;gap:12px;
       { "label": "Sampling Methods", "kind": "slides", "url": "https://drive.google.com/file/d/1VsORuo03Ist-VS-QXhv8xjF6S-e-HI5v/view?usp=sharing" },
       { "label": "Data for Practice", "kind": "data", "url": "https://docs.google.com/spreadsheets/d/1McnmGa4oLPH1KGcxMcMIaRj-uzXjtXjH/edit?usp=sharing&ouid=118242470119163280130&rtpof=true&sd=true" }
     ] },
-    { "id": "w3",  "week": 3,  "date": "2026-09-25", "topic": "Chuseok Holiday (no class)", "hw": "", "quiz": "", "type": "holiday", "links": [] },
+    { "id": "w3",  "week": 3,  "date": "2026-09-25", "topic": "Chuseok Holiday", "hw": "", "quiz": "", "type": "holiday", "links": [] },
     { "id": "w4",  "week": 4,  "date": "2026-10-02", "topic": "Probability & Sampling Distributions", "hw": "", "quiz": "Quiz 1", "quizStart": "2026-10-02", "quizEnd": "2026-10-09", "type": "class", "links": [] },
     { "id": "w5",  "week": 5,  "date": "2026-10-09", "topic": "Hypothesis Testing", "hw": "", "quiz": "", "type": "class", "links": [] },
     { "id": "w6",  "week": 6,  "date": "2026-10-16", "topic": "Independent Group t-Test", "hw": "", "quiz": "Quiz 2", "quizStart": "2026-10-16", "quizEnd": "2026-10-23", "type": "class", "links": [] },
@@ -495,6 +502,7 @@ footer.foot{margin-top:22px;display:flex;justify-content:space-between;gap:12px;
       '<span class="chip chip-hw">Homework</span>' +
       '<span class="chip chip-quiz">Quiz</span>' +
       '<span class="chip chip-exam">Exam</span>' +
+      '<span class="chip chip-off">No class</span>' +
       '</div>';
 
     /* schedule */
@@ -515,7 +523,8 @@ footer.foot{margin-top:22px;display:flex;justify-content:space-between;gap:12px;
         html += '<div class="fields">' +
           '<div class="fgroup"><span class="flabel">Date</span>' +
           '<div class="frow"><input class="f f-sm" type="date" id="rd-' + esc(r.id) +
-          '" data-rid="' + esc(r.id) + '" data-rf="date" value="' + esc(r.date) + '" aria-label="Date"></div></div>' +
+          '" data-rid="' + esc(r.id) + '" data-rf="date" value="' + esc(r.date) + '" aria-label="Date">' +
+          typeSelect(r) + '</div></div>' +
 
           '<div class="fgroup"><span class="flabel">Topic</span>' +
           '<input class="f" id="rt-' + esc(r.id) + '" data-rid="' + esc(r.id) +
@@ -553,6 +562,9 @@ footer.foot{margin-top:22px;display:flex;justify-content:space-between;gap:12px;
         if (r.type === "exam") {
           html += '<div class="due-item"><span class="chip chip-exam">' + esc(r.topic) + '</span></div>';
         }
+        if (r.type === "holiday") {
+          html += '<div class="due-item"><span class="chip chip-off">No class</span></div>';
+        }
         if (r.hw) html += dueItem("hw", r.hw, r.hwStart, r.hwEnd, t);
         if (r.quiz) html += dueItem("quiz", r.quiz, r.quizStart, r.quizEnd, t);
         html += '</div>';
@@ -570,6 +582,18 @@ footer.foot{margin-top:22px;display:flex;justify-content:space-between;gap:12px;
 
     html += '</div>';
     root.innerHTML = html;
+  }
+
+  /* A holiday week is drawn as an interruption; an exam week carries its own chip. */
+  function typeSelect(r) {
+    var opts = [["class", "Class"], ["holiday", "No class"], ["exam", "Exam"]];
+    var h = '<select class="f f-sm" id="rty-' + esc(r.id) + '" data-rid="' + esc(r.id) +
+      '" data-rf="type" aria-label="Week type">';
+    opts.forEach(function (o) {
+      h += '<option value="' + o[0] + '"' + ((r.type || "class") === o[0] ? ' selected' : '') +
+        '>' + o[1] + '</option>';
+    });
+    return h + '</select>';
   }
 
   /* Label plus an open/close window. Leaving the dates blank is fine; typing a
@@ -654,6 +678,7 @@ footer.foot{margin-top:22px;display:flex;justify-content:space-between;gap:12px;
     }
 
     var key = el.dataset.rf;
+    if (key === "type") { render(); return; }
     if (key !== "hw" && key !== "quiz") return;
     var r = findRow(el.dataset.rid);
     if (!r || !el.value.trim()) return;
