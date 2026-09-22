@@ -98,7 +98,7 @@
 
     /* NAV DROPDOWN */
     .nav-links li { position: relative; }
-    .dd-toggle { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+    .dd-toggle { display: inline-flex; align-items: baseline; gap: 0.4rem; cursor: pointer; }
     .dd-caret { font-size: 0.55rem; transition: transform 0.25s; }
     .has-dropdown::after {
       content: ''; position: absolute; top: 100%; left: -0.5rem; right: -0.5rem; height: 18px;
@@ -566,6 +566,7 @@
       }
       .has-dropdown.open .dropdown { display: flex; transform: none; }
       .dropdown a { white-space: normal; padding: 0.5rem 0.4rem; }
+      .dd-toggle { align-items: center; }
       .lang-toggle { margin-left: auto; margin-right: 0.5rem; }
       .news-header { flex-wrap: wrap; }
       .news-date { min-width: auto; }
@@ -600,8 +601,9 @@
         <li class="has-dropdown">
           <a href="#teaching" class="dd-toggle" aria-haspopup="true" aria-expanded="false"><span data-ko="강의" data-en="Teaching">Teaching</span><span class="dd-caret" aria-hidden="true">▾</span></a>
           <ul class="dropdown">
-            <li><a href="business-statistics-2026f.html"><span class="code">MSIP506-01</span><span data-ko="비즈니스 통계 · 2026 가을" data-en="Business Statistics · Fall 2026">Business Statistics · Fall 2026</span></a></li>
+            <li><a href="business-statistics-2026f.html"><span class="code">MSIP506-01</span><span data-ko="비즈니스 통계" data-en="Business Statistics">Business Statistics</span></a></li>
             <li><a href="#teaching"><span class="code">SOSC449</span><span data-ko="인지신경과학" data-en="Cognitive Neuroscience">Cognitive Neuroscience</span></a></li>
+            <li><a href="#teaching"><span class="code">SOSC441</span><span data-ko="인지심리학" data-en="Cognitive Psychology">Cognitive Psychology</span></a></li>
             <li><a href="#teaching"><span class="code">SOSC341</span><span data-ko="심리학개론" data-en="Introduction to Psychology">Introduction to Psychology</span></a></li>
           </ul>
         </li>
@@ -1005,6 +1007,15 @@
         <span class="course-code">SOSC449</span>
         <span class="course-body">
           <h3 data-ko="인지신경과학" data-en="Cognitive Neuroscience">Cognitive Neuroscience</h3>
+          <span class="course-meta" data-ko="학부" data-en="Undergraduate">Undergraduate</span>
+        </span>
+        <span class="course-soon" data-ko="준비 중" data-en="Coming soon">Coming soon</span>
+      </div>
+
+      <div class="course-card">
+        <span class="course-code">SOSC441</span>
+        <span class="course-body">
+          <h3 data-ko="인지심리학" data-en="Cognitive Psychology">Cognitive Psychology</h3>
           <span class="course-meta" data-ko="학부" data-en="Undergraduate">Undergraduate</span>
         </span>
         <span class="course-soon" data-ko="준비 중" data-en="Coming soon">Coming soon</span>
