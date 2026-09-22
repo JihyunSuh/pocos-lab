@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Business Statistics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jihyun Suh, PhD" />
+    <script src="libs/header-attrs-2.29/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/theme_D_msi_green.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/lucy-fonts.css" rel="stylesheet" />
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <script src="libs/fabric-4.3.1/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link href="libs/panelset-0.3.0/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.3.0/panelset.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Business Statistics
+]
+.subtitle[
+## Key Concepts of Statistics cont.
+]
+.author[
+### Jihyun Suh, PhD
+]
+.date[
+### 2026/9/18
+]
+
+---
+
+
+class: inverse, normalsize, center, middle
+# Introduction to statistics
+
+---
+class: normalsize
+# Measurement
+
+&lt;img src="pic/sampling/sampling_flow.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Variables and Measurement
+
+- **Variables?**
+
+.center[
+.content-box-blue[
+- How much POSCO employees spend .mauve-blue[time] on SNS a day?
+- What is the average .acid-green[IQ score] of POSCO employees?
+- What is the .mauve-blue[average GPA] of POSCO employees? Is it higher than the .mauve-blue[worldwide average]?
+]
+]
+
+---
+class: normalsize
+# Variables and Measurement
+
+.mauve-blue[**Variable**]: a characteristic that can vary in value among subjects in a sample or population
+.center[
+.content-box-blue[
+- Income last year : $ XXXXXX
+- Number of siblings : 0, 1, 2, 3...
+- Employed or not: YES or NO
+- Gender: Female or Male
+]
+]
+
+**Variables** have different measurement scales
+
+---
+class: normalsize
+# Variables and Measurement
+**Measurement scale**
+
+.content-box-blue[
+- .mauve-blue[**Quantitative**]:measurement scale has numerical values that represent different magnitudes of the variable
+  - Example: annual income,number of siblings,age, # of years of education completed
+]
+.content-box-blue[
+- .mauve-blue[**Qualitative**]: when measurement scale is a set of categories
+  - Example:marital status (single, married ...), nationality, religious affiliation
+  - Distinct categories differ in quality not in numerical magnitude (qualitative)
+]
+
+---
+class: small
+# Variables and Measurement
+**Measurement scale**
+
+.content-box-blue[
+- .mauve-blue[**Quantitative**]:measurement scale has numerical values that represent different magnitudes of the variable
+    - Interval scale
+    - Ratio scale
+    - Ordinal scale
+]
+.content-box-blue[
+- .mauve-blue[**Qualitative**]: when measurement scale is a set of categories
+    - Nominal scale
+]
+
+---
+class: normalsize
+# Ratio scale
+- An absolute **'zero'** point
+  - You can measure the absolute amount of variable
+  - Allows to calculate 'ratio'
+  - Example: 10 liter of water in a jar has twice as much water as a jar of 5 liter
+  
+&lt;img src="pic/ratio_scale.png" width="87%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Interval scale
+- Ordered category with equal intervals
+  - Separate adjacent scores and **arbitrary zero**
+  - Example:temperature, IQ score
+  - 80 `\(^\circ\)` is 40 `\(^\circ\)` higher than 40 `\(^\circ\)` but not twice as hot as 40 `\(^\circ\)`
+  
+&lt;img src="pic/interval_scale.png" width="87%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Ordinal scale
+- Consists of a set of categories that are organized in _an ordered sequence_
+- You can think of ordinal scale as a _rank order_
+  - Example:
+    - 1st, 2nd, 3rd...(rank)
+    - small, medium, large
+    - Bronze, silver, gold medal
+    - Never, less than once a month, 1 - 3 times a month, every week, more than once a week
+    
+&lt;img src="pic/ordinal_scale.png" width="56%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Nominal scale (qualitative)
+- Consists of a set of categories that have different names
+- Do no make any quantitative distinctions between observations
+  - Example: Your primary mode of transportation to work
+      - Automobile, Bus, Subway, Bicycle, Walking
+- No category is greater than or smaller than any other category
+
+&lt;img src="pic/nominal_scale.png" width="76%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Measurment scale
+&lt;img src="pic/measure_cal_table.png" width="62%" style="display: block; margin: auto;" /&gt;
+
+- Arithmetic mean = `\(AM = \frac{a_1+a_2+a_3+a_4+...+a_n}{n}\)` 
+- Geometric mean = `\(GM = ^n\sqrt{a_1a_2a_3...a_n}\)` 
+
+---
+class: normalsize
+# Measurment scale: recap
+&lt;img src="pic/measure_table.png" width="52%" style="display: block; margin: auto;" /&gt;
+
+--
+
+- .mauve-blue[**Q: What are the types of variables below?**]
+.small[
+- Age
+- Gender (Male, Female)
+- Marital status (married, single..etc)
+- Number of magazine subscriptions
+- Annual income
+- Rate of the quality of the magazine: excellent, good, fair, or poor
+]
+
+---
+class: normalsize
+# Data visualization
+- **Nominal data**
+  - With nominal(categorical) variables, we can compute the frequency of each value only
+  - Let's check out the graphical techniques to present a picture of the data
+  
+    1. Frequency table
+    2. Pie chart
+    3. Bar chart
+    
+- We will be using Microsoft Excel to plot data
+
+---
+class: small
+# Nominal data: frequency table
+- Data source: General Social Survey(`Week2_data.xlsx:GSS2018`), column named `WRKSTAT`
+
+.content-box-blue[
+The data reflects the **work status of Americans**
+
+1. Working full time
+2. Working part time
+3. Temporarily not working
+4. Unemployed
+5. Retired
+6. School
+7. Keeping house
+8. Other
+]
+
+---
+class: normalsize
+# Nominal data: Frequency Table
+- Data source: General Social Survey(`Week2_data.xlsx:GSS2018`), column named `WRKSTAT`
+&lt;img src="pic/freq_num.png" width="42%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Nominal data: Frequency Table
+- Data source: General Social Survey(`Week2_data.xlsx:GSS2018`), column named `WRKSTAT`
+
+|Work status|Code|Frequency|Relative frequency(%)|
+|:----|:----:|----:|----:|
+|Working full time|1|1,134|48.34|
+|Working part time|2|259|11.04|
+|Temporarily not working|3|53|2.26|
+|Unemployed|4|84|3.58|
+|Retired|5|445|18.97|
+|School|6|81|3.45|
+|Keeping house|7|242|10.32|
+|Other|8|48|2.05|
+|Total||2,346|100|
+
+---
+class: normalsize
+# Nominal data: Frequency Table
+- Data source: General Social Survey(`Week2_data.xlsx:GSS2018`), column named `WRKSTAT`
+
+&lt;video preload="auto" muted controls&gt;
+&lt;source src="movie/week2_freq_table_excel.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+class: normalsize
+# Nominal data: Bar Chart
+- Data source: General Social Survey(`Week2_data.xlsx:GSS2018`), column named `WRKSTAT`
+
+&lt;img src="data_type_cont_lecture_script_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Nominal data: Bar Chart
+- Data source: General Social Survey(`Week2_data.xlsx:GSS2018`), column named `WRKSTAT`
+
+&lt;video preload="auto" muted controls width="400"&gt;
+&lt;source src="movie/week2_bar_chart.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+class: normalsize
+# Nominal data: Pie Chart
+.pull-left[
+**Advantages of Pie Charts**
+- Easy to understand the proportion for each component
+- Allows us to make rough comparisons among different components
+]
+.pull-right[
+**Disadvantages of Pie Charts**
+- Less useful with a large number of categories or the difference among the components is very small
+- Sometimes, it is misleading the actual differences between the components
+]
+
+&lt;img src="pic/pie_chart.png" width="74%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Nominal data: Pie Chart
+- Data source: General Social Survey(`Week2_data.xlsx:GSS2018`), column named `WRKSTAT`
+
+
+
+---
+class: normalsize
+# Nominal data: Pie Chart
+- Data source: General Social Survey(`Week2_data.xlsx:GSS2018`), column named `WRKSTAT`
+
+&lt;video preload="auto" muted controls&gt;
+&lt;source src="movie/week2_pie_excel.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+class: small
+# Nominal data: Practice!
+- Data source: undergraduate degrees of MBA applicants
+- Source file: `Week2_data.xlsx:MBA_degree`
+- The data file has 230 applicants to a university's business school was asked to report their undergraduate degree. The degrees were recorded using these codes.
+
+  1. BA (Bachelor of Art)
+  2. BBA (Bachelor of Business Administration)
+  3. B.Eng (Bachelor of Engineering)
+  4. BSc (Bachelor of Science)
+  5. Other
+  
+--
+
+.content-box-blue[By using Excel,
+- Create a frequency table 
+- Plot a bar chart
+- Plot a pie chart
+]
+
+---
+class: small
+# More than two nominal variables
+- **Cross-classification table**
+- Data source: `Week2_data.xlsx:Newspaper`
+
+.content-box-blue[
+The data reflects the **Occupation of newspaper readers**
+- Newspaper
+1. Globe and Mail
+2. Post
+3. Star
+4. Sun
+
+- Occupation
+1. White-collar workers
+2. Blue-collar workers
+3. Professionals
+
+]
+
+---
+class: normalsize
+# More than two nominal variables
+- **Cross-classification table**
+
+|Occupation|Globe and Mail|Post|Star|Sun|Total|
+|:----|:----:|:----:|:----:|:----:|:----:|
+|Blue collar|27|18|38|37|120|
+|White collar|29|43|21|15|108|
+|Professionals|33|51|22|20|126|
+|Total|89|112|81|72|354|
+
+
+|Occupation|Globe and Mail|Post|Star|Sun|Total|
+|:----|:----:|:----:|:----:|:----:|:----:|
+|Blue collar|23%|15%|32%|31%|100%|
+|White collar|27%|40%|19%|14%|100%|
+|Professionals|26%|40%|17%|16%|100%|
+|Total|25%|32%|23%|20%|100%|
+
+---
+class: normalsize
+# More than two nominal variables
+- **Cross-classification table**
+
+&lt;video preload="auto" muted controls&gt;
+&lt;source src="movie/week2_cross_freq_excel.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+class: normalsize
+# Interval &amp; Ratio data
+
+&lt;img src="data_type_cont_lecture_script_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Histogram
+
+.mauve-blue[**Advantages of Histogram**]
+- One of the most widely used format of the plot
+- A single glance at a histogram gives us some idea about the shape and spread of the data
+- Can represent a large number of bars representing different class intervals
+
+&lt;img src="pic/histoogram.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Histogram
+
+.vibrant-red[**Disadvantages of Histogram**]
+- A histogram cannot be used to represent discrete frequency distributions
+- Histograms cannot be used to compare two different data sets
+- While the mode can be calculated using a histogram, the mean and the median cannot be calculated using a histogram
+
+&lt;img src="pic/histoogram.png" width="61%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Histogram
+- Bin size does matter
+
+.pull-left[
+&lt;img src="data_type_cont_lecture_script_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="data_type_cont_lecture_script_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+class: normalsize
+# Histogram
+- How can we determine the bin size?
+- An alternative to the guidelines listed in the table to the left is to use __Sturges’s formula__, which recommends that the number of class intervals be determined by the following:
+ Number of class intervals = 1 + 3.3 `\(log(n)\)`
+  
+  if n = 50, Sturges's formula = 1 + 3.3 `\(log(50)\)` = 1 + 3.3(1.7) = 6.6 ~= 7
+
+---
+class: normalsize
+# Histogram
+- How to determine the bin size (cont.)
+
+- Class width = `\(\frac{Largest \ Observation - Smallest \ Observation}{Number \ of \ classes}\)` 
+  
+  if largest = 99, smallest = 16, the number of classes = 9,
+  
+  Class width = (99 - 16)/9 = 9.22
+
+---
+class: normalsize
+# Histogram
+- Bin size does matter
+
+&lt;video preload="auto" muted controls&gt;
+&lt;source src="movie/week2_histo_excel.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+class: normalsize
+# Histogram
+- Shapes of Histogram: Symmetric
+
+
+&lt;img src="data_type_cont_lecture_script_files/figure-html/unnamed-chunk-17-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+A histogram is said to be symmetric if, when we draw a vertical line down the center of the histogram, the two sides are identical in shape and size.
+
+---
+class: normalsize
+# Histogram
+- Shapes of Histogram
+
+&lt;img src="data_type_cont_lecture_script_files/figure-html/unnamed-chunk-18-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+A skewed histogram has one of the two tails extending more than the other one. If the longer tail is to the right, the histogram is said to be positively skewed, and if the longer tail is to the left, it is said to be negatively skewed.
+
+---
+class: normalsize
+# Histogram
+- Shapes of Histogram
+&lt;img src="data_type_cont_lecture_script_files/figure-html/unnamed-chunk-19-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+- A modal class is the class with the largest number of observations.
+- A unimodal histogram is one with a single peak.
+- A bimodal histogram is one with two peaks, not necessarily equal in height.
+
+---
+class: normalsize
+# Histogram
+- Shapes of Histogram
+&lt;img src="data_type_cont_lecture_script_files/figure-html/unnamed-chunk-20-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+*Bell-shaped*: symmetric, single-peaked, with values concentrated in the center and tapering off equally toward both tails (a normal distribution).
+
+---
+class: normalsize
+# Time Series Data: Line Chart
+.pull-left[
+**Advantages of Line Charts**
+- Easy to see both short-term and long-term changes
+- Simpler to construct and read than bar graphs or histograms
+]
+.pull-right[
+**Disadvantages of Line Charts**
+- Does not reveal much about the skewness or kurtosis of the data
+- Can be used to manipulate or deceive the general public (y axis range)
+]
+
+&lt;img src="pic/linechart.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Time Series Data: Line Chart
+- Data source: Price of Gasoline `Week2_data.xlsx:Gasoline`
+
+&lt;video preload="auto" muted controls&gt;
+&lt;source src="movie/week2_line_excel.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+class: normalsize
+# Time Series Data: Line Chart
+- Practice!
+.content-box-blue[
+- Data source: The average daily US oil consumption &amp; production `Week2_data.xlsx:US_oil`
+
+- Create a line chart for the daily US oil consumption
+- Create a line chart for the daily US oil production
+- Add x and y labels
+]
+
+---
+class: normalsize
+# Relationship between two values: Scatter
+.pull-left[
+**Advantages of Scatter plot**
+- are very easy to plot and interpret
+- Outliers are isolated and do not affect the results
+- Shows how strongly two variables are related &amp; direction of the relationship
+]
+.pull-right[
+**Disadvantages of Scatter plot**
+- Only depicts the direction but not the degree of correlation
+- If there are too many points to be plotted then the scatter diagram becomes too cluttered and unreadable
+- Does not show the relationship for more than two variables
+]
+
+&lt;img src="pic/scatter.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Relationship between two values: Scatter
+
+&lt;img src="pic/scatter1.png" width="72%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="pic/scatter2.png" width="57%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Relationship between two values: Scatter
+- Data source: relationship between size and price of home `Week2_data.xlsx:Home`
+
+&lt;video preload="auto" muted controls&gt;
+&lt;source src="movie/week2_scatter_excel.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+class: normalsize
+# Relationship between two values: Scatter
+- Practice
+.content-box-blue[
+- Data source: relationship between sales of popcorn, soft drinks, and candy and the time between showings of a movie `Week2_data.xlsx:Popcorn`
+
+- Create a scatter plot
+- Add labels to x and y axis
+- Add a linear trend line
+- Add a regression equation
+- Is there a positive or negative relationship?
+]
+
+---
+class: normalsize
+# Presenting data: examples of bad graphs
+- What is wrong?
+
+&lt;img src="pic/bad1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Presenting data: examples of bad graphs
+- What is wrong?
+
+&lt;img src="pic/bad2.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Presenting data: examples of bad graphs
+- What is wrong?
+
+&lt;img src="pic/bad3.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Presenting data: examples of bad graphs
+- What is wrong?
+
+&lt;img src="pic/bad4.png" width="94%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Presenting data: examples of bad graphs
+- What is wrong?
+
+&lt;img src="pic/bad5.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Presenting data: examples of bad graphs
+- What is wrong?
+
+&lt;img src="pic/bad6.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Presenting data: examples of bad graphs
+- What is wrong?
+
+&lt;img src="pic/bad7.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Presenting data: examples of bad graphs
+- What is wrong?
+
+&lt;img src="pic/bad8.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Presenting data: Recap
+- What is a good graph?
+.content-box-blue[
+1. It presents large data sets concisely and coherently
+2. The viewer can easily understand the message
+3. It should be able to provide relationship between multiple variables
+4. The form of the graph should help viewers can understand the substance of the data
+5. No deception
+]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "ratio": "16:9",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

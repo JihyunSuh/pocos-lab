@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Business Statistics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jihyun Suh, PhD" />
+    <script src="libs/header-attrs-2.29/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/theme_D_msi_green.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/lucy-fonts.css" rel="stylesheet" />
+    <link href="libs/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.6/tile-view.js"></script>
+    <script src="libs/fabric-4.3.1/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+    <script src="libs/viz-1.8.2/viz.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding-1.0.12/grViz.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Business Statistics
+]
+.subtitle[
+## Data Collection &amp; Sampling
+]
+.author[
+### Jihyun Suh, PhD
+]
+.date[
+### 2026/9/18
+]
+
+---
+
+
+class: inverse, normalsize, center, middle
+# Check in
+
+---
+class: normalsize
+# Check in
+By now, you should feel comfortable with:
+
+- Types of measurement scale
+- Discrete random variable
+- Probability of a discrete event
+
+---
+class: normalsize
+# Sampling
+
+&lt;img src="pic/sampling/sampling_flow.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: small
+# Methods of collecting data
+- Three of the most popular methods:
+
+1. .mauve-blue[**Direct observation**] leads to the collection of observational data. 
+
+  - (+) Relatively inexpensive, represent the real world
+  - (-) Cannot assess causation 
+
+2. .mauve-blue[**Experiments**] 
+
+  - (+) Able to limit the influence of spurious variables through control and the manipulation of the variables of interest
+  - (-) Cost
+  - (-) Generalization issue
+
+3. .mauve-blue[**Surveys**]
+
+ - (+) Relatively inexpensive, Efficient
+ - (-) Rely on the subjective report
+
+---
+class: small
+# Survey
+A survey solicits information from people; e.g., Gallup polls, pre-election polls, and marketing surveys.
+
+**Different types of survey**
+
+- .mauve-blue[**A personal interview**] is the best approach because it has a higher response rate and fewer incorrect answers, but it requires a trained interviewer to avoid response bias.
+
+- .mauve-blue[**A telephone interview**] is less expensive, but also less personal and has a lower response rate. Cell phones are also more difficult than land lines to include in survey.
+
+- .mauve-blue[**A self-administered survey**] is usually mailed to a sample of people. It is inexpensive and attractive when a large sample is required, but it suffers from low response rates and high rates of incorrect answers.
+
+- .mauve-blue[**An online survey**] is now the most common format (web forms, email invitations, commercial panels). It is fast and cheap, and it scales, but it has two standing problems: people without internet access or not on the panel are never reached (coverage), and those who choose to answer may differ from those who do not (self-selection).
+
+---
+class: normalsize
+# Sampling
+- .mauve-blue[**Sampling**], the process of selecting a subset of the sampled population, is often done for reasons of cost and practicality.
+
+&lt;img src="pic/sampling.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: small
+# From population to data
+
+- .mauve-blue[**Target population**]: the group you want to describe.
+- .mauve-blue[**Sampling frame**]: the list you actually draw from (a student registry, a phone number list, a customer database).
+- .mauve-blue[**Sample**]: the units drawn from the frame.
+- .mauve-blue[**Respondents**]: the units that end up giving you data.
+
+A different error enters at each arrow.
+
+<div id="htmlwidget-9cb12de8ed29ecc97584" style="width:850px;height:150px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9cb12de8ed29ecc97584">{"x":{"diagram":"digraph {\ngraph [layout = dot, rankdir = LR]\nnode [shape = rectangle, fontname = Helvetica, fontsize = 11]\nedge [fontname = Helvetica, fontsize = 9]\nA [label = \"Target\\npopulation\"]\nB [label = \"Sampling\\nframe\"]\nC [label = \"Sample\"]\nD [label = \"Respondents\"]\nA -> B [label = \"coverage error\"]\nB -> C [label = \"sampling error\"]\nC -> D [label = \"nonresponse error\"]\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+class: normalsize
+# Sampling Methods
+
+&lt;img src="pic/sampling/sampling_types.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: small
+# Two families of sampling methods
+
+.pull-left[
+.mauve-blue[**Probability sampling**]
+
+Every unit in the frame has a known, nonzero probability of selection, and that probability is set by chance, not by the researcher.
+
+- Simple random
+- Cluster
+- Systematic
+- Stratified random
+
+Sampling error can be estimated, so inference to the population is defensible.
+]
+.pull-right[
+.mauve-blue[**Non-probability sampling**]
+
+Selection probabilities are unknown. The researcher, the referral chain, or the respondents themselves determine who is included.
+
+- Convenience
+- Consecutive
+- Quota
+- Purposive
+- Snowball
+
+Cheaper and sometimes the only option, but the size of the bias cannot be estimated from the data.
+]
+
+---
+class: small
+# Simple random sampling
+- Every possible sample of a given size has .mauve-blue[**an equal chance of being selected**]
+- The reverse does not hold: systematic and stratified sampling also give each item an equal chance, but they do **not** make every possible sample equally likely
+- Depending on the data set size and format, random sampling may be a time-intensive process
+
+&lt;img src="pic/sampling/random_sampling.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: small
+# Cluster sampling
+- A simple random sample of groups or clusters of elements
+- May increase sampling error because elements belonging to the same cluster are likely to be similar in many respects, including the variable of interest. 
+
+&lt;img src="pic/sampling/clustered.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: small
+# Systematic sampling
+- A larger population are selected according to a random starting point but with a fixed, periodic interval `\(k\)`
+- Simple to carry out in the field; no full list of random numbers needed
+- .mauve-blue[**Main risk: periodicity.**] If the frame has a repeating pattern whose cycle lines up with `\(k\)`, the sample is biased
+  - A list ordered male, female, male, female ... with `\(k = 10\)` returns one sex only
+  - A daily sales log with `\(k = 7\)` returns the same weekday every time
+
+&lt;img src="pic/sampling/systematic_sampling.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: small
+# Stratified random sampling
+- Separating the population into mutually exclusive sets, or strata, and then drawing **simple random samples** from each stratum
+- It captures key population characteristics in the sample
+- Stratification gives smaller error than simple random sampling **when the strata are internally homogeneous and differ from each other** on the variable of interest
+  - Stratifying by a variable unrelated to the outcome buys nothing
+- Requires knowing the strata membership of every unit in the frame, which is often the hard part
+
+&lt;img src="pic/sampling/stratified_random.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+class: small
+# Cluster vs. Stratified
+
+| | .mauve-blue[**Cluster**] | .mauve-blue[**Stratified**] |
+|---|---|---|
+| Population is split into | clusters (often geographic or organizational) | strata (defined by a known characteristic) |
+| What is drawn at random | a subset of **clusters**; all or some units within them | units **within every stratum** |
+| Are all groups represented? | No, only the selected clusters | Yes, all strata by design |
+| Ideal group composition | each cluster resembles the whole population | units within a stratum are alike, strata differ |
+| Effect on precision | usually **worse** than SRS | usually **better** than SRS |
+| Main motivation | cost and field logistics | precision and guaranteed coverage of subgroups |
+
+.content-box-blue[
+One sentence to remember: cluster sampling picks **groups**, stratified sampling picks **within groups**.
+]
+
+---
+class: small
+# Convenience sampling
+- Collect samples from a conveniently available pool of respondents
+- Prompt, uncomplicated, and economical
+- Potential bias of the sampling technique 
+
+&lt;img src="pic/sampling/convenience.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: small
+# Consecutive sampling
+- Every unit that meets the inclusion criteria is taken, in the order it appears, over a defined period
+  - Example: every patient admitted to a clinic in March; every customer filing a warranty claim in Q3
+- Easier to defend than convenience sampling, since the researcher does not choose whom to include
+- The sample still reflects whoever happened to show up during that window, so seasonality and other time-linked factors are built in
+- Extending the window increases the sample but does not remove that dependence
+
+&lt;img src="pic/sampling/consecutive.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+---
+class: small
+# Quota sampling
+- Non-random selection of a predetermined number or proportion of units
+- Because selection is not random and the researcher decides who is included, quota sampling is exposed to selection bias
+
+| | .mauve-blue[**Stratified**] | .mauve-blue[**Quota**] |
+|---|---|---|
+| Subgroup targets set in advance | Yes | Yes |
+| Units drawn within subgroup | at random | by the researcher |
+| Selection probabilities | known | unknown |
+| Family | probability | non-probability |
+
+&lt;img src="pic/sampling/quota.png" width="30%" style="display: block; margin: auto;" /&gt;
+
+---
+class: small
+# Purposive sampling
+- Samples are selected because they have characteristics that you need in your sample
+- Useful if you need to find information-rich cases or make the most out of limited resources
+- At high risk for research biases like observer bias
+
+&lt;img src="pic/sampling/purposive.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+class: small
+# Snowball sampling
+- Samples are recruited by other units to form part of the sample
+- Useful way to conduct research about people who might otherwise be difficult to identify (e.g., people with a rare disease).
+- As the sample is not chosen through random selection, it is not representative of the population being studied
+- Relying on referrals may lead to difficulty reaching your sample
+
+---
+class: small
+# Recap
+&lt;img src="pic/probability_sampling.jpeg" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+class: small
+# Recap: all nine methods
+
+.pull-left[
+.mauve-blue[**Probability**]
+
+- **Simple random**: every possible sample equally likely
+- **Systematic**: random start, then every `\(k\)`-th unit
+- **Stratified**: random draw inside every stratum
+- **Cluster**: random draw of whole groups
+]
+.pull-right[
+.mauve-blue[**Non-probability**]
+
+- **Convenience**: whoever is at hand
+- **Consecutive**: everyone eligible in a time window
+- **Quota**: fixed subgroup counts, filled non-randomly
+- **Purposive**: cases chosen for a needed characteristic
+- **Snowball**: participants refer other participants
+]
+
+---
+class: normalsize
+# Sampling: practice ✏️
+
+When every possible sample with the same number of observations is equally likely to be chosen, the result is called a:
+
+  a.	simple random sample.
+  
+  b.	stratified random sample.
+  
+  c.	cluster sample.
+  
+  d.	biased sample.
+
+---
+class: normalsize
+# Sampling: practice ✏️
+
+When every possible sample with the same number of observations is equally likely to be chosen, the result is called a:
+
+  .mauve-blue[**a.	simple random sample.**]
+  
+  b.	stratified random sample.
+  
+  c.	cluster sample.
+  
+  d.	biased sample.
+
+---
+class: normalsize
+# Sampling: practice ✏️
+
+The manager of the customer service division of a major consumer electronics company is interested in determining whether the customers who have purchased a pair of wireless earbuds over the past 12 months are satisfied with their products. If there are 4 different brands of wireless earbuds made by the company, the best sampling strategy would be to use a:
+
+  a.	simple random sample.
+  
+  b.	stratified random sample.
+  
+  c.	cluster sample.
+  
+  d.	self-selected sample.
+
+---
+class: normalsize
+# Sampling: practice ✏️
+
+  a.	simple random sample.
+  
+  .mauve-blue[**b.	stratified random sample.**]
+  
+  c.	cluster sample.
+  
+  d.	self-selected sample.
+
+.content-box-blue[
+Brand is a known characteristic that divides customers into mutually exclusive groups, and satisfaction plausibly differs across brands. Stratifying by brand guarantees that all four appear in the sample and yields an estimate for each one.
+
+A simple random sample might return few or no customers of a small-share brand. A cluster sample of brands would drop entire brands from the study. A self-selected sample is not a sampling plan at all.
+]
+
+---
+class: small
+# Sampling errors
+- .mauve-blue[**Sampling error**] refers to difference existing between a given sample statistic and the population parameter because of the particular set of observations selected for the sample.
+
+&lt;img src="pic/sampling/samplingerror.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+class: small
+# Sampling errors
+- .mauve-blue[**Sampling error**] refers to difference existing between a given sample statistic and the population parameter because of the particular set of observations selected for the sample.
+- It is the price of observing a subset rather than the whole population. It exists even when everything is done correctly.
+- The sampling error decreases as the sample size becomes larger.
+
+.content-box-blue[
+- Example:
+Suppose that we wish to estimate the mean annual amount of steel production in the world making an inference from the annual amount of steel production from POSCO.
+
+The sampling error is the difference between the sample mean steel production from POSCO and the population mean annual steel production.
+]
+
+.mauve-blue[**Note:**] POSCO is not a randomly drawn producer, so most of the gap here is bias, not sampling error. Enlarging a non-random sample does not close that gap. Keep the two apart.
+
+---
+class: small
+# How fast does sampling error shrink?
+
+For a sample mean, the standard error is
+
+`$$SE = \frac{\sigma}{\sqrt{n}}$$`
+
+The error falls with `\(\sqrt{n}\)`, not with `\(n\)`.
+
+| `\(n\)` | Relative error |
+|---|---|
+| 100 | 1.00 |
+| 400 | 0.50 |
+| 1,600 | 0.25 |
+| 6,400 | 0.125 |
+
+.content-box-blue[
+To cut the error in half, you need **four times** the sample. This is why national polls stop around `\(n = 1{,}000\)`: the next increment of precision costs far more than it is worth.
+
+We will use this expression again when we build confidence intervals.
+]
+
+---
+class: small
+# Nonsampling errors
+.content-box-blue[
+- .mauve-blue[**Nonsampling errors**] are more serious and are due to mistakes made in the acquisition of data or due to improperly selected sample observations.
+- Increasing the sample size .mauve-blue[**will not reduce**] a nonsampling error.
+]
+
+- **There are three types of nonsampling errors:**
+1. .mauve-blue[**Errors in data acquisition**] arise from the recording of incorrect responses caused by inaccurate measurements, transcription mistakes, inaccurate data recording, or inaccurate responses to questions.
+
+2. .mauve-blue[**Nonresponse errors**] happen when the people who answer differ systematically from the people who do not, on the variable being measured. A low response rate is a warning sign, not the error itself: if nonrespondents were just like respondents, a low rate would cost precision but not accuracy.
+
+3. .mauve-blue[**Selection bias**] occurs when part of the target population is not included in the sampling plan, so those units have no chance of being selected.
+
+---
+class: small
+# One word, two meanings
+
+.mauve-blue[**"Selection"**] appears twice in this course with different referents.
+
+.pull-left[
+**Selection bias** (sampling)
+
+Part of the target population is missing from the sampling frame, so it can never be sampled.
+
+- Threatens: who the estimate describes
+- Example: a phone survey that omits households without a landline
+]
+.pull-right[
+**Selection** (internal validity)
+
+The groups being compared differed before any treatment was applied.
+
+- Threatens: the causal claim
+- Example: employees who attend optional training vs. those who do not
+]
+
+.content-box-blue[
+When you meet the word, ask which question is at stake: *whom does this describe?* or *did the treatment cause this?*
+]
+
+---
+class: normalsize
+# Sampling error: practice ✏️
+- Find the appropriate term from below and fill in the blank
+
+.content-box-blue[
+sampling error, nonsampling error, nonresponse error, selection bias
+]
+
+1. `\(\rule{3cm}{0.15mm}\)`  refers to differences between the sample and the population.
+
+2. `\(\rule{3cm}{0.15mm}\)` is due to mistakes made in the acquisition of data.
+
+3. Excluding some members of the target population results in `\(\rule{3cm}{0.15mm}\)`.
+
+4. `\(\rule{3cm}{0.15mm}\)` results from the failure to collect data from all subjects in the sample.
+
+---
+class: normalsize
+# Sampling error: practice ✏️
+
+1. .mauve-blue[**Sampling error**] refers to differences between the sample and the population.
+
+2. .mauve-blue[**Nonsampling error**] is due to mistakes made in the acquisition of data.
+
+3. Excluding some members of the target population results in .mauve-blue[**selection bias**].
+
+4. .mauve-blue[**Nonresponse error**] results from the failure to collect data from all subjects in the sample.
+
+.content-box-blue[
+Map them back onto the diagram from earlier: coverage/selection at the frame, sampling error at the draw, nonresponse at the return. Only the middle one shrinks with `\(n\)`.
+]
+
+---
+class: normalsize
+# Measurement
+
+&lt;img src="pic/sampling/sampling_flow.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: normalsize
+# Constructs
+
+- Our basic goal in science is to make inferences about the causal relations between constructs.
+- We can’t do that directly, so we rely on proxies for those constructs
+
+<div id="htmlwidget-13ff4947aebb7a9ba31e" style="width:500px;height:120px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-13ff4947aebb7a9ba31e">{"x":{"diagram":"digraph {\n  \ngraph [layout = dot, rankdir = LR]\n\nnode [shape = rectangle, fontname = Helvetica, fontsize = 11]\n        \n\"Construct A\"\n\"Construct B\"\n\n\"Construct A\" -> \"Construct B\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+class: small
+# Measuring the invisible
+We can’t do that directly, so we rely on proxies for those constructs.
+.pull-left[
+&lt;img src="pic/construct.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+] 
+.pull-right[
+In order to infer that A --&gt; B, we have to make three assumptions:
+
+- X is a good proxy for A
+- Y is a good proxy for B
+- X and Y are causally related
+]
+
+---
+class: small
+# Measuring the invisible
+In order to infer that A --&gt; B, we have to make three assumptions:
+
+- X is a good proxy for A
+- Y is a good proxy for B
+- X and Y are causally related
+
+.content-box-blue[
+When the first two assumptions are true, the relation between X and Y will provide a good estimate of the relation between A and B.
+
+- What threatens our ability to carry out this seemingly simple task?
+
+- How do quantitative methods help us solve these problems?
+]
+
+---
+class: small
+# Reliability
+
+.mauve-blue[**Reliability**] is the consistency of a measure: how much of the observed variation is signal rather than noise.
+
+- **Test-retest**: the same people, the same instrument, two occasions
+- **Internal consistency**: items meant to tap one construct agree with each other (Cronbach's `\(\alpha\)`)
+- **Inter-rater**: two coders scoring the same material agree
+
+.content-box-blue[
+Reliability is necessary but not sufficient for validity.
+
+- A scale that reads 3 kg heavy every time is perfectly reliable and invalid.
+- An unreliable measure cannot be valid: if the measure is mostly noise, the label on it does not matter.
+
+Unreliability also has a statistical consequence. Noise in X or Y pushes the observed correlation toward zero, so a real relation can be missed simply because the measures were poor.
+]
+
+---
+class: small
+# Validity
+Four kinds of validity in research threaten our ability to make valid causal inferences. Solving each problem either directly requires quantitative methods or makes use of principles that are central to quantitative methods.
+
+.content-box-blue[
+- **Internal validity**
+
+- **Construct validity**
+
+- **External validity**
+
+- **Statistical conclusion validity**
+]
+
+---
+class: small
+# Validity
+
+.content-box-blue[
+- .mauve-blue[**Internal validity**]
+
+- **Construct validity**
+
+- **External validity**
+
+- **Statistical conclusion validity**
+]
+
+---
+class: small
+# Internal validity
+- .mauve-blue[**Definition**]: the validity of the inference that X and Y are causally related.
+
+  - Given that X and Y are correlated, can we validly infer that the relation is causal?
+
+---
+class: small
+# Threats to internal validity
+.normalsize[
+- Ambiguous temporal precedence
+
+- Selection
+
+- Attrition
+
+- History
+
+- Maturation
+
+- Regression
+
+- Testing
+
+- Instrumentation
+]
+
+---
+class: small
+# Threats to internal validity
+
+.pull-left-30[
+.normalsize[
+- .mauve-blue[**Ambiguous temporal precedence**]
+
+- Selection
+
+- Attrition
+
+- History
+
+- Maturation
+
+- Regression
+
+- Testing
+
+- Instrumentation
+]
+]
+.pull-right-70[
+.content-box-blue[
+Temporal precedence can be established in an experiment because treatment precedes outcome.
+
+But, when treatment is not possible, then logic and common sense can sometimes dictate temporal precedence.
+
+Example:
+
+- Prenatal nutrition and IQ
+
+- Smoking and lung disease
+]
+]
+
+---
+class: small
+# Threats to internal validity
+
+.pull-left-30[
+.normalsize[
+- Ambiguous temporal precedence
+
+- .mauve-blue[**Selection**]
+
+- Attrition
+
+- History
+
+- Maturation
+
+- Regression
+
+- Testing
+
+- Instrumentation
+]
+]
+.pull-right-70[
+.content-box-blue[
+Any systematic differences between groups that might account for an observed effect.
+
+- Test scores of students who visit the _learning center_ vs students who **do not** visit _learning center_.
+
+How to combat this?
+
+.mauve-blue[**Not the same "selection"**] as selection bias in sampling. Here the problem is a causal comparison between unequal groups, not missing coverage of the population.
+]
+]
+
+---
+class: small
+# Threats to internal validity
+
+.pull-left-30[
+.normalsize[
+- Ambiguous temporal precedence
+
+- Selection
+
+- .mauve-blue[**Attrition**]
+
+- History
+
+- Maturation
+
+- Regression
+
+- Testing
+
+- Instrumentation
+]
+]
+.pull-right-70[
+.content-box-blue[
+Even if random assignment is used, participants may drop out of the study, producing unequal groups, a situation that has the same inferential problems as selection.
+]
+]
+
+---
+class: small
+# Threats to internal validity
+
+.pull-left-30[
+.normalsize[
+- Ambiguous temporal precedence
+
+- Selection
+
+- Attrition
+
+- .mauve-blue[**History**]
+
+- Maturation
+
+- Regression
+
+- Testing
+
+- Instrumentation
+]
+]
+.pull-right-70[
+.content-box-blue[
+History refers to any event that occurs between the beginning of treatment and the measurement of outcome that might have produced the observed effect.
+
+- Example: A marketing campaign intended to increase ice cream sales happens to coincide with other events that might have the same effect: a particularly hot period of weather.
+]
+]
+
+---
+class: small
+# Threats to internal validity
+
+.pull-left-30[
+.normalsize[
+- Ambiguous temporal precedence
+
+- Selection
+
+- Attrition
+
+- History
+
+- .mauve-blue[**Maturation**]
+
+- Regression
+
+- Testing
+
+- Instrumentation
+]
+]
+.pull-right-70[
+.content-box-blue[
+Maturation refers to changes in the organism that occur regardless of treatment and that may masquerade as a treatment effect.
+
+- Example: A school-wide educational intervention is predicted to increase achievement test scores. The entire school must get the same curriculum, so a control group in the school is not possible.
+]
+]
+
+---
+class: small
+# Threats to internal validity
+
+.pull-left-30[
+.normalsize[
+- Ambiguous temporal precedence
+
+- Selection
+
+- Attrition
+
+- History
+
+- Maturation
+
+- .mauve-blue[**Regression**]
+
+- Testing
+
+- Instrumentation
+]
+]
+.pull-right-70[
+.content-box-blue[
+Regression (to the mean) occurs when participants are selected because of their extreme scores and those scores are unreliable. The scores will regress toward the mean at the second assessment
+
+- Example: Sports Illustrated cover jinx
+
+&lt;img src="pic/podium.jpeg" width="40%" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+class: small
+# Threats to internal validity
+
+.pull-left-30[
+.normalsize[
+- Ambiguous temporal precedence
+
+- Selection
+
+- Attrition
+
+- History
+
+- Maturation
+
+- Regression
+
+- .mauve-blue[**Testing**]
+
+- Instrumentation
+]
+]
+.pull-right-70[
+.content-box-blue[
+Testing refers to the possible change that may occur just because participants have been previously measured. These are often called practice or fatigue effects.
+
+- Example:
+  - Students do better on the first half of test compared to the second.
+  - Students do better in the second half of the term compared to the first.
+]
+]
+
+---
+class: small
+# Threats to internal validity
+
+.pull-left-30[
+.normalsize[
+- Ambiguous temporal precedence
+
+- Selection
+
+- Attrition
+
+- History
+
+- Maturation
+
+- Regression
+
+- Testing
+
+- .mauve-blue[**Instrumentation**]
+]
+]
+.pull-right-70[
+.content-box-blue[
+Change may occur because the measurement changes over time, perhaps becoming more or less reliable.
+
+Instrumentation reflects changes in the **measurement**; testing reflects changes in the **object of measurement**.
+
+- Examples:
+  - A rater grows more lenient over a semester of grading (observer drift)
+  - A different, easier form of the test is used at post-test
+  - A sensor drifts out of calibration partway through data collection
+  - A firm changes how it defines "active user" between Q1 and Q2
+]
+]
+
+---
+class: small
+# Threats to internal validity
+
+- The key point with internal validity is that .mauve-blue[**something else besides the treatment is a plausible alternative explanation**] for any apparent treatment effect.
+
+- Solving threats to internal validity is a research .mauve-blue[**design problem**], not a statistics problem. Nonetheless, quantitative methods play a key role in making the case for internal validity.
+
+---
+class: small
+# Removing the influence of other variables
+- If the .mauve-blue[**"other variables"**] can be measured, their influence can be statistically controlled so that the hypothesized relation can be detected more accurately.
+
+However:
+
+- .mauve-blue[**Statistical control should best be thought of as a method of last resort**], to be used when design controls are not available or have failed.
+
+---
+class: small
+# Validity
+
+.content-box-blue[
+- **Internal validity**
+
+- .mauve-blue[**Construct validity**]
+
+- **External validity**
+
+- **Statistical conclusion validity**
+]
+
+---
+class: small
+# Construct validity
+
+- The validity of the inference that a given operationalization of a construct does a good job representing the construct.
+
+&lt;img src="pic/construct.jpeg" width="40%" style="display: block; margin: auto;" /&gt;
+
+--
+.mauve-blue[**Construct validity**] refers to the correctness of the label that is applied to the operation. It depends on first demonstrating adequate reliability and then is bolstered by demonstrating relations of the target operation to other operations.
+
+---
+class: small
+# Threats to construct validity
+
+- .mauve-blue[**Inadequate explication of constructs**]
+
+- .mauve-blue[**Construct confounding**]
+
+- Confounding constructs with levels of constructs
+
+- Reactive self-report changes
+
+- Reactivity to the experimental situation
+
+- Experimenter expectancy
+
+- Novelty and disruption effects
+
+---
+class: small
+# Inadequate explication of constructs
+.pull-left[
+The construct was never pinned down clearly enough, so the operation that follows from it can be wrong in a way no amount of data will reveal.
+
+Two forms:
+
+- **Too broad**: "well-being" measured with a single life-satisfaction item
+- **Too narrow**: "customer loyalty" measured only as repeat purchase, ignoring advocacy and price tolerance
+]
+.pull-right[
+.content-box-blue[
+The remedy is conceptual, not statistical: state what the construct includes, what it excludes, and how it differs from its neighbors, **before** choosing the measure.
+
+Example: if "engagement" is defined as time on site, a slow page counts as success.
+]
+]
+
+---
+class:small
+# Construct confounding
+.pull-left[
+
+Operations usually tap more than one construct. Failure to recognize the full set of constructs embedded in the operation can lead to incorrect inferences about the constructs that are active.
+
+Example:
+- A self-report of optimism might also reflect self-esteem or positive affect.
+]
+.pull-right[
+&lt;img src="pic/confounding.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+class: small
+# Validity
+
+.content-box-blue[
+- **Internal validity**
+
+- **Construct validity**
+
+- .mauve-blue[**External validity**]
+
+- **Statistical conclusion validity**
+]
+
+---
+class: small
+# External validity
+**Definition**: The validity of the inference that a causal relation between operations generalizes to other units, treatments, observations, or settings.
+
+&lt;img src="pic/external_val.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+class: small
+# Threats to external validity
+
+- Sampling bias
+
+- Experimenter effects
+
+- Participant reactivity
+
+  - Demand characteristics
+  - Hawthorne effect
+
+- Testing effects
+
+- Situation effects
+
+---
+class: small
+# Threats to external validity
+.pull-left-30[
+- .mauve-blue[**Sampling bias**]
+
+- Experimenter effects
+
+- Participant reactivity
+
+  - Demand characteristics
+  - Hawthorne effect
+
+- Testing effects
+
+- Situation effects
+]
+.pull-right-70[
+.content-box-blue[
+We can't study an entire population, so instead we take samples. 
+
+If your sample is not representative of the population however, then how on Earth can you generalize to that population?
+]
+]
+
+---
+class: small
+# Threats to external validity
+.pull-left-30[
+- Sampling bias
+
+- .mauve-blue[**Experimenter effects**]
+
+- Participant reactivity
+
+  - Demand characteristics
+  - Hawthorne effect
+
+- Testing effects
+
+- Situation effects
+
+]
+.pull-right-70[
+.content-box-blue[
+The experimenter's own expectations shape the data: through tone of voice, which responses get probed further, how ambiguous answers are scored.
+
+- Rosenthal's studies: experimenters told their rats were "bright" recorded better maze performance from randomly assigned animals.
+
+Remedy: blind the person collecting or scoring the data to condition.
+]
+]
+
+---
+class: small
+# Threats to external validity
+.pull-left-30[
+- Sampling bias
+
+- Experimenter effects
+
+- Participant reactivity
+
+  - .mauve-blue[**Demand characteristics**]
+  - Hawthorne effect
+
+- Testing effects
+
+- Situation effects
+
+]
+.pull-right-70[
+.content-box-blue[
+Participants form a guess about the study's purpose and act on it.
+
+"What if I told all my research participants that my job depended on the outcome of the study they are in?"
+
+- The participants might change their behaviors. And their behavior is what we are studying.
+
+- So anything I find might not generalize beyond people who were given that cue.
+]
+]
+
+---
+class: small
+# Threats to external validity
+.pull-left-30[
+- Sampling bias
+
+- Experimenter effects
+
+- Participant reactivity
+
+  - Demand characteristics
+  - .mauve-blue[**Hawthorne effect**]
+
+- Testing effects
+
+- Situation effects
+
+]
+.pull-right-70[
+.content-box-blue[
+The _Hawthorne Effect_ says that **the fact that people know they are being observed might be enough to change their behavior.**
+
+No cue about the hypothesis is needed; observation alone is the cause.
+
+&lt;img src="pic/hawthorne.jpeg" width="60%" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+class: small
+# Threats to external validity
+.pull-left-30[
+- Sampling bias
+
+- Experimenter effects
+
+- Participant reactivity
+
+  - Demand characteristics
+  - Hawthorne effect
+
+- .mauve-blue[**Testing effects**]
+
+- Situation effects
+
+]
+.pull-right-70[
+.content-box-blue[
+Testing effects are especially critical in **pre/post designs**. At the pre-test, they are nervous. But at the post-test, they know what to expect and are less anxious etc. 
+
+&lt;img src="pic/testing.jpeg" width="50%" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+class: small
+# Threats to external validity
+.pull-left-30[
+- Sampling bias
+
+- Experimenter effects
+
+- Participant reactivity
+
+  - Demand characteristics
+  - Hawthorne effect
+
+- Testing effects
+
+- .mauve-blue[**Situation effects**]
+
+]
+.pull-right-70[
+.content-box-blue[
+Situation effects can be things like **time of day**, the **setting of the experiment/location** etc.
+&lt;img src="pic/underwater.jpeg" width="70%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+class: small
+# Validity
+
+.content-box-blue[
+- **Internal validity**
+
+- **Construct validity**
+
+- **External validity**
+
+- .mauve-blue[**Statistical conclusion validity**]
+]
+
+---
+class: small
+# Statistical conclusion validity
+
+**Definition**: the validity of the inference that X and Y covary at all, and of the estimate of how strongly.
+
+Internal validity asks whether the relation is causal. This asks a prior question: is there a relation, and did we size it correctly?
+
+.content-box-blue[
+Common threats, each of which we will take up later in the course:
+
+- .mauve-blue[**Low statistical power**]: a real effect is missed because `\(n\)` was too small
+- .mauve-blue[**Violated assumptions**]: the test used does not fit the data
+- .mauve-blue[**Fishing / multiple comparisons**]: run 20 tests at `\(\alpha = .05\)` and one comes out "significant" by construction
+- .mauve-blue[**Unreliable measures**]: noise attenuates the observed relation
+- .mauve-blue[**Restriction of range**]: a truncated variable cannot show its full association
+]
+
+---
+class: small
+# Your Ethical Duty as a Scientist
+Advanced skill in quantitative methods carries with it the responsibility to use those skills .mauve-blue[**carefully**] and .mauve-blue[**ethically**].
+
+- Know the shortcomings of your study
+- REPORT the shortcomings of your study
+- Let your readers understand the limitations
+- DO NOT overstate your findings (or let the press overstate them) Confusing Qualitative and Quantitative
+  - happens more than you think; esp in the machine learning world
+  - can straight up get the wrong numbers (will come back to this with correlation!)
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "ratio": "16:9",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
