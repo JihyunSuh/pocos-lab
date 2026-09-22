@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Business Statistics (MSIP506-01) course schedule — POSTECH Cognitive Science Lab.">
+<title>Business Statistics Schedule</title>
+<link id="app-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Sora:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style id="app-style">
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  color-scheme:light dark;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+
+  --bg:#F4F6F8;
+  --surface:#FFFFFF;
+  --surface-2:#EDF0F4;
+  --ink:#14171D;
+  --ink-2:#3F4855;
+  --muted:#6E7887;
+  --line:#DCE1E8;
+  --line-strong:#C1C9D4;
+  --accent:#12734A;
+  --on-accent:#FFFFFF;
+  --accent-bg:#E4F2EA;
+  --quiz:#8A5600;
+  --quiz-bg:#FBF1DF;
+  --hw:#1F4FA6;
+  --hw-bg:#E8EEFA;
+  --exam:#A3212F;
+  --exam-bg:#FAEAEC;
+  --now-bg:#F2F9F5;
+  --m-slides:#4B45A8;   --m-slides-bg:#ECEBF8;
+  --m-data:#0E6E6E;     --m-data-bg:#E2F1F1;
+  --m-reading:#8A5A2B;  --m-reading-bg:#F6EEE4;
+  --m-code:#4A5560;     --m-code-bg:#EAEDF1;
+  --m-video:#9A3A63;    --m-video-bg:#F8EBF1;
+  --m-link:#5A6472;     --m-link-bg:#EDF0F4;
+  --shadow:0 1px 2px rgba(16,20,28,.05), 0 8px 24px -16px rgba(16,20,28,.28);
+  --sans:"Archivo","Noto Sans KR",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --display:"Sora","Archivo","Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#101318;
+    --surface:#191D24;
+    --surface-2:#212730;
+    --ink:#E9ECF1;
+    --ink-2:#C0C7D1;
+    --muted:#8A94A2;
+    --line:#2A313A;
+    --line-strong:#3D4652;
+    --accent:#54CC8B;
+    --on-accent:#0A2417;
+    --accent-bg:#13301F;
+    --quiz:#DFAC5C;
+    --quiz-bg:#352A17;
+    --hw:#8AB0F2;
+    --hw-bg:#17243D;
+    --exam:#F0808F;
+    --exam-bg:#38181D;
+    --now-bg:#132018;
+    --m-slides:#A6A2F0;   --m-slides-bg:#232048;
+    --m-data:#5FC6C6;     --m-data-bg:#0F3131;
+    --m-reading:#D9A470;  --m-reading-bg:#332514;
+    --m-code:#9BA7B5;     --m-code-bg:#242A33;
+    --m-video:#E88DB4;    --m-video-bg:#381C29;
+    --m-link:#98A2AE;     --m-link-bg:#242A33;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101318;
+  --surface:#191D24;
+  --surface-2:#212730;
+  --ink:#E9ECF1;
+  --ink-2:#C0C7D1;
+  --muted:#8A94A2;
+  --line:#2A313A;
+  --line-strong:#3D4652;
+  --accent:#54CC8B;
+  --on-accent:#0A2417;
+  --accent-bg:#13301F;
+  --quiz:#DFAC5C;
+  --quiz-bg:#352A17;
+  --hw:#8AB0F2;
+  --hw-bg:#17243D;
+  --exam:#F0808F;
+  --exam-bg:#38181D;
+  --now-bg:#132018;
+  --m-slides:#A6A2F0;   --m-slides-bg:#232048;
+  --m-data:#5FC6C6;     --m-data-bg:#0F3131;
+  --m-reading:#D9A470;  --m-reading-bg:#332514;
+  --m-code:#9BA7B5;     --m-code-bg:#242A33;
+  --m-video:#E88DB4;    --m-video-bg:#381C29;
+  --m-link:#98A2AE;     --m-link-bg:#242A33;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+}
+html,body{margin:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.5;
+  letter-spacing:-.005em;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+[hidden]{display:none!important}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+
+.wrap{max-width:1000px;margin:0 auto;padding-inline:20px;padding-block:32px 64px}
+
+/* ---- masthead ---- */
+.mast{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between;
+  padding-bottom:20px;border-bottom:2px solid var(--line-strong)}
+.eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(28px,5.2vw,42px);line-height:1.06;
+  letter-spacing:-.035em;margin:0;text-wrap:balance}
+.mast-sub{margin:8px 0 0;color:var(--muted);font-size:13.5px}
+.mast-sub b{color:var(--ink-2);font-weight:600}
+
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{font:inherit;font-size:13px;font-weight:600;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-2);
+  transition:background .12s ease,border-color .12s ease}
+.btn:hover{border-color:var(--muted)}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn-primary:hover{filter:brightness(1.06)}
+.btn-ghost{background:transparent;border-color:transparent;color:var(--muted);padding:6px 8px}
+.btn-ghost:hover{color:var(--accent);border-color:var(--line)}
+.btn-sm{font-size:12px;padding:4px 9px}
+
+/* ---- notices ---- */
+.notices{margin-top:24px;background:var(--surface);border:1px solid var(--line);
+  border-left:3px solid var(--accent);border-radius:4px;padding:16px 18px;box-shadow:var(--shadow)}
+.notices h2{font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 10px}
+.notice{display:flex;gap:12px;align-items:baseline;padding:5px 0;border-top:1px dotted var(--line)}
+.notice:first-of-type{border-top:0}
+.notice time{flex:0 0 auto;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:44px}
+.notice p{margin:0;font-size:14px;color:var(--ink-2)}
+.notice-empty{font-size:13.5px;color:var(--muted);margin:0}
+
+/* ---- legend ---- */
+.legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:26px 0 10px;
+  font-size:12px;color:var(--muted)}
+.legend .chip{pointer-events:none}
+
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;
+  letter-spacing:.04em;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.chip-hw{background:var(--hw-bg);color:var(--hw)}
+.chip-quiz{background:var(--quiz-bg);color:var(--quiz)}
+.chip-exam{background:var(--exam-bg);color:var(--exam)}
+.chip-now{background:var(--accent);color:var(--on-accent)}
+
+/* ---- schedule ---- */
+.sched{background:var(--surface);border:1px solid var(--line);border-radius:6px;
+  overflow:hidden;box-shadow:var(--shadow)}
+.row{display:grid;grid-template-columns:58px 88px minmax(0,1fr) 208px 172px;
+  gap:14px;align-items:start;padding:13px 18px;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.head{background:var(--surface-2);border-top:0;padding-block:9px;
+  font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.row-now{background:var(--now-bg);box-shadow:inset 3px 0 0 var(--accent)}
+.row-past .wk,.row-past .dt,.row-past .tp{opacity:.5}
+.row-holiday .tp{color:var(--muted);font-style:italic}
+
+.wk{font-family:var(--display);font-size:19px;font-weight:600;line-height:1.25;
+  letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+.wk small{display:block;font-family:var(--sans);font-size:10px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.4}
+.dt{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink-2);padding-top:2px}
+.dt small{font-weight:400;color:var(--muted);margin-left:3px}
+.tp{font-size:15px;color:var(--ink);padding-top:1px;overflow-wrap:anywhere}
+.tp .now-tag{margin-left:8px;vertical-align:1px}
+.mt{display:flex;flex-direction:column;gap:6px;padding-top:1px;min-width:0}
+.mt .none{font-size:13px;color:var(--muted);padding-top:3px}
+
+/* material cards — one shape, typed by icon and label */
+.mcard{display:flex;gap:9px;align-items:center;min-width:0;text-decoration:none;
+  padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--surface);
+  transition:border-color .12s ease,background .12s ease}
+.mcard:hover{border-color:var(--line-strong);background:var(--surface-2)}
+.mico{flex:0 0 27px;height:27px;border-radius:7px;display:grid;place-items:center;
+  background:var(--m-link-bg);color:var(--m-link)}
+.mico svg{width:15px;height:15px;display:block}
+.mtxt{display:flex;flex-direction:column;gap:0;min-width:0}
+.mname{font-size:12.5px;font-weight:600;line-height:1.3;color:var(--ink);overflow-wrap:anywhere}
+.mkind{font-size:9.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.m-slides .mico{background:var(--m-slides-bg);color:var(--m-slides)}
+.m-data .mico{background:var(--m-data-bg);color:var(--m-data)}
+.m-reading .mico{background:var(--m-reading-bg);color:var(--m-reading)}
+.m-code .mico{background:var(--m-code-bg);color:var(--m-code)}
+.m-video .mico{background:var(--m-video-bg);color:var(--m-video)}
+.tg{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-top:3px}
+.due-item{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.due{font-size:11.5px;line-height:1.35;color:var(--muted);font-variant-numeric:tabular-nums;
+  padding-left:2px;white-space:nowrap}
+.due.open{color:var(--accent);font-weight:600}
+
+.rowlabel{display:none}
+
+/* ---- edit mode ---- */
+input.f,textarea.f,select.f{font:inherit;font-size:14px;width:100%;color:var(--ink);background:var(--bg);
+  border:1px solid var(--line-strong);border-radius:5px;padding:5px 8px;min-width:0}
+input.f:focus,textarea.f:focus,select.f:focus{border-color:var(--accent);outline:none}
+select.f{flex:0 0 108px;cursor:pointer}
+.f-sm{font-size:12.5px;padding:4px 7px}
+.linkrow{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.linkrow input{flex:1 1 150px}
+.row-edit{grid-template-columns:58px minmax(0,1fr)}
+.fields{display:flex;flex-direction:column;gap:11px;min-width:0}
+.fgroup{display:flex;flex-direction:column;gap:4px;min-width:0}
+.flabel{font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.frow{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.frow input[type="date"]{flex:0 1 142px}
+.frow input.grow{flex:1 1 150px}
+.frow .sep{color:var(--muted);font-size:12px}
+.rowtools{display:flex;gap:6px;margin-top:6px}
+.editbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:10px;
+  align-items:center;flex-wrap:wrap;margin:18px 0 0;padding:10px 14px;border-radius:7px;
+  background:var(--accent-bg);border:1px solid var(--accent);color:var(--accent);
+  font-size:13px;font-weight:600}
+.editbar .spacer{flex:1 1 auto}
+
+.addrow{padding:12px 18px;border-top:1px solid var(--line);background:var(--surface-2)}
+
+footer.foot{margin-top:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  font-size:12px;color:var(--muted)}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:50;
+  background:var(--ink);color:var(--bg);font-size:13px;font-weight:600;
+  padding:9px 16px;border-radius:8px;box-shadow:var(--shadow);max-width:90vw}
+
+@media (max-width:760px){
+  .wrap{padding-inline:16px;padding-block:24px 48px}
+  .head{display:none}
+  .row{grid-template-columns:52px minmax(0,1fr);gap:4px 12px;padding:14px 16px}
+  .wk{grid-row:span 4;align-self:start}
+  .row-edit .wk{grid-row:auto}
+  .dt,.tp,.mt,.tg,.fields{grid-column:2}
+  .tg:empty{display:none}
+  .mt{padding-top:5px}
+  .addrow{padding:12px 16px}
+  .editbar{position:static}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* back to the lab site */
+.site-back{display:block;max-width:1000px;margin:0 auto;padding:20px 20px 0;
+  font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none}
+.site-back:hover{color:var(--accent)}
+.site-back + #root .wrap{padding-block:18px 64px}
+@media (max-width:760px){.site-back{padding:16px 16px 0}}
+</style>
+</head>
+<body>
+<a class="site-back" href="index.html">&larr; POCOS Lab</a>
+<div id="root"></div>
+<script id="state-json" type="application/json">
+{
+  "school": "POSTECH",
+  "term": "2026 Fall",
+  "course": "Business Statistics",
+  "subtitle": "Course Schedule",
+  "meta": "Fridays",
+  "updated": "2026-09-18",
+  "notices": [
+    { "id": "n1", "date": "2026-09-18", "text": "No class on September 25 (Week 3) — Chuseok holiday." }
+  ],
+  "rows": [
+    { "id": "w1",  "week": 1,  "date": "2026-09-11", "topic": "Central Tendency Measures", "hw": "", "quiz": "", "type": "class", "links": [
+      { "label": "Introduction", "kind": "slides", "url": "https://drive.google.com/file/d/127jb2fVjn7yUGWhEsiafyVvFNoLvCDlp/view?usp=sharing" },
+      { "label": "Types of Data Pt.1", "kind": "slides", "url": "https://drive.google.com/file/d/1htaX2eQt4VJLoXdoyUTUrf0Loizd4saO/view?usp=sharing" }
+    ] },
+    { "id": "w2",  "week": 2,  "date": "2026-09-18", "topic": "Exploratory Data Analysis", "hw": "", "quiz": "", "type": "class", "links": [
+      { "label": "Types of Data Pt.2", "kind": "slides", "url": "https://drive.google.com/file/d/1SCR-ZzQlNgPBjpw_PaqGauwUvBV9hITb/view?usp=sharing" },
+      { "label": "Sampling Methods", "kind": "slides", "url": "https://drive.google.com/file/d/1VsORuo03Ist-VS-QXhv8xjF6S-e-HI5v/view?usp=sharing" },
+      { "label": "Data for Practice", "kind": "data", "url": "https://docs.google.com/spreadsheets/d/1McnmGa4oLPH1KGcxMcMIaRj-uzXjtXjH/edit?usp=sharing&ouid=118242470119163280130&rtpof=true&sd=true" }
+    ] },
+    { "id": "w3",  "week": 3,  "date": "2026-09-25", "topic": "Chuseok Holiday (no class)", "hw": "", "quiz": "", "type": "holiday", "links": [] },
+    { "id": "w4",  "week": 4,  "date": "2026-10-02", "topic": "Probability & Sampling Distributions", "hw": "", "quiz": "Quiz 1", "quizStart": "2026-10-02", "quizEnd": "2026-10-09", "type": "class", "links": [] },
+    { "id": "w5",  "week": 5,  "date": "2026-10-09", "topic": "Hypothesis Testing", "hw": "", "quiz": "", "type": "class", "links": [] },
+    { "id": "w6",  "week": 6,  "date": "2026-10-16", "topic": "Independent Group t-Test", "hw": "", "quiz": "Quiz 2", "quizStart": "2026-10-16", "quizEnd": "2026-10-23", "type": "class", "links": [] },
+    { "id": "w7",  "week": 7,  "date": "2026-10-23", "topic": "Effect Size, P-Value, Power", "hw": "HW 1", "hwStart": "2026-10-23", "hwEnd": "2026-10-30", "quiz": "", "type": "class", "links": [] },
+    { "id": "w8",  "week": 8,  "date": "2026-10-30", "topic": "Mid-term Exam", "hw": "", "quiz": "", "type": "exam", "links": [] },
+    { "id": "w9",  "week": 9,  "date": "2026-11-06", "topic": "Analysis of Variance", "hw": "", "quiz": "Quiz 3", "quizStart": "2026-11-06", "quizEnd": "2026-11-13", "type": "class", "links": [] },
+    { "id": "w10", "week": 10, "date": "2026-11-13", "topic": "Chi-Square Test for Independence", "hw": "HW 2", "hwStart": "2026-11-13", "hwEnd": "2026-11-20", "quiz": "", "type": "class", "links": [] },
+    { "id": "w11", "week": 11, "date": "2026-11-20", "topic": "Linear Regression 1", "hw": "", "quiz": "", "type": "class", "links": [] },
+    { "id": "w12", "week": 12, "date": "2026-11-27", "topic": "Linear Regression 2", "hw": "HW 3", "hwStart": "2026-11-27", "hwEnd": "2026-12-04", "quiz": "Quiz 4", "quizStart": "2026-11-27", "quizEnd": "2026-12-04", "type": "class", "links": [] },
+    { "id": "w13", "week": 13, "date": "2026-12-04", "topic": "Multiple Regression", "hw": "", "quiz": "", "type": "class", "links": [] },
+    { "id": "w14", "week": 14, "date": "2026-12-11", "topic": "Nonparametric Statistics", "hw": "HW 4", "hwStart": "2026-12-11", "hwEnd": "2026-12-18", "quiz": "", "type": "class", "links": [] },
+    { "id": "w15", "week": 15, "date": "2026-12-18", "topic": "Time-Series Analysis", "hw": "", "quiz": "Quiz 5", "quizStart": "2026-12-18", "quizEnd": "2026-12-25", "type": "class", "links": [] },
+    { "id": "w16", "week": 16, "date": "2026-12-25", "topic": "Final Exam", "hw": "", "quiz": "", "type": "exam", "links": [] }
+  ]
+}
+</script>
+<script id="app-js">
+(function () {
+  "use strict";
+
+  var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var WINDOW_DAYS = 7;
+
+  /* Material kinds. The glyph and the small caption carry the type; the card
+     shape stays the same so a week's materials read as one group. */
+  var KINDS = [
+    { key: "slides",  label: "Slides",  icon: '<rect x="2.5" y="3.5" width="15" height="10.5" rx="1.5"/><path d="M7 17.5h6M10 14v3.5"/>' },
+    { key: "data",    label: "Data",    icon: '<rect x="2.5" y="3.5" width="15" height="13" rx="1.5"/><path d="M2.5 8h15M8 8v8.5M2.5 12.25h15"/>' },
+    { key: "reading", label: "Reading", icon: '<path d="M5 2.5h6.5L15.5 6.5V17.5H5z"/><path d="M11.5 2.5v4h4"/><path d="M7.5 11h5M7.5 14h5"/>' },
+    { key: "code",    label: "Code",    icon: '<path d="M7 6 3 10l4 4M13 6l4 4-4 4"/>' },
+    { key: "video",   label: "Video",   icon: '<rect x="2.5" y="5" width="10.5" height="10" rx="1.5"/><path d="M13 9l4.5-2.75v7.5L13 11z"/>' },
+    { key: "link",    label: "Link",    icon: '<path d="M8.6 11.4a3.2 3.2 0 0 0 4.5 0l2.3-2.3a3.2 3.2 0 0 0-4.5-4.5l-1 1"/><path d="M11.4 8.6a3.2 3.2 0 0 0-4.5 0l-2.3 2.3a3.2 3.2 0 0 0 4.5 4.5l1-1"/>' }
+  ];
+
+  function kindOf(k) {
+    for (var i = 0; i < KINDS.length; i++) if (KINDS[i].key === k) return KINDS[i];
+    return KINDS[KINDS.length - 1];
+  }
+
+  function icon(k) {
+    return '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" ' +
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + kindOf(k).icon + '</svg>';
+  }
+
+  /* Best guess from the address, so the type is usually right without picking one. */
+  function guessKind(u) {
+    var s = String(u || "").toLowerCase();
+    if (/docs\.google\.com\/presentation/.test(s)) return "slides";
+    if (/docs\.google\.com\/spreadsheets/.test(s)) return "data";
+    if (/docs\.google\.com\/document/.test(s)) return "reading";
+    if (/youtube\.com|youtu\.be|vimeo\.com|\.(mp4|mov)(\?|#|$)/.test(s)) return "video";
+    if (/\.(csv|tsv|xlsx?|sav|dta|rds|parquet)(\?|#|$)/.test(s)) return "data";
+    if (/\.(pptx?|key|odp)(\?|#|$)/.test(s) || /slide|deck/.test(s)) return "slides";
+    if (/\.(pdf|docx?|epub)(\?|#|$)/.test(s)) return "reading";
+    if (/\.(r|py|ipynb|rmd|qmd)(\?|#|$)/.test(s) || /github\.com|colab\.research|kaggle\.com/.test(s)) return "code";
+    return "";
+  }
+  var state = JSON.parse(document.getElementById("state-json").textContent);
+  var root = document.getElementById("root");
+  var canEdit = false;
+  var editing = false;
+  var artifactApi = null;
+  var saving = false;
+
+  /* ---------- helpers ---------- */
+
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
+  function parseDate(iso) {
+    var p = String(iso || "").split("-");
+    if (p.length !== 3) return null;
+    var d = new Date(+p[0], +p[1] - 1, +p[2]);
+    return isNaN(d.getTime()) ? null : d;
+  }
+
+  function fmtDate(iso) {
+    var d = parseDate(iso);
+    if (!d) return esc(iso);
+    return (d.getMonth() + 1) + "/" + d.getDate() +
+      ' <small>(' + DAYS[d.getDay()] + ')</small>';
+  }
+
+  function fmtShort(iso) {
+    var d = parseDate(iso);
+    if (!d) return esc(iso);
+    return (d.getMonth() + 1) + "/" + d.getDate();
+  }
+
+  /* "Oct 23 – 30" within a month, "Oct 23 – Nov 6" across one. */
+  function fmtRange(s, e) {
+    var a = parseDate(s), b = parseDate(e);
+    if (!a && !b) return "";
+    if (a && !b) return "Opens " + MON[a.getMonth()] + " " + a.getDate();
+    if (!a && b) return "Due " + MON[b.getMonth()] + " " + b.getDate();
+    if (a.getMonth() === b.getMonth() && a.getFullYear() === b.getFullYear()) {
+      return MON[a.getMonth()] + " " + a.getDate() + "&ndash;" + b.getDate();
+    }
+    return MON[a.getMonth()] + " " + a.getDate() + " &ndash; " + MON[b.getMonth()] + " " + b.getDate();
+  }
+
+  function dueItem(kind, label, s, e, t) {
+    var h = '<div class="due-item"><span class="chip chip-' + kind + '">' + esc(label) + '</span>';
+    var rg = fmtRange(s, e);
+    if (rg) {
+      var a = parseDate(s), b = parseDate(e);
+      var open = a && b && t >= a.getTime() && t <= b.getTime();
+      h += '<span class="due' + (open ? " open" : "") + '">' + rg +
+        (open ? " &middot; open now" : "") + '</span>';
+    }
+    return h + '</div>';
+  }
+
+  function today() {
+    var n = new Date();
+    return new Date(n.getFullYear(), n.getMonth(), n.getDate());
+  }
+
+  /* Which row is "this week": the latest class date that is today or earlier,
+     as long as the next class has not started yet. Before the term begins,
+     the first row is marked instead. */
+  function currentId() {
+    var t = today().getTime();
+    var rows = state.rows || [];
+    var chosen = null;
+    for (var i = 0; i < rows.length; i++) {
+      var d = parseDate(rows[i].date);
+      if (!d) continue;
+      if (d.getTime() <= t) chosen = rows[i];
+    }
+    if (!chosen) return rows.length ? rows[0].id : null;
+    var last = parseDate(chosen.date);
+    if (t - last.getTime() > 6 * 864e5) {
+      for (var j = 0; j < rows.length; j++) {
+        var dd = parseDate(rows[j].date);
+        if (dd && dd.getTime() > t) return rows[j].id;
+      }
+      return null;
+    }
+    return chosen.id;
+  }
+
+  function safeUrl(u) {
+    var s = String(u || "").trim();
+    if (!s) return "";
+    if (/^(https?:)?\/\//i.test(s)) return s;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(s)) return "";
+    return "https://" + s;
+  }
+
+  function uid(p) {
+    return p + "-" + Math.random().toString(36).slice(2, 8);
+  }
+
+  /* ---------- render ---------- */
+
+  function render() {
+    var nowId = currentId();
+    var t = today().getTime();
+    var html = '<div class="wrap">';
+
+    /* masthead */
+    html += '<div class="mast"><div>' +
+      '<p class="eyebrow">' + esc(state.school) + ' &middot; ' + esc(state.term) + '</p>' +
+      '<h1>' + esc(state.course) + '</h1>' +
+      '<p class="mast-sub"><b>' + esc(state.subtitle) + '</b> &middot; ' + esc(state.meta) + '</p>' +
+      '</div><div class="tools">' +
+      (canEdit && !editing ? '<button class="btn" data-act="edit">Edit</button>' : '') +
+      '</div></div>';
+
+    /* edit bar */
+    if (editing) {
+      html += '<div class="editbar"><span>Editing &mdash; changes go live only after you save.</span>' +
+        '<span class="spacer"></span>' +
+        '<button class="btn btn-sm" data-act="cancel">Cancel</button>' +
+        '<button class="btn btn-primary btn-sm" data-act="save">Save &amp; publish</button></div>';
+    }
+
+    /* notices */
+    html += '<section class="notices"><h2>Announcements</h2>';
+    if (editing) {
+      (state.notices || []).forEach(function (n) {
+        html += '<div class="notice">' +
+          '<input class="f f-sm" style="flex:0 0 120px" type="date" id="nd-' + esc(n.id) + '" ' +
+          'data-nid="' + esc(n.id) + '" data-nf="date" value="' + esc(n.date) + '" aria-label="Announcement date">' +
+          '<input class="f f-sm" id="nt-' + esc(n.id) + '" data-nid="' + esc(n.id) + '" data-nf="text" ' +
+          'value="' + esc(n.text) + '" aria-label="Announcement text">' +
+          '<button class="btn btn-ghost btn-sm" data-act="delnotice" data-id="' + esc(n.id) + '">Delete</button>' +
+          '</div>';
+      });
+      html += '<div class="rowtools"><button class="btn btn-sm" data-act="addnotice">+ Add announcement</button></div>';
+    } else if ((state.notices || []).length) {
+      state.notices.forEach(function (n) {
+        html += '<div class="notice"><time>' + fmtShort(n.date) + '</time><p>' + esc(n.text) + '</p></div>';
+      });
+    } else {
+      html += '<p class="notice-empty">No announcements yet.</p>';
+    }
+    html += '</section>';
+
+    /* legend */
+    html += '<div class="legend">' +
+      '<span class="chip chip-now">This week</span>' +
+      '<span class="chip chip-hw">Homework</span>' +
+      '<span class="chip chip-quiz">Quiz</span>' +
+      '<span class="chip chip-exam">Exam</span>' +
+      '</div>';
+
+    /* schedule */
+    html += '<div class="sched">';
+    html += '<div class="row head"><div>Week</div><div>Date</div><div>Topic</div><div>Materials</div><div>Due</div></div>';
+
+    (state.rows || []).forEach(function (r) {
+      var d = parseDate(r.date);
+      var isNow = r.id === nowId;
+      var isPast = d && d.getTime() < t && !isNow;
+      var cls = "row" + (editing ? " row-edit" : "") + (isNow ? " row-now" : "") +
+        (isPast ? " row-past" : "") + (r.type === "holiday" ? " row-holiday" : "");
+      html += '<div class="' + cls + '">';
+
+      html += '<div class="wk">' + esc(r.week) + '<small>week</small></div>';
+
+      if (editing) {
+        html += '<div class="fields">' +
+          '<div class="fgroup"><span class="flabel">Date</span>' +
+          '<div class="frow"><input class="f f-sm" type="date" id="rd-' + esc(r.id) +
+          '" data-rid="' + esc(r.id) + '" data-rf="date" value="' + esc(r.date) + '" aria-label="Date"></div></div>' +
+
+          '<div class="fgroup"><span class="flabel">Topic</span>' +
+          '<input class="f" id="rt-' + esc(r.id) + '" data-rid="' + esc(r.id) +
+          '" data-rf="topic" value="' + esc(r.topic) + '" aria-label="Topic"></div>' +
+
+          taskEditor(r, "hw", "Homework", "HW 1") +
+          taskEditor(r, "quiz", "Quiz", "Quiz 1") +
+
+          '<div class="fgroup"><span class="flabel">Materials</span>' + linksEditor(r) + '</div>' +
+
+          '<div class="rowtools"><button class="btn btn-ghost btn-sm" data-act="delrow" data-id="' +
+          esc(r.id) + '">Remove week</button></div></div>';
+      } else {
+        html += '<div class="dt">' + fmtDate(r.date) + '</div>';
+        html += '<div class="tp">' + esc(r.topic) +
+          (isNow ? ' <span class="chip chip-now now-tag">This week</span>' : '') + '</div>';
+
+        html += '<div class="mt">';
+        var ls = (r.links || []).filter(function (l) { return safeUrl(l.url); });
+        if (ls.length) {
+          ls.forEach(function (l) {
+            var k = kindOf(l.kind || guessKind(l.url) || "link");
+            html += '<a class="mcard m-' + k.key + '" href="' + esc(safeUrl(l.url)) +
+              '" target="_blank" rel="noopener noreferrer">' +
+              '<span class="mico">' + icon(k.key) + '</span>' +
+              '<span class="mtxt"><span class="mname">' + esc(l.label || k.label) + '</span>' +
+              '<span class="mkind">' + k.label + '</span></span></a>';
+          });
+        } else {
+          html += '<span class="none">&mdash;</span>';
+        }
+        html += '</div>';
+
+        html += '<div class="tg">';
+        if (r.type === "exam") {
+          html += '<div class="due-item"><span class="chip chip-exam">' + esc(r.topic) + '</span></div>';
+        }
+        if (r.hw) html += dueItem("hw", r.hw, r.hwStart, r.hwEnd, t);
+        if (r.quiz) html += dueItem("quiz", r.quiz, r.quizStart, r.quizEnd, t);
+        html += '</div>';
+      }
+      html += '</div>';
+    });
+
+    if (editing) {
+      html += '<div class="addrow"><button class="btn btn-sm" data-act="addrow">+ Add week</button></div>';
+    }
+    html += '</div>';
+
+    html += '<footer class="foot"><span>Last updated ' + esc(state.updated) + '</span>' +
+      '<span>Updates appear here as soon as they are saved.</span></footer>';
+
+    html += '</div>';
+    root.innerHTML = html;
+  }
+
+  /* Label plus an open/close window. Leaving the dates blank is fine; typing a
+     label into an empty task fills in the default one-week window. */
+  function taskEditor(r, key, label, ph) {
+    var id = esc(r.id);
+    return '<div class="fgroup"><span class="flabel">' + label + '</span><div class="frow">' +
+      '<input class="f f-sm grow" id="r' + key + '-' + id + '" data-rid="' + id + '" data-rf="' + key +
+      '" value="' + esc(r[key] || "") + '" placeholder="' + ph + '" aria-label="' + label + ' name">' +
+      '<input class="f f-sm" type="date" id="r' + key + 's-' + id + '" data-rid="' + id + '" data-rf="' +
+      key + 'Start" value="' + esc(r[key + "Start"] || "") + '" aria-label="' + label + ' opens">' +
+      '<span class="sep">&rarr;</span>' +
+      '<input class="f f-sm" type="date" id="r' + key + 'e-' + id + '" data-rid="' + id + '" data-rf="' +
+      key + 'End" value="' + esc(r[key + "End"] || "") + '" aria-label="' + label + ' due">' +
+      '</div></div>';
+  }
+
+  function linksEditor(r) {
+    var h = '<div style="display:flex;flex-direction:column;gap:4px">';
+    (r.links || []).forEach(function (l, i) {
+      var sel = '<select class="f f-sm" id="lk-' + esc(r.id) + '-' + i + '" data-rid="' + esc(r.id) +
+        '" data-li="' + i + '" data-lf="kind" aria-label="Material type">';
+      KINDS.forEach(function (k) {
+        sel += '<option value="' + k.key + '"' +
+          ((l.kind || "link") === k.key ? ' selected' : '') + '>' + k.label + '</option>';
+      });
+      sel += '</select>';
+      h += '<div class="linkrow">' + sel +
+        '<input class="f f-sm" id="ll-' + esc(r.id) + '-' + i + '" data-rid="' + esc(r.id) +
+        '" data-li="' + i + '" data-lf="label" value="' + esc(l.label) + '" placeholder="Title" aria-label="Material title">' +
+        '<input class="f f-sm" id="lu-' + esc(r.id) + '-' + i + '" data-rid="' + esc(r.id) +
+        '" data-li="' + i + '" data-lf="url" value="' + esc(l.url) + '" placeholder="https://" aria-label="Material URL">' +
+        '<button class="btn btn-ghost btn-sm" data-act="dellink" data-id="' + esc(r.id) +
+        '" data-i="' + i + '">&times;</button></div>';
+    });
+    h += '<div><button class="btn btn-ghost btn-sm" data-act="addlink" data-id="' + esc(r.id) +
+      '">+ Add material link</button></div></div>';
+    return h;
+  }
+
+  /* ---------- state edits (no re-render while typing) ---------- */
+
+  function findRow(id) {
+    return (state.rows || []).filter(function (r) { return r.id === id; })[0];
+  }
+  function findNotice(id) {
+    return (state.notices || []).filter(function (n) { return n.id === id; })[0];
+  }
+
+  root.addEventListener("input", function (e) {
+    var el = e.target;
+    if (el.dataset.rf) {
+      var r = findRow(el.dataset.rid);
+      if (r) r[el.dataset.rf] = el.value;
+    } else if (el.dataset.lf) {
+      var r2 = findRow(el.dataset.rid);
+      if (r2 && r2.links && r2.links[+el.dataset.li]) r2.links[+el.dataset.li][el.dataset.lf] = el.value;
+    } else if (el.dataset.nf) {
+      var n = findNotice(el.dataset.nid);
+      if (n) n[el.dataset.nf] = el.value;
+    }
+  });
+
+  /* Naming a homework or quiz with no window set fills in the default one:
+     it opens on the class date and closes a week later. Both dates stay editable. */
+  root.addEventListener("change", function (e) {
+    var el = e.target;
+
+    /* Pasting an address sets the material type, unless one was picked already. */
+    if (el.dataset.lf === "url") {
+      var lr = findRow(el.dataset.rid);
+      var link = lr && lr.links && lr.links[+el.dataset.li];
+      if (link && (!link.kind || link.kind === "link")) {
+        var g = guessKind(el.value);
+        if (g) {
+          link.kind = g;
+          var sel = document.getElementById("lk-" + lr.id + "-" + el.dataset.li);
+          if (sel) sel.value = g;
+        }
+      }
+      return;
+    }
+
+    var key = el.dataset.rf;
+    if (key !== "hw" && key !== "quiz") return;
+    var r = findRow(el.dataset.rid);
+    if (!r || !el.value.trim()) return;
+    if (r[key + "Start"] || r[key + "End"]) return;
+    var d = parseDate(r.date);
+    if (!d) return;
+    var end = new Date(d.getTime());
+    end.setDate(end.getDate() + WINDOW_DAYS);
+    r[key + "Start"] = iso(d);
+    r[key + "End"] = iso(end);
+    var s = document.getElementById("r" + key + "s-" + r.id);
+    var f = document.getElementById("r" + key + "e-" + r.id);
+    if (s) s.value = r[key + "Start"];
+    if (f) f.value = r[key + "End"];
+  });
+
+  root.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-act]");
+    if (!b) return;
+    var act = b.dataset.act;
+
+    if (act === "edit") { snapshot = JSON.stringify(state); editing = true; render(); }
+    else if (act === "cancel") { state = JSON.parse(snapshot); editing = false; render(); }
+    else if (act === "save") { save(); }
+    else if (act === "addnotice") {
+      state.notices = state.notices || [];
+      state.notices.push({ id: uid("n"), date: isoToday(), text: "" });
+      render();
+    }
+    else if (act === "delnotice") {
+      state.notices = (state.notices || []).filter(function (n) { return n.id !== b.dataset.id; });
+      render();
+    }
+    else if (act === "addrow") {
+      var rows = state.rows || (state.rows = []);
+      var last = rows[rows.length - 1];
+      var nd = isoToday();
+      if (last) {
+        var ld = parseDate(last.date);
+        if (ld) { ld.setDate(ld.getDate() + 7); nd = iso(ld); }
+      }
+      rows.push({
+        id: uid("w"), week: (last ? (+last.week || rows.length) + 1 : 1),
+        date: nd, topic: "", hw: "", hwStart: "", hwEnd: "",
+        quiz: "", quizStart: "", quizEnd: "", type: "class", links: []
+      });
+      render();
+    }
+    else if (act === "delrow") {
+      state.rows = (state.rows || []).filter(function (r) { return r.id !== b.dataset.id; });
+      render();
+    }
+    else if (act === "addlink") {
+      var r3 = findRow(b.dataset.id);
+      if (r3) { r3.links = r3.links || []; r3.links.push({ label: "", url: "", kind: "link" }); render(); }
+    }
+    else if (act === "dellink") {
+      var r4 = findRow(b.dataset.id);
+      if (r4 && r4.links) { r4.links.splice(+b.dataset.i, 1); render(); }
+    }
+  });
+
+  var snapshot = JSON.stringify(state);
+
+  function iso(d) {
+    var m = d.getMonth() + 1, dd = d.getDate();
+    return d.getFullYear() + "-" + (m < 10 ? "0" : "") + m + "-" + (dd < 10 ? "0" : "") + dd;
+  }
+  function isoToday() { return iso(today()); }
+
+  /* ---------- rebuild the document and publish ---------- */
+
+  function buildDoc(s) {
+    var head = [
+      '<meta charset="utf-8">',
+      '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">',
+      document.querySelector("title").outerHTML,
+      document.getElementById("app-fonts").outerHTML,
+      document.getElementById("app-style").outerHTML
+    ].join("\n");
+
+    var json = JSON.stringify(s).replace(/</g, "\\u003c");
+    var body = '<div id="root"></div>\n' +
+      '<script id="state-json" type="application/json">' + json + '<\/script>\n' +
+      document.getElementById("app-js").outerHTML;
+
+    return '<!doctype html>\n<html lang="en">\n<head>\n' + head + '\n</head>\n<body>\n' + body + '\n</body>\n</html>';
+  }
+
+  function toast(msg) {
+    var old = document.querySelector(".toast");
+    if (old) old.remove();
+    var el = document.createElement("div");
+    el.className = "toast";
+    el.setAttribute("role", "status");
+    el.textContent = msg;
+    document.body.appendChild(el);
+    setTimeout(function () { el.remove(); }, 4000);
+  }
+
+  function save() {
+    if (saving) return;
+    if (!artifactApi) { toast("Saving is not available in this view."); return; }
+    saving = true;
+    toast("Saving…");
+    state.updated = isoToday();
+    Promise.resolve(artifactApi.publish(buildDoc(state))).then(function () {
+      saving = false;
+      editing = false;
+      snapshot = JSON.stringify(state);
+      render();
+      toast("Saved. Students now see this version.");
+    }, function (err) {
+      saving = false;
+      var code = err && err.code;
+      if (code === "conflict") toast("Someone else saved first. Reload and make the change again.");
+      else if (code === "not_granted" || code === "not_writer") toast("You do not have permission to edit this page.");
+      else toast("Could not save" + (err && err.message ? ": " + err.message : "."));
+    });
+  }
+
+  /* ---------- boot ---------- */
+
+  render();
+
+  (async function () {
+    try {
+      var u = window.claude && window.claude.use ? await window.claude.use("user") : null;
+      if (u) {
+        var ok = u.canEdit ? await u.canEdit() : (u.isOwner ? await u.isOwner() : false);
+        canEdit = !!ok;
+      }
+      artifactApi = window.claude && window.claude.use ? await window.claude.use("artifact") : null;
+      if (!artifactApi) canEdit = false;
+      if (canEdit) render();
+    } catch (e) { /* read-only view */ }
+  })();
+})();
+</script>
+</body>
+</html>
