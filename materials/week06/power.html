@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Business Statistics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jihyun Suh, PhD" />
+    <script src="libs/header-attrs-2.31/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/theme_D_msi_green.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/lucy-fonts.css" rel="stylesheet" />
+    <script src="libs/fabric-4.3.1/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Business Statistics
+]
+.subtitle[
+## Hypothesis Testing: Error &amp; Power
+]
+.author[
+### Jihyun Suh, PhD
+]
+.date[
+### 2026/10/16
+]
+
+---
+
+class: inverse, small, center, middle
+# Errors &amp; Power
+
+
+???
+
+Hello everyone, and welcome back. Last time, we learned hypothesis testing. We started by assuming that the null hypothesis, H-zero, is true. H-zero is the statement "nothing special is happening." Then we looked at our sample. If the sample result was very unusual under H-zero, we rejected H-zero.
+
+Today, I want to ask you a simple question. Is the result of a hypothesis test always correct? What do you think? (wait for answers)
+
+The answer is no. A test is a good tool, but it can still make mistakes. Today, we will learn about two kinds of mistakes. We will also learn a new idea called power. Power tells us how good a test is at finding a real effect. At the end of today, you will know how to choose a sample size for your own study.
+
+Let's start with a short review.
+
+---
+class: small
+# Recap
+- Hypothesis testing
+
+&lt;img src="pic/flow5_0.png" alt="" width="95%" style="display: block; margin: auto;" /&gt;
+
+- Today's question: even if we follow all five steps perfectly, can our conclusion still be wrong?
+
+???
+
+Here are the five steps from last class. Step one, check the assumptions. Step two, write the hypotheses. Step three, calculate the test statistic. Step four, find the p-value. Step five, write the conclusion.
+
+Mistakes can happen at many of these steps. For example, the sample may not represent the whole population. Or a measuring tool may not be accurate. Think about a bathroom scale that always shows 2 kilograms too much. Every number from that scale is wrong. Statistics cannot fix that. So we must plan carefully before we collect data.
+
+But today's question is different. Look at the last line on the slide. Suppose we do all five steps perfectly. Can the conclusion still be wrong? Yes, it can. The reason is chance. We only see a sample, and a sample can be unusual just by chance.
+
+Let's look at all the possible results of a test.
+
+---
+class: small
+# Errors in Hypothesis Testing
+
+- In hypothesis testing, we use limited information (a sample) as the basis for reaching a general conclusion.
+- There is always the possibility that an incorrect conclusion will be made.
+- In hypothesis testing, we can make two kinds of errors.
+
+|    | `\(H_{1}\)` True (there is an effect)| `\(H_{0}\)` True (no effect) |
+|:------:|:------:|:------:|
+| Reject `\(H_{0}\)` | Hit (True positive) | False Alarm (False positive)|
+| Do not reject `\(H_{0}\)` |Miss (False negative) | Correct decision (True negative)|
+
+&lt;img src="pic/type1_2_error.png" alt="" width="40%" style="display: block; margin: auto;" /&gt;
+
+???
+
+When we test a hypothesis, we use a sample. A sample is limited information. From this limited information, we make a general conclusion about the whole population. So there is always some risk of a wrong conclusion.
+
+Look at this table. The columns show the truth. In the first column, H-one is true. H-one is the alternative hypothesis. It means there is a real effect. In the second column, H-zero is true. There is no effect. In real life, we never know the truth for sure. But let's imagine that we know it.
+
+The rows show our decision. We reject H-zero, or we do not reject it.
+
+So there are four cells. Two cells are correct decisions. Look at the picture. The woman is pregnant, and the test says "pregnant." That is a hit, or a true positive. The man is not pregnant, and the test says "not pregnant." That is also correct. We call it a true negative.
+
+The other two cells are mistakes. Let's look at them one by one.
+
+---
+class: small
+# Type I Error
+
+- It occurs when a researcher **rejects a null hypothesis that is actually true**
+- E.g., we find evidence for a treatment effect when in fact the treatment has no effect
+- Consequences of a Type I error can be very serious!
+
+|    | `\(H_{1}\)` True| `\(H_{0}\)` True |
+|:------:|:------:|:------:|
+| Reject `\(H_{0}\)` | Hit (True positive) | **Type I Error** (False positive)|
+| Do not reject `\(H_{0}\)` | Type II Error (False negative) | Correct decision (True negative)|
+
+&lt;img src="pic/type1_2_error.png" alt="" width="40%" style="display: block; margin: auto;" /&gt;
+
+???
+
+The first mistake is called a Type I error. It happens when H-zero is true, but we reject it. We say there is an effect, but in fact there is no effect. It is a false alarm.
+
+Do you remember the court trial from last class? H-zero was "not guilty." Rejecting H-zero meant a guilty verdict. So what is a Type I error in court? Yes. We send an innocent person to prison.
+
+In the picture, the doctor tells the man, "You are pregnant." Of course, this is impossible. It is a false alarm.
+
+Here is an everyday example. You are cooking fish in your kitchen, and the smoke alarm starts to ring. But there is no fire. Everyone stops what they are doing for no reason. That is a false alarm.
+
+Type I errors can be very costly. A company may spend a lot of money on a change that does nothing.
+
+Now let's see a Type I error in a picture.
+
+---
+class: small
+# Type I Error
+
+- It occurs when a researcher rejects a null hypothesis that is actually true
+- The `\(\alpha\)` level = the probability that the test will lead to a Type I error
+
+&lt;img src="power2_files/figure-html/type1-plot-1.png" alt="" style="display: block; margin: auto;" /&gt;
+
+- The orange area is under the **null** distribution, beyond the critical value. Its size is exactly `\(\alpha\)`.
+
+???
+
+This picture shows a Type I error. The grey curve is the null distribution. A distribution shows which values are common and which values are rare. The null distribution shows where sample results usually fall when H-zero is true. Most results fall near the middle, near 100.
+
+The dashed line is the critical value. The critical value is our cut-off point. If our result is to the right of this line, we reject H-zero.
+
+Now look at the orange area. It is the part of the grey curve to the right of the dashed line. Even when H-zero is true, some results fall here, just by chance. Then we reject a true H-zero. That is a Type I error.
+
+How big is the orange area? It is exactly alpha. So alpha is the probability of a Type I error. When we choose alpha equals .05, we accept a 5% chance of a false alarm. Remember the simulation from last class? About 5% of the tests gave a false alarm. Now you know why.
+
+So how should we choose alpha? Let's see.
+
+---
+class: small
+# Selecting an _alpha_ level
+
+**Alpha**
+
+- Helps determine the boundaries for the critical region by defining the concept of "very unlikely" outcomes
+- Determines the probability of a Type I error
+- By convention, the largest permissible value is `\(\alpha\)` = .05 (Cowles &amp; Davis, 1982)
+
+.pull-left[
+&lt;img src="power2_files/figure-html/alpha10-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="power2_files/figure-html/alpha05-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Alpha decides where the critical value is. In other words, alpha tells us what "very unlikely" means.
+
+By tradition, the largest alpha that most researchers accept is .05.
+
+Now compare the two pictures. I added a second curve on the right. This is the alternative distribution. It shows where results fall when H-one is true. We will talk more about it soon.
+
+On the left, alpha is .10. The orange area is larger, and the critical value is more to the left, closer to 100. On the right, alpha is .05. The orange area is smaller, and the critical value moves to the right.
+
+Please also look at the light green area on the right curve. It is larger in the right picture than in the left picture. So when alpha changes, the green area also changes.
+
+What does the green area mean? It is the second kind of mistake. Let's see it now.
+
+---
+class: small
+# Type II Error
+
+- It occurs when a researcher **fails to reject a null hypothesis that is in fact false**
+- E.g., the hypothesis test has failed to detect a real treatment effect
+- The probability of a Type II error is called `\(\beta\)` (beta)
+
+|    | `\(H_{1}\)` True| `\(H_{0}\)` True |
+|:------:|:------:|:------:|
+| Reject `\(H_{0}\)` | Hit (True positive) | Type I Error (False positive)|
+| Do not reject `\(H_{0}\)` | **Type II Error** (False negative) | Correct decision (True negative)|
+
+&lt;img src="pic/type1_2_error.png" alt="" width="40%" style="display: block; margin: auto;" /&gt;
+
+???
+
+The second mistake is called a Type II error. It is the opposite of a Type I error. Here, H-zero is false. There really is an effect. But our test does not reject H-zero. We miss the effect.
+
+Let's go back to the court trial. What is a Type II error in court? Yes. A guilty person goes free.
+
+In the picture, the woman is pregnant, but the doctor says, "You are not pregnant." The test missed it.
+
+Here is an everyday example. You really have COVID, but your home test says "negative." You feel safe, so you go to the office. Then some of your coworkers get sick. This is a missed problem, and it can be very serious.
+
+The probability of a Type II error has a name. We call it beta. Beta is the Greek letter for b.
+
+So now we have two kinds of mistakes. Which one is worse? Let's think about that next.
+
+---
+class: small
+# Which Error Is Worse? It Depends
+
+|Situation| `\(H_{0}\)` |Type I error (false alarm)|Type II error (miss)|
+|:---|:---|:---|:---|
+|Quality control|The shipment is good|Reject a good shipment: wasted cost, angry supplier|Accept a bad shipment: defective products reach customers|
+|Fraud detection|The transaction is legitimate|Block a real customer's card|Let a fraudulent charge go through|
+|Medical screening|The patient is healthy|Unneeded worry and extra tests|A disease goes untreated|
+|New ad campaign|The ad does not increase sales|Spend money on an ad that doesn't work|Miss a profitable ad|
+
+.soft-box-grey[
+- Traditionally, science treats the Type I error as more serious, so `\(\alpha\)` is kept small (.05 or .01).
+- In business, compare the **costs** of the two errors before choosing `\(\alpha\)`.
+]
+
+???
+
+Which mistake is worse? The answer depends on the situation. Let's read the table together.
+
+First row, quality control. Do you remember acceptance sampling for shipments? We used the binomial distribution. Here, H-zero is "the shipment is good." A Type I error rejects a good shipment. We waste money, and the supplier is unhappy. A Type II error accepts a bad shipment. Defective products reach our customers. For a steel company, this can damage the trust of customers.
+
+Second row, fraud detection. A false alarm blocks a real customer's card. A miss accepts a payment made by a criminal.
+
+Third row, medical screening. A miss means a disease is not treated. This is usually worse than a false alarm.
+
+Fourth row, a new ad. A false alarm wastes money on an ad that does not work. A miss loses a good chance to make money.
+
+In science, people usually think a Type I error is more serious. So they keep alpha small. In business, you should compare the costs of both mistakes first. Then you choose alpha.
+
+---
+class: small
+# Type II Error
+
+- Type II error depends on a variety of factors (sample size, effect size, `\(\alpha\)` )
+
+.pull-left[
+&lt;img src="power2_files/figure-html/n-small-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="power2_files/figure-html/n-large-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Now let's see a Type II error in a picture. The size of beta depends on several things: the sample size, the effect size, and alpha. Here, we look at the sample size.
+
+How do we read the green area? We look at the right curve, the alternative distribution. So we assume H-one is true. The green part is where this curve is to the left of the dashed line. If our result falls there, we do not reject H-zero. We miss a real effect.
+
+On the left, the sample is small, so the standard error is large: 30. The standard error tells us how much the sample mean changes from one sample to another. A large standard error makes the curves wide. The two curves overlap a lot. Beta is about .49. So we miss the real effect about half of the time.
+
+On the right, the sample is larger, so the standard error is 15. The curves are narrow, and they overlap only a little. Beta is about .05.
+
+So a larger sample gives fewer misses. Next, let's see what alpha does to beta.
+
+---
+class: small
+# Smaller Type I error, Greater Type II error
+Type II error decreases as
+- The true parameter value is farther from `\(H_{0}\)` (larger effect)
+- The sample size increases
+- Type I error ( `\(\alpha\)` ) increases
+
+.pull-left[
+&lt;img src="power2_files/figure-html/a05-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="power2_files/figure-html/a01-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Look at the list first. Beta becomes smaller in three cases. One, the true value is far from H-zero. Two, the sample is larger. Three, alpha is larger.
+
+The third point needs care. Look at the two pictures. They use the same data. On the left, alpha is .05. On the right, alpha is .01. We made alpha smaller because we want fewer false alarms.
+
+What happens? The critical value moves to the right. The orange area becomes smaller. That is good. But the green area becomes larger. Beta increases from about .20 to about .43. That is bad.
+
+We call this a trade-off. A trade-off means that when we gain one thing, we lose another thing. With the same sample, when one error becomes smaller, the other error becomes larger. We cannot make both errors smaller just by changing alpha.
+
+Then how can we make both smaller? We need a larger sample, or a larger effect. Please remember this.
+
+Now let's give a name to the teal area.
+
+---
+class: small
+# The power of a test
+The probability of rejecting `\(H_{0}\)` when `\(H_{0}\)` is false is called the **power** of the test
+.center[.content-box-blue[
+Power = 1 - Type II error = `\(1-\beta\)`
+]]
+
+&lt;img src="power2_files/figure-html/power-plot1-1.png" alt="" style="display: block; margin: auto;" /&gt;
+
+???
+
+Now we come to a very important idea: power.
+
+Power is the probability that we reject H-zero when H-zero is false. In simple words, power is the chance that our test finds a real effect.
+
+Here is an example. Suppose a new study method really helps students get higher test scores. Power is the chance that our study shows this improvement. High power means we will probably see it. Low power means we may miss it.
+
+Look at the right curve, the alternative distribution. It has two parts. The green part is beta, the chance of a miss. The teal part is power, the chance of a hit. Together, the two parts make the whole curve, so their sum is 1. That is why power equals 1 minus beta.
+
+So anything that makes beta smaller makes power larger. Sample size, effect size, and alpha all change power.
+
+We now have three Greek letters. Let's put them together on one slide.
+
+---
+class: small
+# Some Greek letters
+
+- `\(\alpha\)`: The rate at which we make **Type I errors**, which is the same `\(\alpha\)` as the cut-off for p-values.
+- `\(\beta\)`: The rate at which we make **Type II errors**.
+- `\(1-\beta\)`: statistical **power**.
+
+|    | `\(H_{1}\)` True| `\(H_{0}\)` True |
+|:------:|:------:|:------:|
+| Reject `\(H_{0}\)` | Power ( `\(1-\beta\)` ) | Type I error ( `\(\alpha\)` )|
+| Do not reject `\(H_{0}\)` | Type II error ( `\(\beta\)` ) | Correct decision ( `\(1-\alpha\)` )|
+
+Note that these are all probability statements, not abstract ideas.
+
+???
+
+Let's review the names. Alpha is the rate of Type I errors. It is the same alpha that we use as the cut-off for the p-value. Beta is the rate of Type II errors. And 1 minus beta is power.
+
+The table shows the same four cells as before. Now each cell has a probability.
+
+Look at each column. The sum of each column is 1. In the column where H-zero is true, we have alpha plus 1 minus alpha. In the column where H-one is true, we have beta plus power.
+
+Look at the last sentence on the slide. These are all probabilities. They are real numbers, not only ideas. For example, if alpha is .05, then in about 5 out of 100 tests where H-zero is true, we make a false alarm.
+
+Here is a short question for you. If power is .80, what is beta? (wait) Yes, .20.
+
+Now let's look at a common problem with hypothesis testing.
+
+---
+class: small
+# Problems in NHST
+
+- Although hypothesis testing is the most commonly used technique for evaluating and interpreting research data, many scientists have expressed concerns about it
+- Primary concern: demonstrating a statistically significant treatment effect does not necessarily indicate a substantially large treatment effect
+  - Reject or not?
+
+&lt;img src="pic/null.jpeg" alt="" width="40%" style="display: block; margin: auto;" /&gt;
+
+???
+
+NHST means null hypothesis significance testing. It is the testing method we learned last class. People use it everywhere. But many scientists have concerns about it.
+
+The main concern is this. "Statistically significant" does not mean "large" or "important." A test only gives a yes or no answer: reject, or do not reject. Look at the picture. The test does not tell us how big the effect is.
+
+Here is an example. Suppose a huge online survey asks one million people how long they sleep. People who drink coffee in the morning sleep 1 minute less per night than other people. With so many people, the test may say "significant." But 1 minute of sleep does not matter at all in real life. With a very large sample, even a very small difference can be significant.
+
+So the test result alone is not enough. We also need a number that tells us the size of the effect. Let's see it now.
+
+---
+class: small
+# Effect size
+- It is recommended that whenever researchers report a statistically significant effect, they also provide a report of the effect size
+.center[.content-box-blue[
+**Effect size**: a measurement of the absolute magnitude of a treatment effect, independent of the size of the sample being used
+]]
+
+- Cohen's _d_: one of the simplest and most direct methods for measuring effect size
+
+???
+
+This number is called the effect size. The effect size measures how big an effect is. It does not depend on the sample size. Experts recommend that we always report the effect size together with the test result.
+
+Here is an example. Suppose a new diet helps people lose 2 kilograms in one month, on average. That 2 kilograms is the real size of the effect. If we study more people, the effect does not become bigger. It is still 2 kilograms. A larger sample only makes us more sure about it.
+
+There are several ways to measure effect size. One simple way is called Cohen's d. Let's see the formula.
+
+--
+
+`$$d = \frac{\text{mean difference}}{\text{standard deviation}} = \frac{\mu_{\text{treatment}}-\mu_{\text{no treatment}}}{\sigma}$$`
+
+&lt;img src="pic/cohend.png" alt="" width="30%" style="display: block; margin: auto;" /&gt;
+
+???
+
+Here is the formula for Cohen's d. We take the difference between two means. Then we divide it by the standard deviation. The standard deviation, sigma, tells us how spread out the data are.
+
+So d tells us how far apart the two means are, in standard deviation units. For example, d equals 1 means the two means are one standard deviation apart.
+
+Look at the picture. When the two peaks are far apart, d is large. Then it is easy to tell the two groups apart. When the peaks are close, d is small, and it is hard to tell the groups apart.
+
+Why do we divide by the standard deviation? Because then d has no units. So we can compare effects in kilograms, in dollars, or in test scores.
+
+So what is a large d? Let's see.
+
+---
+class: small
+# Effect size
+
+.pull-left[
+&lt;img src="pic/cohend2.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+Rule of thumb
+
+| Magnitude of _d_ | Evaluation of Effect Size |
+|:-----:|:-----:|
+|_d_=0.2|Small effect (mean difference around 0.2 SD)|
+|_d_=0.5|Medium effect (mean difference around 0.5 SD)|
+|_d_=0.8|Large effect (mean difference around 0.8 SD)|
+
+- These cut-offs are only a guide. What counts as "big" depends on the field and on past studies.
+]
+
+???
+
+How large is large? The slide says "Rule of thumb." This means a simple guide, not a strict rule.
+
+A d of about 0.2 is a small effect. The two means are about 0.2 standard deviations apart. A d of about 0.5 is a medium effect. A d of about 0.8 is a large effect.
+
+Look at the picture on the left. When d is small, the two curves overlap a lot. When d is large, they are more clearly separated.
+
+What about d equals 0.79? Is it medium or large? There is no exact answer. You need to decide. What counts as large depends on your field and on earlier studies. For example, a medicine with a small effect may still be very important, because it can help thousands of patients. So please use these numbers only as a guide.
+
+Now let's go back to power and learn how to calculate it.
+
+---
+class: small
+# Power
+
+.center[.content-box-blue[
+The **power** of a statistical test is the probability that the test will correctly reject a false null hypothesis. That is, power is the probability that the test will identify a treatment effect if one really exists.
+]]
+
+.center[
+`\(P(\text{reject } H_{0} \mid H_{1} \text{ is true})\)`
+
+`\(= 1 - P(\text{fail to reject } H_{0} \mid H_{1} \text{ is true})\)`
+
+`\(= 1 - \beta\)`
+]
+
+???
+
+Here is the definition of power again. Power is the probability that the test correctly rejects a false null hypothesis. In other words, it is the chance that the test finds a treatment effect when the effect really exists.
+
+Look at the formulas. The vertical line means "given that." So the first line reads like this: the probability that we reject H-zero, given that H-one is true.
+
+The second line says the same thing in a different way. It is 1 minus the probability that we fail to reject H-zero, given that H-one is true. That second probability is beta.
+
+So power equals 1 minus beta. We already know this. Now we want to calculate the actual number. To do that, we use power analysis.
+
+---
+class: small
+# Power analysis
+
+**Controlling Type II** errors is the goal of power analysis and must contend with four quantities that are interrelated:
+
+&lt;img src="pic/power.jpeg" alt="" width="40%" style="display: block; margin: auto;" /&gt;
+
+
+When any three are known, the remaining one can be determined. Usually this translates into determining the power present in a research design, or determining the sample size necessary to achieve a desired level of power.
+
+We must choose a specific value for the alternative hypothesis to estimate and control Type II errors.
+
+???
+
+Power analysis is a method to control Type II errors. It uses four quantities. Look at the picture: sample size, effect size, alpha, and power. These four are connected. If you know any three of them, you can calculate the fourth one.
+
+There are two common uses. First, we can calculate the power of a study design. Second, before we collect data, we can calculate the sample size we need. For example, we may ask: how many people must answer our survey to have 80% power?
+
+One important point. Look at the last line on the slide. To calculate power, we need one specific value for the alternative hypothesis. "The mean is more than 100" is not enough. We need a specific number, like 110. Why? Because the alternative curve needs a center.
+
+Let's do an example together.
+
+---
+class: small, palegreen
+# Power analysis: example
+.content-box-blue[
+Suppose we have a measure of social sensitivity that we have administered to a random sample of 20 POSCO employees. This measure has a population mean ( `\(\mu\)` ) of 100 and a standard deviation ( `\(\sigma\)` ) of 20. We suspect that POSCO employees are more sensitive to others than is typical and want to know if their mean, which is 110, is sufficient evidence to reject the null hypothesis that they are no more sensitive than the rest of the population.
+]
+
+We would also like to know how likely it is that we could make a mistake by concluding that POSCO employees are not different when they really are: a _Type II error_.
+
+???
+
+Here is our example. We use a test of social sensitivity. Social sensitivity means how well a person understands other people's feelings.
+
+We gave this test to a random sample of 20 POSCO employees. In the general population, the mean score is 100, and the standard deviation is 20. We think POSCO employees may be more sensitive than average. The sample mean of our 20 employees is 110.
+
+We have two questions. First, is 110 enough evidence to reject H-zero? H-zero says POSCO employees are not more sensitive than other people. This is the same kind of question as last class.
+
+Second, suppose POSCO employees really are different. What is the chance that we miss it? That is the chance of a Type II error. This is the new question for today.
+
+Let's write the numbers clearly.
+
+---
+class: small, palegreen
+# Power analysis: example
+- We begin by defining the location in the null hypothesis distribution beyond which empirical results would be considered sufficiently unusual to lead us to reject the null hypothesis.
+- We control these mistakes (Type I errors) at the chosen level of significance ( `\(\alpha = .05\)`, one-tailed).
+
+.center[.content-box-blue[
+`\(H_{0}: \mu \le 100 \qquad H_{1}: \mu &gt; 100\)`
+
+`\(\mu_{0} = 100, \quad \mu_{1} = 110\)`
+
+`\(\sigma = 20, \quad n = 20, \quad \sigma_{\bar{x}} = 20/\sqrt{20} = 4.47\)`
+]
+]
+
+- Effect size: `\(d = \dfrac{110-100}{20} = 0.5\)` (a medium effect)
+
+???
+
+Let's write down everything we know.
+
+H-zero says mu is less than or equal to 100. H-one says mu is greater than 100. Mu is the true population mean.
+
+Mu-zero is 100. This is the mean under H-zero. Mu-one is 110. This is the specific value we choose for H-one.
+
+Sigma is 20, and n is 20. So the standard error is 20 divided by the square root of 20. That is about 4.47.
+
+We use alpha equals .05, one-tailed. One-tailed means we look at only one side. We only care whether POSCO employees score higher.
+
+Also look at the effect size. The difference is 110 minus 100, which is 10. The standard deviation is 20. So d is 10 divided by 20, which is 0.5. That is a medium effect.
+
+The first step is to find the critical value.
+
+---
+class: small, palegreen
+# Power analysis: example
+.pull-left[Formula:
+
+`$$\text{Critical value}=\mu_{0} + z_{.05}\frac{\sigma}{\sqrt{n}}$$`
+
+`$$\text{Critical value}=100 + 1.645\frac{20}{\sqrt{20}} = 107.36$$`
+- Our sample mean is `\(\bar{x} = 110\)`
+- `\(\bar{x}\)` (110) &gt; critical value (107.36)
+- We can reject the null hypothesis
+
+]
+
+.pull-right[
+&lt;img src="power2_files/figure-html/crit-null-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Here is the formula for the critical value. We start at the null mean, 100. Then we add 1.645 standard errors. 1.645 is the z-value for alpha equals .05, one-tailed. You saw this number last class.
+
+So the critical value is 100 plus 1.645 times 4.47. That is about 107.36.
+
+What does this mean? If the sample mean is above 107.36, we reject H-zero.
+
+Our sample mean is 110. Is 110 above 107.36? Yes. So we reject H-zero. We have evidence that POSCO employees are more socially sensitive.
+
+Look at the picture on the right. The orange area is the rejection region. The rejection region is the set of results that lead us to reject H-zero. Here, it is everything above 107.36. Its size is alpha, 5%.
+
+This answers our first question. Now let's look at the second question.
+
+---
+class: small, palegreen
+# Power analysis: example
+What if the null hypothesis is false? How likely are we to correctly reject the null hypothesis in the long run?
+
+???
+
+Now let's ask a new question. Suppose H-zero is false. POSCO employees really are more sensitive. If we repeat a study like this many times, how often will we correctly reject H-zero?
+
+In other words, what is the power of this study? And what is the chance of a miss?
+
+Think about the spam filter in your email. If an email really is spam, how often will the filter catch it? This is the same kind of question.
+
+--
+
+To determine the probability of a Type II error, we must specify a value for the alternative hypothesis. We will use the sample mean of 110.
+
+&lt;img src="power2_files/figure-html/alt-only-1.png" alt="" style="display: block; margin: auto;" /&gt;
+
+???
+
+To answer it, we need a specific value for H-one. We use 110, our sample mean.
+
+Look at the picture. We now draw a second curve. This is the alternative distribution. Its center is 110. It has the same shape and the same standard error as the null curve. It is only moved 10 points to the right.
+
+The grey curve shows where sample means fall if the truth is 100. The teal curve shows where sample means fall if the truth is 110.
+
+Now let's add the critical value to this picture.
+
+---
+class: small, palegreen
+# Power analysis: example
+
+.pull-left[
+Once the critical value and the alternative value are established, we can determine the location of the critical value in the alternative distribution.
+
+- Green: we fail to reject `\(H_{0}\)` even though `\(H_{1}\)` is true → **Type II error** ( `\(\beta\)` )
+- Teal: we correctly reject `\(H_{0}\)` → **power** ( `\(1-\beta\)` )
+]
+.pull-right[
+&lt;img src="power2_files/figure-html/both-1-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Here are both curves together. The dashed line is still our critical value, 107.36. This line does not move. It comes from H-zero and alpha only.
+
+Now look at the right curve, with its center at 110. The dashed line cuts it into two parts.
+
+The green part is to the left of the line. Suppose the truth is 110, but our sample mean falls here. Then we do not reject H-zero. That is a Type II error, a miss.
+
+The teal part is to the right of the line. If our sample mean falls here, we correctly reject H-zero. That is power.
+
+So we only need one number: the size of the green area. What do you think? Is it more than half, or less than half? Let's calculate it.
+
+---
+class: small, palegreen
+# Power analysis: example
+
+.pull-left[
+`$$z_{1} = \frac{\text{Critical value} - \mu_{1}}{\frac{\sigma}{\sqrt{n}}}$$`
+`$$z_{1} = \frac{107.36 - 110}{\frac{20}{\sqrt{20}}} = -0.59$$`
+
+- This is where the critical value sits **on the alternative distribution**, in z units.
+]
+.pull-right[
+&lt;img src="power2_files/figure-html/both-2-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+To find the green area, we change the critical value into a z-score. A z-score tells us how many standard errors a value is from the center.
+
+But this time, we use the center of the alternative curve. So we subtract mu-one, 110, not mu-zero, 100. This is the most important point on this slide.
+
+So 107.36 minus 110 is minus 2.64. Then we divide by the standard error, 4.47. The result is about minus .59. We call this z-one.
+
+What does z-one equals minus .59 mean? The critical value is .59 standard errors below the center of the alternative curve.
+
+Next, we find the area to the left of this point.
+
+---
+class: small, palegreen
+# Power analysis: example
+.pull-left[
+&lt;img src="power2_files/figure-html/z-beta-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="power2_files/figure-html/both-3-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Here is the same green area, shown in two ways.
+
+On the right, you see the picture with both curves. The scale is the sample mean.
+
+On the left, we took only the alternative curve. We changed it into a standard normal curve. Now the center is 0, and the scale is z.
+
+The dashed line is at z-one equals minus .59. The green area to the left of this line is beta, the chance of a Type II error.
+
+The two green areas have the same size. We only changed the scale. Now we can use the z-table to find this area.
+
+---
+class: small, palegreen
+# Power analysis: example
+
+&lt;img src="pic/ztabl.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
+
+- `\(P(Z &lt; -0.59) = .2776\)`
+
+???
+
+Here is the z-table. We want the area below minus .59.
+
+Find the row for minus .5. Then find the column for .09. Where they meet, the value is .2776.
+
+So the probability that Z is less than minus .59 is .2776. That is beta. Beta is about .28.
+
+Please take a moment and find this number in your own table. (pause) Did everyone find .2776?
+
+Now, what does this number tell us? Let's see.
+
+---
+class: small, palegreen
+# Power analysis: example
+.pull-left[
+The proportion of the alternative distribution that falls below the critical value is the probability of a Type II error ( `\(\beta \approx .28\)` ); power is then `\(1 - .28 = .72\)`.
+
+- If POSCO employees truly average 110, a study with 20 people will detect it about **72%** of the time, and miss it about **28%** of the time.
+]
+
+.pull-right[
+&lt;img src="power2_files/figure-html/both-4-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+So beta is about .28. Power is 1 minus .28, which is .72.
+
+What does this mean in simple words? Suppose POSCO employees really have a mean of 110. If we do a study with 20 people, we will find the effect about 72% of the time. But about 28% of the time, we will miss it, just by chance.
+
+Is 72% good enough? Many fields want power of at least 80%. So this study has a little less power than we want. Sometimes people say the study is "underpowered." This means the power is too low.
+
+How can we get more power? On the next slides, we will change one thing at a time. Then we will see what happens.
+
+---
+class: small, palegreen
+# Power &amp; Effect Size
+
+The choice of **110** as the mean of `\(H_{1}\)` is completely arbitrary. What if we believe that the alternative mean is **120**? This larger signal should be easier to detect.
+
+.pull-left[
+`$$z_{1} = \frac{107.36 - 120}{\frac{20}{\sqrt{20}}} = -2.83$$`
+
+- `\(\beta = P(Z &lt; -2.83) = .0023\)`
+- Power `\(= 1 - .0023 = .998\)`
+- Effect size: `\(d = (120-100)/20 = 1.0\)` (large)
+
+&lt;img src="pic/ztableee.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+.pull-right[
+&lt;img src="power2_files/figure-html/es-120-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+First, let's change the effect size. We chose 110 for mu-one, but this was only our choice. What if the true mean is 120? Then the effect is larger. The two curves are farther apart. So it should be easier to find the effect.
+
+The critical value is still 107.36. It does not change, because H-zero and alpha did not change.
+
+Now the z-score on the alternative curve is 107.36 minus 120, divided by 4.47. That is about minus 2.83. In the z-table, the area below minus 2.83 is .0023. So beta is .0023, and power is about .998. That is almost 100%.
+
+The effect size is now 120 minus 100, divided by 20. That is 1.0, a large effect.
+
+Look at the picture. The green area is almost gone. So a larger effect gives more power. But we cannot choose the true effect. What can we choose? The sample size.
+
+---
+class: small, palegreen
+# Power &amp; Sample size
+- What if instead we increase the _sample size_ ( `\(n = 100\)` )?
+- This will reduce variability in the sampling distribution, making the difference between the null and alternative distributions easier to see.
+
+.tiny[
+.pull-left[
+
+`$$\text{Critical value}=\mu_{0} + z_{.05}\frac{\sigma}{\sqrt{n}}$$`
+`$$\text{Critical value}=100 + 1.645\frac{20}{\sqrt{100}}= 103.29$$`
+
+`$$z_{1} = \frac{103.29 - 110}{\frac{20}{\sqrt{100}}} = -3.36$$`
+
+- `\(\beta = P(Z&lt;-3.36) = .0004\)`, power `\(\approx .9996\)`
+
+&lt;img src="pic/ztableee.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+]
+.pull-right[
+&lt;img src="power2_files/figure-html/n-100-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Now let's go back to mu-one equals 110. But this time, we collect more data: 100 people instead of 20.
+
+With 100 people, the standard error is 20 divided by the square root of 100. That is 20 divided by 10, which is 2. Before, it was 4.47. So both curves become narrow.
+
+The new critical value is 100 plus 1.645 times 2. That is 103.29.
+
+The z-score on the alternative curve is 103.29 minus 110, divided by 2. That is minus 3.36. The area below it is .0004. So beta is .0004, and power is about .9996.
+
+Look at the picture. The distance between the two centers is still 10 points. But the curves are narrow, so they almost do not overlap.
+
+In real work, this is the easiest way to increase power. We cannot change the true effect, but we can often collect a larger sample.
+
+Next, let's change alpha.
+
+---
+class: small, palegreen
+# Power analysis: example
+What if we decrease the significance level to .025?
+
+.pull-left[
+
+That will move the critical value:
+.tiny[
+`$$\text{Critical value}=100 + 1.96\frac{20}{\sqrt{20}}= 108.77$$`
+
+`$$z_{1} = \frac{108.77 - 110}{\frac{20}{\sqrt{20}}} = -0.28$$`
+]
+
+.plain[
+- `\(\beta = P(Z &lt; -0.28) = .3897\)`
+- Power `\(= 1 - .39 = .61\)` (down from .72)
+]
+
+
+]
+.pull-right[
+&lt;img src="power2_files/figure-html/a025-1.png" alt="" style="display: block; margin: auto;" /&gt;
+
+]
+
+[Online demo](https://rpsychologist.com/d3/nhst/)
+
+???
+
+Now let's change alpha. We go back to 20 people and mu-one equals 110. But we make alpha smaller: .025 instead of .05. We want to be more careful about false alarms.
+
+For alpha equals .025, one-tailed, the z-value is 1.96. So the critical value is 100 plus 1.96 times 4.47. That is about 108.77. The critical value moves to the right.
+
+The z-score on the alternative curve is 108.77 minus 110, divided by 4.47. That is about minus .28. The area below it is .3897. So beta is about .39, and power is about .61. Before, power was .72. So power became smaller.
+
+This is the same trade-off that we saw before. Fewer false alarms means more misses.
+
+(open the link) Here is an online demo. You can change the values and watch the areas change. Please try it at home.
+
+---
+class: small
+# How can power be increased?
+.pull-left[
+
+
+`$$z_{1} = \frac{\text{Critical value} - \mu_{1}}{\frac{\sigma}{\sqrt{n}}}$$`
+- Larger effect: increase the distance between `\(\mu_{1}\)` and `\(\mu_{0}\)`
+- Larger `\(\alpha\)` (moves the critical value toward `\(\mu_{0}\)`), at the cost of more Type I errors
+- Increase `\(n\)`
+- Reduce `\(\sigma\)` (better measurement, more uniform sample)
+
+]
+.pull-right[
+&lt;img src="power2_files/figure-html/power-summary-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Let's summarize. Look at the formula for z-one. We want z-one to be a large negative number. Then the green area is small, and power is high.
+
+There are four ways to do this.
+
+One, a larger effect. Mu-one is farther from mu-zero.
+
+Two, a larger alpha. The critical value moves closer to mu-zero. But the cost is more false alarms.
+
+Three, a larger sample size, n. Then the standard error becomes smaller.
+
+Four, a smaller sigma. We can make sigma smaller with better measurement or a more uniform sample. For example, a good thermometer shows almost the same number each time you use it. A cheap one jumps up and down. The good one gives less random noise.
+
+Which one can we usually control? (wait) Yes, the sample size. That is why power analysis is mostly about choosing n.
+
+Next, let's see all of this in one picture.
+
+---
+class: small
+# Power Curve
+
+Power depends on how far the true mean is from `\(\mu_{0}\)`. ( `\(\mu_{0} = 100\)`, `\(\sigma = 20\)`, `\(\alpha = .05\)`, one-tailed)
+
+&lt;img src="power2_files/figure-html/power-curve-1.png" alt="" style="display: block; margin: auto;" /&gt;
+
+- If `\(\mu_{1} = \mu_{0}\)`, power equals `\(\alpha\)`. Power grows as the true mean moves away from `\(\mu_{0}\)`, and it grows faster with a larger `\(n\)`.
+
+???
+
+This picture is called a power curve. It shows the power for many possible true means.
+
+The horizontal axis is the true mean, mu-one. The vertical axis is power. Each line is a different sample size. The light green line is n equals 20. The teal line is n equals 100.
+
+Look at the left end. If the true mean is exactly 100, there is no effect. Then power equals alpha, 5%. This makes sense. When H-zero is true, every rejection is a false alarm.
+
+As the true mean moves away from 100, power increases. With 100 people, the teal line rises very fast. With 20 people, the green line rises more slowly. The point at 110 shows power .72 for n equals 20. That is the number we calculated.
+
+The dashed line shows 80% power, a common target. A larger sample reaches it with a smaller effect.
+
+So how many people do we need to reach 80%? Let's calculate it.
+
+---
+class: small
+# Sample Size for a Desired Power
+
+To reach power `\(1-\beta\)` for detecting `\(\mu_{1}\)` (one-tailed test, `\(\sigma\)` known):
+
+.content-box-blue[
+`$$n = \left(\frac{(z_{\alpha} + z_{\beta})\,\sigma}{\mu_{1}-\mu_{0}}\right)^2$$`
+- `\(z_{\alpha}\)`: 1.645 for `\(\alpha = .05\)` (use `\(z_{\alpha/2} = 1.96\)` for a two-tailed test)
+- `\(z_{\beta}\)`: 0.84 for 80% power, 1.28 for 90% power
+]
+
+???
+
+Usually, we do power analysis before a study, to choose the sample size. Here is the formula for a one-tailed test with sigma known.
+
+On top, we add two z-values. Z-alpha is for alpha. For alpha equals .05, it is 1.645. For a two-tailed test, we use 1.96 instead. Z-beta is for the power we want. For 80% power, it is 0.84. For 90% power, it is 1.28. Then we multiply by sigma.
+
+On the bottom is the difference we want to find: mu-one minus mu-zero. Finally, we square the whole thing.
+
+Look at the bottom part again. If the difference is small, n becomes large. Small effects need large samples.
+
+--
+
+- POSCO example: how many employees do we need for **80% power** to detect `\(\mu_{1} = 110\)`?
+`$$n = \left(\frac{(1.645 + 0.84) \times 20}{110-100}\right)^2 = (4.97)^2 = 24.7$$`
+- Round up: we need **25** employees (with 20, power was only .72).
+
+???
+
+Let's try the POSCO example. We want 80% power to find a mean of 110.
+
+1.645 plus 0.84 is 2.485. Times 20 is 49.7. Divided by 10, which is 110 minus 100, gives 4.97. 4.97 squared is about 24.7.
+
+We cannot test 0.7 of a person. So we always round up, not down. We need 25 employees.
+
+This matches what we found before. With 20 people, power was .72, a little less than 80%. With 5 more people, we reach 80%.
+
+Next, let's look at a table with sample sizes for different situations.
+
+---
+class: small
+# Sample size required to achieve a power
+
+|Power|Medium effect size (d=0.5), alpha=.05, two tails|Small effect size (d=0.2), alpha=.05, two tails|Medium effect size (d=0.5), alpha=.01, two tails|Small effect size (d=0.2), alpha=.01, two tails|
+|:----:|:----:|:----:|:----:|:----:|
+|20%|5|32|13|76|
+|30%|9|52|17|106|
+|40%|12|73|22|135|
+|50%|16|97|27|166|
+|60%|20|123|33|201|
+|70%|25|155|39|241|
+|80%|32|197|47|292|
+|90%|43|263|60|372|
+
+.small[(Sample sizes for a one-sample z test.)]
+
+[G*Power](https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower)
+
+???
+
+This table shows the sample size we need for different levels of power. It is for a one-sample z test, like our example. Please note that every column uses a two-tailed test.
+
+Many fields want at least 80% power. Look at the 80% row. For a medium effect, d equals 0.5, with alpha .05, you need 32 people. Why 32 and not 25? Because this table is two-tailed, and our formula example was one-tailed. A two-tailed test needs a few more people.
+
+For a small effect, d equals 0.2, you need 197 people. And with a stricter alpha of .01, you need 292 people.
+
+So small effects need large samples, and large samples cost time and money. That is why we plan the sample size before a study.
+
+You do not need to memorize this table. Free software called G*Power can do these calculations. jamovi can also do power analysis with an add-on module. An add-on module is an extra package that you install. Let me show you. (demo)
+
+Now it is your turn to practice.
+
+---
+class: small
+# ✏️ Calculate the Type II error
+.content-box-blue[
+Calculate the probability of a Type II error for the following test of hypothesis, given that `\(\mu=203\)`.
+`$$H_{0}:\mu =200$$`
+`$$H_{1}:\mu \ne 200$$`
+`$$\alpha = .05, \sigma =10, n= 100$$`
+]
+
+- Hint: (1) find the rejection region in terms of `\(\bar{x}\)`; (2) find the probability that `\(\bar{x}\)` does **not** fall in it when `\(\mu = 203\)`.
+
+???
+
+Let's practice. This time, the test is two-tailed. Two-tailed means we reject H-zero if the sample mean is too high or too low.
+
+H-zero says mu equals 200. H-one says mu is not equal to 200. Alpha is .05, sigma is 10, and n is 100. And the true mean is actually 203.
+
+Your task is to find the probability of a Type II error.
+
+Here is the hint. Step one: find the rejection region in terms of x-bar. Step two: find the probability that x-bar does not fall in that region, when the true mean is 203.
+
+Use the same idea as the POSCO example. But remember, now there are two cut-off points, one on each side.
+
+Please work alone or with your neighbor. You have about five minutes.
+
+---
+class: small
+# ✏️ Calculate the Type II error
+.content-box-blue[
+Calculate the probability of a Type II error for the following test of hypothesis, given that `\(\mu=203\)`.
+`$$H_{0}:\mu =200 \qquad H_{1}:\mu \ne 200 \qquad \alpha = .05, \sigma =10, n= 100$$`
+]
+
+- Rejection region (two-tailed): `$$\frac{\bar{x}-\mu_{0}}{\frac{\sigma}{\sqrt{n}}}&gt;z_{\alpha/2}\ \text{ or }\ \frac{\bar{x}-\mu_{0}}{\frac{\sigma}{\sqrt{n}}}&lt;-z_{\alpha/2}$$`
+
+`$$\frac{\bar{x}-200}{\frac{10}{\sqrt{100}}}&gt;1.96\ \text{ or }\ \frac{\bar{x}-200}{\frac{10}{\sqrt{100}}}&lt;-1.96$$`
+`$$\bar{x}&gt;201.96\ \text{ or }\ \bar{x}&lt;198.04$$`
+
+???
+
+Let's check the answer step by step.
+
+Step one is the rejection region. The test is two-tailed, so we split alpha into two tails. Each tail has .025. So we use plus 1.96 and minus 1.96.
+
+The standard error is 10 divided by the square root of 100. That is 10 divided by 10, which is 1.
+
+So we reject H-zero if x-bar is above 200 plus 1.96 times 1. That is 201.96. We also reject if x-bar is below 200 minus 1.96. That is 198.04.
+
+So the rejection region is: x-bar greater than 201.96, or x-bar less than 198.04. Did you get the same numbers?
+
+Let's look at this in a picture.
+
+---
+class: small
+# ✏️ Calculate the Type II error
+&lt;img src="power2_files/figure-html/ex-plot-1.png" alt="" style="display: block; margin: auto;" /&gt;
+
+- Rejection region:
+`$$\bar{x}&gt;201.96\ \text{ or }\ \bar{x}&lt;198.04$$`
+
+???
+
+Here is the picture. Now there are two dashed lines, one on each side, because the test is two-tailed. The orange areas are in both tails. Together, they make alpha, .05.
+
+The grey curve is the null curve, with its center at 200. The other curve is the alternative curve, with its center at 203.
+
+Look at the green part of the alternative curve. It is between the two dashed lines. This is the "do not reject" zone. If x-bar falls there, we do not reject H-zero, even though the true mean is 203. So the green area is beta.
+
+Now look at the left dashed line, 198.04. Almost none of the alternative curve is to the left of it. So here, the right dashed line is the one that matters.
+
+Now let's calculate the green area.
+
+---
+class: small
+# ✏️ Calculate the Type II error
+- Rejection region:
+`$$\bar{x}&gt;201.96\ \text{ or }\ \bar{x}&lt;198.04$$`
+`$$\beta = P(198.04 &lt; \bar{x} &lt; 201.96 \mid \mu = 203)$$`
+`$$= P\left(\frac{198.04-203}{\frac{10}{\sqrt{100}}}&lt;z&lt; \frac{201.96-203}{\frac{10}{\sqrt{100}}}\right)$$`
+`$$= P(-4.96&lt;z&lt;-1.04)=.1492-.0000=.1492$$`
+
+- Power `\(= 1 - .1492 = .8508\)`. If the true mean is 203, this test detects it about 85% of the time.
+
+???
+
+Step two. Beta is the probability that x-bar falls between 198.04 and 201.96, when the true mean is 203.
+
+We change both ends into z-scores. We use the alternative mean, 203, and the standard error, 1.
+
+For the left end: 198.04 minus 203 is minus 4.96. For the right end: 201.96 minus 203 is minus 1.04.
+
+So beta is the area between z equals minus 4.96 and z equals minus 1.04. From the z-table, the area below minus 1.04 is .1492. The area below minus 4.96 is almost zero. So beta is .1492 minus 0, which is .1492.
+
+Power is 1 minus .1492, which is .8508. So if the true mean is 203, this test finds the difference about 85% of the time. That is above the 80% target.
+
+Next, let's practice with some business situations.
+
+---
+class: small, palegreen
+# ✏️ Which Error Is It?
+.content-box-grey[
+For each situation, state `\(H_{0}\)`, then describe the Type I error and the Type II error. Which one would be more costly?
+]
+
+1. A bank's system checks whether a credit card transaction is fraudulent.
+2. A factory inspects a sample from each shipment of parts and decides whether to accept the shipment.
+3. A marketing team tests whether a new online ad increases sales before launching it nationwide.
+
+???
+
+Now a different kind of exercise. There is no calculation here. We only think.
+
+For each situation, do three things. First, write H-zero. Remember, H-zero is usually "nothing special is happening" or "everything is normal." Second, describe the Type I error and the Type II error in that situation. Third, decide which error costs more.
+
+Situation one is a bank that checks credit card payments for fraud. Fraud means a payment made by a criminal, not by the real card owner. Situation two is a factory that inspects shipments of parts. Situation three is a marketing team that tests a new online ad.
+
+If you have time, also think about your own work at POSCO. For example, a safety inspection, or the fire alarm in your office building.
+
+Please discuss with your neighbor. You have about five minutes.
+
+---
+class: small, palegreen
+# ✏️ Which Error Is It? — Answer
+
+|Situation| `\(H_{0}\)` |Type I error|Type II error|
+|:---|:---|:---|:---|
+|1. Fraud check|Transaction is legitimate|Block a real customer's purchase|Miss a fraudulent charge|
+|2. Shipment inspection|Shipment is good|Reject a good shipment|Accept a bad shipment|
+|3. New ad|Ad does not increase sales|Launch an ad that doesn't work|Drop an ad that would have worked|
+
+- Which is more costly depends on the business. For fraud and quality, a miss (Type II) can hurt customers and the brand. For a costly ad launch, a false alarm (Type I) wastes money.
+- If a Type II error is very costly, use a larger sample (more power) or consider a larger `\(\alpha\)`.
+
+???
+
+Here are the answers. In each case, H-zero says "nothing is wrong" or "nothing changed."
+
+Fraud check. H-zero: the payment is legitimate. Legitimate means real and allowed. A Type I error blocks a real customer's purchase. That is annoying for the customer. A Type II error accepts a fraud payment. That is usually worse.
+
+Shipment inspection. H-zero: the shipment is good. A Type I error rejects a good shipment. A Type II error accepts a bad shipment, and bad parts reach our production line or our customers.
+
+New ad. H-zero: the ad does not increase sales. A Type I error means we launch an ad that does not work, so we waste money. A Type II error means we stop an ad that would work. We lose a chance.
+
+So there is no single answer. Think about the costs. If a miss is very costly, increase the power. Usually, we do this with a larger sample. We can also use a larger alpha.
+
+What about the fire alarm in your office building? Which error do you think is worse there?
+
+---
+class: small, palegreen
+# ✏️ Power of the Billing Test
+.content-box-grey[
+Recall the billing system example: `\(H_{0}: \mu \le 170\)`, `\(H_{1}: \mu &gt; 170\)`, `\(\sigma = 65\)`, `\(n = 400\)`, `\(\alpha = .05\)`.
+
+Suppose the true mean monthly account is actually **180 dollars**.
+]
+
+- Q1. Find the critical value in terms of `\(\bar{x}\)`.
+- Q2. Find `\(\beta\)`, the probability of a Type II error.
+- Q3. What is the power of the test?
+
+???
+
+Here is one more calculation. Do you remember the billing system example from last class? A store manager wanted a new billing system. It is worth the cost only if the mean monthly account is more than 170 dollars. The sample of 400 accounts had a mean of 178 dollars, and we rejected H-zero.
+
+Now we ask a new question. Suppose the true mean is actually 180 dollars. How likely is our test to find this?
+
+Please answer three questions. Q1, the critical value in terms of x-bar. Q2, beta. Q3, the power.
+
+Use the same steps as the POSCO example. First, find the standard error. Then find the critical value. Then find z-one on the alternative curve. Then find beta and power.
+
+You have about five minutes.
+
+---
+class: small, palegreen
+# ✏️ Power of the Billing Test — Answer
+
+.pull-left[
+- `\(\sigma_{\bar{x}} = 65/\sqrt{400} = 3.25\)`
+- Q1. Critical value `\(= 170 + 1.645(3.25) = 175.35\)`
+- Q2. `\(z_{1} = \dfrac{175.35-180}{3.25} = -1.43\)`
+
+  `\(\beta = P(Z &lt; -1.43) = .0764\)`
+- Q3. Power `\(= 1 - .0764 = .9236\)`
+
+- With 400 accounts, the test would detect a true mean of 180 dollars about 92% of the time.
+]
+.pull-right[
+&lt;img src="power2_files/figure-html/bill-power-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Let's check the answers.
+
+First, the standard error. It is 65 divided by the square root of 400. The square root of 400 is 20. So the standard error is 65 divided by 20, which is 3.25.
+
+Q1. The critical value is 170 plus 1.645 times 3.25. That is about 175.35. So we reject H-zero if x-bar is above 175.35 dollars.
+
+Q2. Now we use the alternative curve, with its center at 180. Z-one is 175.35 minus 180, divided by 3.25. That is about minus 1.43. From the z-table, the area below minus 1.43 is .0764. So beta is .0764.
+
+Q3. Power is 1 minus .0764, which is .9236.
+
+So with 400 accounts, the test will find a true mean of 180 dollars about 92% of the time. This test has high power. Look at the picture. The green area is small.
+
+Let's summarize today's class.
+
+---
+class: small
+# Summary
+
+.content-box-blue[
+- **Type I error** ( `\(\alpha\)` ): rejecting a true `\(H_{0}\)` (false alarm). We control it by choosing `\(\alpha\)`.
+- **Type II error** ( `\(\beta\)` ): failing to reject a false `\(H_{0}\)` (miss).
+- **Power** `\(= 1 - \beta\)`: the chance of detecting a real effect. A common target is 80%.
+- For a fixed sample, lowering `\(\alpha\)` raises `\(\beta\)` (a trade-off).
+- Power increases with a larger effect, a larger `\(n\)`, a smaller `\(\sigma\)`, or a larger `\(\alpha\)`.
+- Statistical significance is not the same as a large effect: report an **effect size** (e.g., Cohen's _d_).
+- Use power analysis **before** collecting data to choose the sample size.
+]
+
+???
+
+Let's review the main points.
+
+There are two kinds of mistakes. A Type I error is a false alarm. We reject a true H-zero. Its probability is alpha, and we choose alpha ourselves. A Type II error is a miss. We fail to reject a false H-zero. Its probability is beta.
+
+Power is 1 minus beta. It is the chance of finding a real effect. A common target is 80%.
+
+With the same sample, a smaller alpha means a larger beta. To make both errors small, we need a larger sample, a larger effect, or a smaller sigma.
+
+Statistical significance does not mean a large effect. So always report an effect size, like Cohen's d.
+
+Finally, do a power analysis before you collect data. Then you know how large your sample must be. Think about your own work. If you plan a survey of your coworkers, how many people would you need to ask?
+
+---
+class: inverse, normalsize
+# Next
+### Comparing two groups (t-test)
+.white[
+- Go to https://www.jamovi.org/
+- Download &amp; Install the software (free)
+]
+???
+
+That is all for today. We covered many new ideas: Type I and Type II errors, alpha, beta, power, effect size, and sample size. If something is still not clear, please review the slides, or ask me. These ideas are the base for everything that comes next.
+
+Next class, we will compare two groups with the t-test. For example, we can compare the mean test scores of students who use two different study methods. Or we can compare the waiting time at two different banks.
+
+We will use jamovi. jamovi is free statistics software. Please go to the website on the slide. Download and install jamovi on your computer before next class. If you have a problem with the installation, please contact me.
+
+Thank you, and see you next time!
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "ratio": "16:9",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

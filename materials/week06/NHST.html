@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Business Statistics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jihyun Suh, PhD" />
+    <script src="libs/header-attrs-2.31/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/theme_D_msi_green.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/lucy-fonts.css" rel="stylesheet" />
+    <script src="libs/fabric-4.3.1/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Business Statistics
+]
+.subtitle[
+## Hypothesis Testing
+]
+.author[
+### Jihyun Suh, PhD
+]
+.date[
+### 2026/10/16
+]
+
+---
+
+class:normalsize
+# Check in
+
+
+By now, you should feel comfortable with:
+
+- Sampling distribution
+- Central limit theorem
+- Point vs. Interval estimation
+- Confidence interval
+
+???
+
+Hello, everyone. Welcome back. Before we start, let's check where we are.
+
+In the last classes, we learned four ideas. First, the sampling distribution. This is the distribution of a statistic, like the sample mean, over many samples. Second, the Central Limit Theorem. It says that when the sample is large, the sample mean follows a normal distribution, even if the data themselves are not normal. Third, point estimation and interval estimation. Fourth, the confidence interval.
+
+Do you remember our POSCO example? We estimated the mean demand during lead time. The 95% confidence interval was 340.6 to 399.4 units.
+
+With estimation, we asked: what is the value of the parameter? Today we ask a different question: is a claim about the parameter supported by the data? Let's see what that means.
+
+---
+class:normalsize
+# Today
+- Introduction of hypothesis testing
+
+???
+
+Today we start a new topic: hypothesis testing. This is one of the most used tools in statistics. You will see it in quality reports, in research papers, and in business decisions.
+
+Hypothesis testing uses the same ideas as the confidence interval. You already know these ideas, so you are ready for this.
+
+--
+
+- The purpose of hypothesis testing is to determine whether we have enough statistical evidence to conclude that a belief or hypothesis about a parameter is supported by the data.
+
+???
+
+Here is the main purpose. We have a belief, or a claim, about a population. For example, a coffee shop says, "Our large cup has 350 milliliters of coffee." We cannot measure every cup. So we take a sample.
+
+Then we ask: do the data give us enough evidence to say the claim is wrong? Or is the difference just random?
+
+The word "parameter" means a number that describes the whole population, like the population mean, mu. Hypothesis testing gives us a clear method to answer this kind of question. First, let's define what a hypothesis is.
+
+---
+class:small
+# Hypothesis
+
+.content-box-blue[
+In statistics, a **hypothesis** is a statement about a population. It takes the form of a prediction that a parameter takes a particular numerical value or falls in a certain range of values.
+]
+&lt;img src="pic/inference.gif" alt="" width="50%" style="display: block; margin: auto;" /&gt;
+
+???
+
+So what is a hypothesis? In statistics, a hypothesis is a statement about a population. It is a prediction about a parameter. For example: "The mean delivery time of this food delivery app is 30 minutes." Or: "This spam filter catches more than 95 percent of spam emails."
+
+Look at the picture. This is the idea of statistical inference. We cannot see the whole population. So we take a random sample. From the sample, we learn something about the population.
+
+In estimation, we used the sample to guess the value of the parameter. In hypothesis testing, we use the sample to check a statement about the parameter. Let's see some more examples.
+
+---
+class:small
+# Hypothesis
+
+.content-box-blue[
+In statistics, a **hypothesis** is a statement about a population. It takes the form of a prediction that a parameter takes a particular numerical value or falls in a certain range of values.
+]
+
+.content-box-blue[
+- For restaurant managerial employees, "The mean salary is the same for women and for men"
+- "The mean thickness of steel plates from the new rolling process is the same as from the old process"
+- "A majority of adult Koreans are satisfied with their national health service"
+]
+.normalsize[We use a .mauve-blue[**significance test**] to test these.]
+
+???
+
+Here are three examples of hypotheses. The first one is about the mean salary of women and men.
+
+The second one is close to our work: "The mean thickness of steel plates from the new rolling process is the same as from the old process." Imagine POSCO tries a new rolling process. Engineers want to know: does the new process change the thickness?
+
+The third one is about a proportion. "A majority" means more than half, so more than 50 percent.
+
+Notice that each statement is about the population, not about one sample. To check statements like these, we use a significance test. In this class, "significance test" and "hypothesis test" mean the same thing. A significance test has five parts. Let's look at them.
+
+---
+class:small
+# FIVE parts of a significance test
+
+&lt;img src="pic/flow5_0.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
+
+???
+
+Every significance test has five parts. We will use these same five steps in every example today.
+
+Step 1 is assumptions: what conditions do we need? Step 2 is hypotheses: what are the two competing statements? Step 3 is the test statistic: how far is our sample result from what we expect? Step 4 is the p-value: how unusual is our result? Step 5 is the conclusion: what do we decide?
+
+Please remember this order. It is like a recipe for cooking. You follow the same steps every time, so you do not miss anything. If you follow these five steps, you can do almost any test.
+
+Let's study them one by one, starting with assumptions.
+
+---
+class:small
+# Assumptions
+
+&lt;img src="pic/flow5_1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
+
+- **_Type of data_**: quantitative data or categorical data
+- **_Randomization_**: data gathering employed randomization
+- **_Population distribution_**: some tests assume that the variable has a particular probability distribution such as normal distribution
+- **_Sample size_**: if `\(n\)` is large (about 30 or more), the central limit theorem lets us use the normal distribution even when the population is not normal
+
+???
+
+Step 1 is assumptions. Every test needs some conditions to be true.
+
+First, the type of data. Is the variable quantitative, like the weight of a bag of chips in grams? Or is it categorical, like the answer "yes" or "no" to a survey question? Different data need different tests.
+
+Second, randomization. The data should come from a random sample. If you only weigh bags of chips from one small shop, your sample may not represent all bags.
+
+Third, the population distribution. Some tests assume the variable is normally distributed.
+
+Fourth, sample size. Remember the Central Limit Theorem. If n is about 30 or more, the sample mean is approximately normal, even when the population is not normal.
+
+Next, step 2: the hypotheses.
+
+---
+class:small
+# Hypotheses
+
+&lt;img src="pic/flow5_2.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
+
+.soft-box-grey[
+- The **Null hypothesis**: denoted by the symbol `\(H_{0}\)`, is a statement that the parameter takes a particular value
+- The **Alternative hypothesis**, denoted by `\(H_{a}\)` or `\(H_{1}\)`, states that the parameter falls in some alternative range of values
+- Usually, the value in `\(H_{0}\)` corresponds, in a certain sense, to _no effect_. The value in `\(H_{1}\)` then represents an effect of some type.
+]
+.small[
+Example:
+  - `\(H_{0}\)`: Probability that any particular selection of manager is a male = 0.5
+  - `\(H_{1}\)`: Probability that any particular selection of manager is a male `\(\ne\)` 0.5
+]
+
+???
+
+Step 2 is hypotheses. In every test, we have two hypotheses.
+
+The first is the null hypothesis. We write it as H-zero. It says the parameter takes one particular value. The second is the alternative hypothesis. We write it as H-one, or sometimes H-a. It says the parameter is in some other range of values.
+
+Usually, H-zero means "no effect" or "no change." H-one means "there is an effect." For example, H-zero: a new study method gives the same mean exam score as the old method. H-one: the mean exam score is different.
+
+Now look at the example on the slide. H-zero says the probability that a selected manager is male is 0.5. That means no gender bias. H-one says it is not 0.5. Here, H-one allows both directions: more than 0.5, or less than 0.5.
+
+--
+
+.small[
+  - `\(H_{0}\)`: Probability that any particular selection of manager is a male `\(\leq\)` 0.5
+  - `\(H_{1}\)`: Probability that any particular selection of manager is a male `\(\gt\)` 0.5
+]
+
+???
+
+Now look at the second version. H-zero says the probability is less than or equal to 0.5. H-one says it is greater than 0.5.
+
+This version looks in only one direction. We use it when we only care about one direction. For example, someone claims that men are chosen more often than women.
+
+So the same topic can give two forms of hypotheses. One form checks "different," in both directions. The other form checks only "greater than." Which form should we use? It depends on the question. Let's learn how to choose on the next slide.
+
+---
+class:small
+# Setting Up the Hypotheses
+
+.content-box-blue[
+- `\(H_{1}\)` (the research hypothesis) is **what we want to show**. It needs evidence.
+- `\(H_{0}\)` is the status quo or "no effect." It **always contains the equal sign** ( `\(=\)`, `\(\le\)`, or `\(\ge\)` ).
+- We always test `\(H_{0}\)`. We either **reject** `\(H_{0}\)` or **fail to reject** `\(H_{0}\)`.
+]
+
+|Key words in the question|Alternative `\(H_{1}\)`|Null `\(H_{0}\)`|
+|:---|:---:|:---:|
+|"more than," "increased," "exceeds"| `\(\mu &gt; \mu_{0}\)` | `\(\mu \le \mu_{0}\)` |
+|"less than," "reduced," "decreased"| `\(\mu &lt; \mu_{0}\)` | `\(\mu \ge \mu_{0}\)` |
+|"different," "changed," "not equal"| `\(\mu \ne \mu_{0}\)` | `\(\mu = \mu_{0}\)` |
+
+- Tip: if the claim you want to support has a strict sign ( `\(&gt;\)`, `\(&lt;\)`, `\(\ne\)` ), it goes in `\(H_{1}\)`.
+
+???
+
+This slide helps you write the hypotheses correctly.
+
+First, H-one is the research hypothesis. It is what we want to show, and it needs evidence. Second, H-zero is the status quo. "Status quo" means the current situation, or no change. H-zero always has the equal sign: equal, less than or equal, or greater than or equal. Third, we always test H-zero. We either reject it, or we fail to reject it.
+
+Now use the table. Look for key words in the question. For example: "Does the new checkout system at a supermarket reduce the mean waiting time below 5 minutes?" The key word is "reduce." So H-one is mu less than 5, and H-zero is mu greater than or equal to 5.
+
+What about "Has the mean delivery lead time changed?" The key word is "changed." So H-one is mu not equal to the old value. Next, step 3.
+
+---
+class:small
+# Test statistic
+
+&lt;img src="pic/flow5_3.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
+
+- The test statistic is based on the best estimator of the population parameter, and it is the criterion used to make our decision about the hypotheses.
+
+- Test statistic summarizes how far that estimate falls from the parameter value in `\(H_{0}\)`, measured in standard errors.
+
+- For a mean with known `\(\sigma\)`:
+`$$z = \frac{\bar{x}-\mu_{0}}{\sigma/\sqrt{n}} = \frac{\text{estimate} - \text{null value}}{\text{standard error}}$$`
+
+???
+
+Step 3 is the test statistic. A test statistic is one number that we calculate from the sample. We use it to make our decision.
+
+It starts from the best estimate of the parameter. For a mean, the best estimate is the sample mean, x-bar. Then it asks: how far is x-bar from the value in H-zero, mu-zero? We measure this distance in standard errors. Remember, the standard error is sigma divided by the square root of n.
+
+So z equals x-bar minus mu-zero, divided by the standard error.
+
+Let's try an example. A phone maker says the battery lasts 20 hours on average. So H-zero says the mean battery life is 20 hours. Our sample mean is 20.3 hours, and the standard error is 0.1 hours. Then z equals 0.3 divided by 0.1, which is 3. Our sample mean is 3 standard errors above the H-zero value. Is that far enough? The p-value answers this.
+
+---
+class:small
+# P-values
+
+&lt;img src="pic/flow5_4.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
+
+What is a **p-value**?
+.soft-box-grey[
+The **p-value** is the probability that the test statistic equals the observed value or a value even more extreme in the direction predicted by `\(H_{1}\)`. It is calculated by presuming that `\(H_{0}\)` is true. The _p-value_ is denoted by _p_.
+]
+
+.small[
+- Assuming that `\(H_{0}\)` is true
+- How unusual the observed test statistic value is compared to what `\(H_{0}\)` predicts
+]
+
+???
+
+Step 4 is the p-value. This is the most important idea today, so let's go slowly.
+
+The p-value is a probability. We calculate it by assuming that H-zero is true. Then we ask: what is the chance of getting a test statistic like ours, or even more extreme? "More extreme" means farther from what H-zero predicts, in the direction of H-one.
+
+So the p-value tells us how unusual our result is, if H-zero is true.
+
+Think about the battery example. If the true mean really is 20 hours, how likely is it to get a z of 3 or more? Very unlikely. So the p-value is very small. A small p-value means: our data do not fit H-zero well. Let's see what different p-values mean.
+
+---
+class:small
+# P-values
+
+**Example**:
+  - P-value of 0.01 means that the data we observed would have been unusual if `\(H_{0}\)` were true
+  - The smaller the p-value, the stronger the evidence is against `\(H_{0}\)`
+
+
+&lt;img src="pic/p-value1.jpeg" alt="" width="50%" style="display: block; margin: auto;" /&gt;
+
+???
+
+Here is an example. Suppose the p-value is 0.01. This means: if H-zero were true, we would see data like ours only about 1 time in 100. That is unusual. So we start to doubt H-zero.
+
+The rule is simple. The smaller the p-value, the stronger the evidence against H-zero. Look at the picture. It shows the same idea.
+
+Here is an everyday example. We toss a coin many times. H-zero says the coin is fair, so the chance of heads is 0.5. Suppose our data give a p-value of 0.01. Then we have strong evidence that the chance of heads is not 0.5. Maybe the coin is not fair.
+
+Now let's see a full example with numbers.
+
+---
+class:small
+# P-values: An Example
+The **p-value** is the probability of getting a test statistic as extreme as ours, or more extreme, assuming that the null hypothesis is true.
+
+.content-box-blue[
+A company compares the average aptitude test scores of female and male job applicants.
+]
+
+- `\(H_{0}\)`: the difference in mean scores between women and men is 0 (no difference)
+- `\(H_{1}\)`: the difference is not 0 (there is a difference) → a **two-sided** test
+- From the samples, the test statistic is `\(z = -2.18\)`. In other words, the women's mean is 2.18 standard errors below the men's mean.
+
+???
+
+Here is an example. A company gives an aptitude test to job applicants. An aptitude test measures a person's ability for a job. The company compares the mean scores of women and men.
+
+H-zero says the difference in mean scores is 0. There is no difference. H-one says the difference is not 0. Because H-one includes both directions, this is a two-sided test. "Two-sided" means we look for a difference in either direction: women higher, or men higher.
+
+From the samples, the test statistic is z equals minus 2.18. This means the women's mean is 2.18 standard errors below the men's mean.
+
+Is that unusual? What do you think? Let's calculate the p-value.
+
+---
+class:small
+# P-values: How to Interpret p = .029
+
+.pull-left[
+- Two-sided p-value: `\(2 \times P(Z &lt; -2.18) = 2(.0146) = .029\)`
+- Interpretation: "If there were truly no difference between the means, the chance of getting a difference at least 2.18 standard errors away from 0 (in either direction) would be only .029."
+- So a result this extreme would be quite unusual if `\(H_{0}\)` were true.
+- Because .029 is smaller than our cut-off of .05, we reject `\(H_{0}\)` and say the means are **significantly different**.
+]
+
+.pull-right[
+![](NHST_files/figure-html/pval-example-1.png)&lt;!-- --&gt;
+]
+
+???
+
+Because the test is two-sided, we look at both tails. The probability that Z is less than minus 2.18 is 0.0146. We double it. So the p-value is 2 times 0.0146, which is 0.029.
+
+Look at the graph on the right. The green areas in both tails are the p-value. The orange line is our observed z.
+
+How do we say this in words? If there were truly no difference, the chance of a difference this large, or larger, is only 0.029. That is about 3 in 100. This is quite unusual.
+
+Our cut-off is 0.05. Because 0.029 is smaller than 0.05, we reject H-zero. We say the means are significantly different. Here "significantly" is a statistical word. It means "there is enough evidence." It does not mean "very important."
+
+Many people misunderstand p-values. Let's see some common mistakes.
+
+---
+class:small
+# What a p-value Does NOT Tell You
+
+.soft-box[
+A p-value tells us **how surprising our data would be** if `\(H_{0}\)` were true. That's all.
+]
+
+A p-value does NOT:
+
+- Tell you the probability that `\(H_{0}\)` is true. (p = .029 does **not** mean "a 2.9% chance that there is no difference.")
+
+- Prove that `\(H_{1}\)` is true.
+
+- Tell you how big or important the effect is. With a very large sample, a tiny, unimportant difference can still be "significant."
+
+- Tell you how precise your estimate is. Use a confidence interval for that.
+
+???
+
+A p-value tells us only one thing: how surprising our data would be if H-zero were true. Here are four common mistakes.
+
+First, a p-value is not the probability that H-zero is true. A p-value of 0.029 does not mean a 2.9 percent chance of no difference. We assumed H-zero was true to calculate it.
+
+Second, it does not prove H-one. It only gives evidence.
+
+Third, it does not tell you how big or important the effect is. For example, suppose we study 10,000 people who use a new diet app. On average, they lose only 0.1 kilograms more than people without the app. Because the sample is so large, the p-value may be very small. But a difference of 0.1 kilograms may not matter to users.
+
+Fourth, it does not tell you how precise your estimate is. For that, use a confidence interval.
+
+So how small must a p-value be? Let's see.
+
+---
+class:small
+# How Small Is Small Enough? The `\(\alpha\)` Level
+
+- Before testing (ideally, even before collecting the data), we decide how small a p-value must be to count as strong evidence against `\(H_{0}\)`. This cut-off is the **significance level**, `\(\alpha\)`.
+
+.content-box-blue[
+Decision rule: if p-value `\(\le \alpha\)`, reject `\(H_{0}\)`. We call the result "statistically significant."
+]
+
+- Common choices: `\(\alpha = .05\)` (most common) and `\(\alpha = .01\)` (stricter)
+
+- Why does `\(\alpha\)` matter? Imagine a world where `\(H_{0}\)` is true. By pure chance, some samples will still give extreme results, and that happens exactly `\(\alpha\)` of the time. In those cases, we wrongly reject a true `\(H_{0}\)`. That's a **false positive**.
+
+- So `\(\alpha\)` is our tolerance for false positives. We will see this in a simulation later today, and next class we will call it a **Type I error**.
+
+???
+
+How small is small enough? We need a cut-off. This cut-off is called the significance level. We write it with the Greek letter alpha.
+
+We choose alpha before the test, ideally even before we collect the data. Why? So that the data cannot change our rule.
+
+The decision rule is: if the p-value is less than or equal to alpha, we reject H-zero. Then we say the result is "statistically significant." The most common choice is alpha equals 0.05. A stricter choice is 0.01.
+
+Why does alpha matter? Imagine H-zero is true. Say the coin really is fair. Just by chance, some samples will still look extreme. This happens alpha of the time, so 5 percent of the time when alpha is 0.05. In those cases, we reject a true H-zero. This is a false positive, or a false alarm. So alpha is how many false alarms we accept. Next, step 5: the conclusion.
+
+---
+class:small
+# Conclusion
+
+&lt;img src="pic/flow5_5.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
+
+- Interpret what the **p-value** tells us about the question
+- Typical `\(\alpha\)` level: 0.05
+  - If p-value `\(\le \alpha\)`: **reject** `\(H_{0}\)`. We say the result is significant at the 0.05 level.
+    - Meaning: if `\(H_{0}\)` were true, results as extreme as ours would happen no more than 5% of the time.
+  - If p-value `\(&gt; \alpha\)`: **fail to reject** `\(H_{0}\)`. We do not have enough evidence for `\(H_{1}\)`.
+
+.soft-box-grey[
+We never say "accept `\(H_{0}\)`." Not finding enough evidence is not the same as proving `\(H_{0}\)` is true.
+]
+
+???
+
+Step 5 is the conclusion. We compare the p-value with alpha. Usually alpha is 0.05.
+
+If the p-value is less than or equal to 0.05, we reject H-zero. We say the result is significant at the 0.05 level. In this case, if H-zero were true, results as extreme as ours would happen no more than 5 percent of the time.
+
+If the p-value is greater than 0.05, we fail to reject H-zero. This means we do not have enough evidence for H-one.
+
+Please look at the grey box. We never say "accept H-zero." For example, a test finds no evidence that a restaurant's new menu has increased spending per customer. This does not prove the spending is the same. Maybe our sample was too small to see the change.
+
+A court trial is a good way to remember this idea. Let's look at it.
+
+---
+class:small
+# An Analogy: A Court Trial
+
+.pull-left[
+.content-box-blue[
+- `\(H_{0}\)`: the person is **not guilty** (we start here)
+- `\(H_{1}\)`: the person is **guilty** (the prosecutor must show this)
+- Evidence = our data
+- "Beyond reasonable doubt" = p-value `\(\le \alpha\)`
+]
+]
+
+.pull-right[
+
+|Court|Hypothesis test|
+|:---|:---|
+|Guilty verdict|Reject `\(H_{0}\)`|
+|"Not guilty" verdict|Fail to reject `\(H_{0}\)`|
+|Convict an innocent person|Type I error (next class)|
+|Free a guilty person|Type II error (next class)|
+]
+
+.plain[
+- A "not guilty" verdict does not prove the person is innocent. It only means there was not enough evidence.
+- In the same way, "fail to reject `\(H_{0}\)`" does not prove `\(H_{0}\)` is true.
+]
+
+
+???
+
+Let's think about a court trial. At the start, the court assumes the person is not guilty. This is like H-zero. The prosecutor is the lawyer who must show that the person is guilty. This is like H-one. The evidence is like our data. The person is found guilty only if the evidence is "beyond reasonable doubt." In our test, that means the p-value is less than or equal to alpha.
+
+Now look at the table. A guilty verdict is like rejecting H-zero. A "not guilty" verdict is like failing to reject H-zero.
+
+The court can also make mistakes. It can convict an innocent person. That is a Type I error. Or it can free a guilty person. That is a Type II error. We will study these errors next class.
+
+Most important: "not guilty" does not mean "innocent." It means there was not enough evidence. In the same way, failing to reject H-zero does not prove H-zero. Now let's see all five steps in one flow.
+
+---
+class:small
+# A typical flow
+
+1. **Assumptions**
+  - Assuming that data are sampled by random sampling
+  - Quantitative variable is assumed to have a normal population distribution
+2. **Hypotheses**
+  - `\(H_{0}:\mu = \mu_{0}\)` such as `\(H_{0}:\mu = 0\)`
+  - `\(H_{1}:\mu \ne \mu_{0}\)` such as `\(H_{1}:\mu \ne 0\)`
+
+&lt;img src="NHST_files/figure-html/unnamed-chunk-3-1.png" alt="" style="display: block; margin: auto;" /&gt;
+3. **Test Statistic**
+4. **P-value**
+5. **Conclusion**
+
+
+
+???
+
+Let's see a typical flow of a test, step by step.
+
+Step 1, assumptions: the data come from a random sample, and the variable has a normal population distribution. Step 2, hypotheses: here, H-zero is mu equals mu-zero, and H-one is mu not equal to mu-zero.
+
+Now look at the three graphs. They show how the form of H-one tells us where to find the p-value. The graphs write H-a. It means the same as H-one.
+
+Top graph: if H-one says mu is less than mu-zero, the p-value is the area in the left tail. Middle graph: if H-one says mu is greater than mu-zero, the p-value is the area in the right tail. Bottom graph: if H-one says "not equal," we use both tails. So the p-value is two times one tail area.
+
+In our flow, H-one is "not equal," so we use the bottom graph. Next, step 3.
+
+---
+class:small
+# A typical flow
+
+1. **Assumptions**
+  - Assuming that data are sampled by random sampling
+  - Quantitative variable is assumed to have a normal population distribution
+2. **Hypotheses**
+  - `\(H_{0}:\mu = \mu_{0}\)` such as `\(H_{0}:\mu = 0\)`
+  - `\(H_{1}:\mu \ne \mu_{0}\)` such as `\(H_{1}:\mu \ne 0\)`
+3. **Test Statistic**
+$$ z = \frac{\overline{x}-\mu_{0}}{\sigma/\sqrt{n}}$$
+&lt;img src="NHST_files/figure-html/unnamed-chunk-4-1.png" alt="" style="display: block; margin: auto;" /&gt;
+4. **P-value**
+5. **Conclusion**
+
+
+
+???
+
+What is new here is step 3, the test statistic. z equals x-bar minus mu-zero, divided by sigma over the square root of n.
+
+Look at the graph. If H-zero is true, the sample mean, x-bar, follows a normal distribution. Its center is mu-zero. Its spread is the standard error, sigma over the square root of n.
+
+The z value tells us how many standard errors x-bar is from the center. If x-bar is close to mu-zero, z is close to 0. If x-bar is far out in the tail, like on the right side of this graph, z is large.
+
+A large z, positive or negative, is evidence against H-zero. Next, step 4.
+
+---
+class:small
+# A typical flow
+
+1. **Assumptions**
+  - Assuming that data are sampled by random sampling
+  - Quantitative variable is assumed to have a normal population distribution
+2. **Hypotheses**
+  - `\(H_{0}:\mu = \mu_{0}\)` such as `\(H_{0}:\mu = 0\)`
+  - `\(H_{1}:\mu \ne \mu_{0}\)` such as `\(H_{1}:\mu \ne 0\)`
+3. **Test Statistic**
+$$ z = \frac{\overline{x}-\mu_{0}}{\sigma/\sqrt{n}}$$
+4. **P-value**
+  - Suppose we observe z = 2.1
+  - The probability of getting a z at least this far from 0 (in either direction), if `\(H_{0}\)` is true: `\(2 \times P(Z&gt;2.1) = 2(.0179) = .0358\)`. That is unlikely.
+5. **Conclusion**
+
+
+
+???
+
+What is new here is step 4, the p-value. Suppose we observe z equals 2.1.
+
+H-one is "not equal," so this is a two-sided test. We need the chance of a z at least 2.1 away from 0, in either direction. The probability that Z is greater than 2.1 is 0.0179. We double it. So the p-value is 0.0358.
+
+In words: if H-zero is true, a result this far from 0 happens only about 3.6 percent of the time. That is unlikely.
+
+What do you think we should decide? Let's see step 5.
+
+---
+class:small
+# A typical flow
+
+1. **Assumptions**
+  - Assuming that data are sampled by random sampling
+  - Quantitative variable is assumed to have a normal population distribution
+2. **Hypotheses**
+  - `\(H_{0}:\mu = \mu_{0}\)` such as `\(H_{0}:\mu = 0\)`
+  - `\(H_{1}:\mu \ne \mu_{0}\)` such as `\(H_{1}:\mu \ne 0\)`
+3. **Test Statistic**
+$$ z = \frac{\overline{x}-\mu_{0}}{\sigma/\sqrt{n}}$$
+4. **P-value**
+  - Suppose we observe z = 2.1
+  - The probability of getting a z at least this far from 0 (in either direction), if `\(H_{0}\)` is true: `\(2 \times P(Z&gt;2.1) = 2(.0179) = .0358\)`. That is unlikely.
+5. **Conclusion**
+  - If we set the `\(\alpha\)` level at 0.05, we reject `\(H_{0}\)` because the p-value (.0358) is smaller than `\(\alpha\)`.
+
+???
+
+What is new here is step 5, the conclusion. We set alpha at 0.05. Our p-value, 0.0358, is smaller than 0.05. So we reject H-zero. We conclude that the population mean is different from mu-zero.
+
+Notice that we chose alpha before we looked at the p-value. That is the correct order.
+
+That is the full flow: assumptions, hypotheses, test statistic, p-value, conclusion. Now let's use this flow on a real business example.
+
+---
+class:small, palegreen
+# Example: Kiosk
+.content-box-blue[A restaurant franchise, concerned about possible changes in the sales due to the installation of self-serve kiosks, takes a random sample of 100 customers who use the new machines at McDonald's. It is known that before the machine's installation, the average customer at McDonald's spent 6.03 dollars with a standard deviation of 0.91 dollars.
+
+Do the data provide enough evidence at the 5% significance level of a change in the size of the transaction for an individual customer?
+]
+&lt;img src="pic/kiosk.jpeg" alt="" width="40%" style="display: block; margin: auto;" /&gt;
+
+???
+
+Here is our first full example. A restaurant franchise installed self-serve kiosks. A kiosk is a machine where customers order and pay by themselves, without a cashier. The company worries that sales per customer may change.
+
+Before the kiosks, the average customer spent 6.03 dollars. The standard deviation was 0.91 dollars. Now they take a random sample of 100 customers who use the kiosks.
+
+The question: is there enough evidence, at the 5 percent significance level, that spending per customer changed?
+
+Notice the word "change." It does not say "increase" or "decrease." Please remember that.
+
+We have similar questions in daily life. For example: after a gym changed its opening hours, did the mean number of visitors per day change? Let's look at the data.
+
+---
+class:small, palegreen
+# Example: Kiosk
+- Data (n = 100), amount spent per customer in dollars
+
+```
+## First 20 of 100 customers:
+```
+
+```
+##  [1] 6.01 5.07 5.99 6.93 6.41 6.98 5.52 5.55 6.98 6.79 5.23 6.29 6.07 5.45 5.63
+## [16] 7.63 6.02 5.27 7.35 5.81
+```
+
+```
+## 
+## Sample mean = 5.91
+```
+
+???
+
+Here are the data. We have 100 customers. The slide shows the first 20 values, in dollars. Each number is the amount one customer spent.
+
+At the bottom, you see the sample mean: 5.91 dollars. So the sample mean is a little lower than 6.03. The difference is 12 cents.
+
+Is this a real change? Or could it come from random sampling? Remember, even if nothing changed, two samples never give exactly the same mean.
+
+This is exactly the question a hypothesis test can answer. Let's follow the five steps.
+
+---
+class:small, palegreen
+# Example: Kiosk
+
+**1.Assumptions**
+- The sample is randomly selected
+- The amount each customer spent (in dollars) is a quantitative variable
+- The population standard deviation is known ( `\(\sigma = 0.91\)` )
+- `\(n = 100\)` is large, so by the central limit theorem `\(\bar{X}\)` is approximately normal (we do not need a normal population)
+
+
+???
+
+Step 1, assumptions.
+
+First, the sample is random. Second, the amount spent is a quantitative variable. It is a number in dollars. Third, we know the population standard deviation: sigma equals 0.91. This is why we can use the z-test.
+
+Fourth, the sample size is 100. That is large. By the Central Limit Theorem, the sample mean, x-bar, is approximately normal. So we do not need the spending itself to be normal.
+
+This is useful. Spending data are often not normal. For example, a few customers may spend a lot. But with n equals 100, we can still use the normal distribution for x-bar. Next, the hypotheses.
+
+---
+class:small, palegreen
+# Example: Kiosk
+
+**2.Hypotheses**
+- `\(\mu\)`: population mean expenditure of customers who use the kiosks
+- "a change" → two-sided test
+
+.center[.content-box-blue[
+**Null hypothesis**: `\(H_{0}:\mu = 6.03\)`
+
+On average, a customer still spends 6.03 dollars (no change)
+]]
+
+.center[.content-box-green[
+**Alternative hypothesis**: `\(H_{1}:\mu \ne 6.03\)`
+
+The mean expenditure is smaller than 6.03 dollars ( `\(\mu &lt; 6.03\)` ) or larger than 6.03 dollars ( `\(\mu &gt; 6.03\)` )
+]]
+
+
+???
+
+Step 2, hypotheses. First, we define the parameter. Mu is the population mean spending of customers who use the kiosks.
+
+The question asks about "a change." A change can go up or down. So this is a two-sided test.
+
+H-zero says mu equals 6.03. This means no change. On average, customers still spend 6.03 dollars.
+
+H-one says mu is not equal to 6.03. This means mu is smaller than 6.03, or larger than 6.03. Both directions count as a change.
+
+A quick question for you: if the question said "Did spending decrease?", what would H-one be? Yes, mu less than 6.03. Next, the test statistic.
+
+---
+class:small, palegreen
+# Example: Kiosk
+
+**3.Test statistics**
+- Mean expenditure of customers ( `\(\overline{x}\)` ) = 5.91
+- Population standard deviation `\(\sigma\)` = 0.91
+- Sample size n = 100
+
+`$$se = \frac{\sigma}{\sqrt{n}}=\frac{0.91}{\sqrt{100}}=0.091$$`
+
+`$$z=\frac{\bar{x}-\mu_{0}}{se}=\frac{5.91 - 6.03}{0.091}=-1.32$$`
+
+- The sample mean is 1.32 standard errors **below** the value in `\(H_{0}\)`.
+
+???
+
+Step 3, the test statistic. We have three numbers. The sample mean, x-bar, is 5.91. Sigma is 0.91. The sample size, n, is 100.
+
+First, the standard error: sigma divided by the square root of n. The square root of 100 is 10. So 0.91 divided by 10 is 0.091.
+
+Next, z. x-bar minus mu-zero is 5.91 minus 6.03, which is minus 0.12. Divide by 0.091. We get z equals minus 1.32.
+
+What does this mean? Our sample mean is 1.32 standard errors below the value in H-zero. Is 1.32 standard errors far? Let's check the p-value.
+
+---
+class:small, palegreen
+# Example: Kiosk
+
+**4.P-value**
+
+&lt;img src="NHST_files/figure-html/kiosk-p-1.png" alt="" style="display: block; margin: auto;" /&gt;
+
+- Two-sided test, so the p-value is the area in **both** tails beyond `\(\pm 1.32\)`.
+
+???
+
+Step 4, the p-value. Look at the graph. The orange line is our z, minus 1.32.
+
+Because this is a two-sided test, the p-value is the green area in both tails. One area is to the left of minus 1.32. The other is to the right of plus 1.32.
+
+The dashed lines are the critical values, minus 1.96 and plus 1.96. A critical value is a cut-off. If z goes beyond it, we reject H-zero.
+
+Look where our z is. It is between the dashed lines. And the green area looks quite large. What do you think? Is this result unusual? The subtitle of the graph shows the p-value, about 0.187. Let's make the decision on the next slide.
+
+---
+class:small, palegreen
+# Example: Kiosk
+
+**5.Conclusion**
+- p-value `\(= P(Z&lt;-1.32) + P(Z&gt;1.32) = 0.0934 + 0.0934 = 0.1868\)`
+- The p-value (0.1868) is larger than `\(\alpha = 0.05\)`, so we **fail to reject** `\(H_{0}\)`.
+- Also, `\(z = -1.32\)` is not beyond the critical values `\(\pm 1.96\)`.
+- There is not enough evidence that the mean spending per customer changed after the kiosks were installed. (This does not prove that it stayed exactly at 6.03 dollars.)
+
+???
+
+Step 5, the conclusion. The area in the left tail, below minus 1.32, is 0.0934. The right tail is the same, 0.0934. So the p-value is 0.0934 plus 0.0934, which is 0.1868.
+
+This is larger than alpha, 0.05. So we fail to reject H-zero.
+
+We can also check with the critical values. z equals minus 1.32 is not beyond plus or minus 1.96. Same decision.
+
+How do we say this to a manager? "There is not enough evidence that mean spending per customer changed after the kiosks were installed."
+
+Be careful. We do not say that spending stayed exactly at 6.03 dollars. Remember the court: "not guilty" is not the same as "innocent." Now let's connect this test to a confidence interval.
+
+---
+class:small, palegreen
+# Example: Kiosk
+
+**5.1 Confidence interval**
+
+What is the 95% confidence interval for the mean customer expenditure?
+
+.pull-left[
+.content-box-blue[
+`\(se = 0.091\)`, `\(z_{.025}=1.96\)`, `\(\overline{x}=5.91\)`
+]
+
+The confidence interval is:
+
+.content-box-blue[
+`\(\overline{x}\pm 1.96(se) = 5.91 \pm 1.96(0.091)\)`
+
+`\(= 5.91 \pm 0.18\)`, or (5.73, 6.09)
+]
+
+]
+.pull-right[
+
+&lt;img src="NHST_files/figure-html/kiosk-ci-1.png" alt="" style="display: block; margin: auto;" /&gt;
+]
+
+- The value in `\(H_{0}\)`, 6.03, is **inside** the interval. So 6.03 is a plausible value of `\(\mu\)`, which matches our decision not to reject `\(H_{0}\)`.
+- Rule: a two-sided test at `\(\alpha\)` rejects `\(H_{0}\)` exactly when `\(\mu_{0}\)` falls **outside** the `\((1-\alpha)\)` confidence interval.
+
+???
+
+Let's connect today's test to the confidence interval from last class. The standard error is 0.091. For 95 percent, the z value is 1.96. The sample mean is 5.91.
+
+So the interval is 5.91 plus or minus 1.96 times 0.091. That is 5.91 plus or minus 0.18. The interval is from 5.73 to 6.09.
+
+Look at the graph. The green bar is the interval. The orange dashed line is the H-zero value, 6.03. It is inside the interval. So 6.03 is a plausible value for mu. "Plausible" means believable: it fits the data. This matches our test. We did not reject H-zero.
+
+Here is the general rule. A two-sided test at alpha rejects H-zero exactly when mu-zero is outside the 1 minus alpha confidence interval. So a 95 percent interval matches a two-sided test with alpha 0.05. Next, a one-sided example.
+
+---
+class:small, palegreen
+# Example: one-sided significance tests
+.content-box-blue[
+After a thorough financial analysis, the manager of a department store has determined that a new billing system will be cost-effective only if the mean monthly account is more than 170 dollars. A random sample of 400 monthly accounts has a sample mean of 178 dollars. The manager knows that the accounts are approximately normally distributed with a standard deviation of 65 dollars.
+
+Question: "Can the manager conclude that the new system will be cost-effective?"
+]
+
+.content-box-blue[.center[
+`\(H_{1}:\mu &gt; 170, H_{0}:\mu \le 170\)`
+]
+]
+
+- "more than 170" is what the manager needs to show, so it goes in `\(H_{1}\)`. This is a **right-tailed** test.
+
+???
+
+Now a one-sided example. A department store manager is thinking about a new billing system. A billing system makes and sends the monthly bills to customers.
+
+The analysis says the system is cost-effective only if the mean monthly account is more than 170 dollars. "Cost-effective" means the benefit is larger than the cost. A random sample of 400 accounts has a mean of 178 dollars. The standard deviation is 65 dollars. Can the manager conclude that the system will be cost-effective?
+
+The key words are "more than 170." That is what the manager needs to show. So it goes in H-one: mu greater than 170. H-zero is mu less than or equal to 170. This is a right-tailed test.
+
+It is like a decision in daily life: you buy a monthly bus pass only if you take the bus more than a certain number of times. Let's see how we decide.
+
+---
+class:small, palegreen
+# Example: one-sided significance tests
+- To conduct the test, we ask: "is a sample mean of 178 sufficiently greater than 170 to conclude that the population mean is greater than 170?"
+- To make a decision about the sample mean, we set up the rejection region:
+
+.content-box-blue[
+The rejection region is a range of values such that if the test statistic falls into that range, we decide to reject `\(H_{0}\)` in favor of `\(H_{1}\)`.
+]
+
+&lt;img src="pic/billing1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
+
+???
+
+The sample mean is 178. That is more than 170. But is it enough more? Remember, sample means change by chance from sample to sample.
+
+Here we use a new idea: the rejection region. The rejection region is a range of values of the test statistic. If our test statistic falls in that range, we reject H-zero.
+
+Look at the picture. For a right-tailed test, the rejection region is in the right tail only. If the sample mean is far enough above 170, we reject H-zero. If it is close to 170, we do not.
+
+Here is an everyday example. A smoke alarm rings only when the smoke level is above a set limit. The rejection region is like the zone above that limit. Let's look at the data.
+
+---
+class:small, palegreen
+# Example: one-sided significance tests
+- Data (n = 400), monthly account in dollars
+
+```
+## First 20 of 400 accounts:
+```
+
+```
+##  [1] 116.65  87.09 328.01  75.73 211.82 244.21 253.46 274.33  55.41 139.08
+## [11] 200.48 118.40 216.26 162.40 130.86 169.65  94.37 298.33 159.29 132.49
+```
+
+```
+## 
+## Sample mean = 178
+```
+
+???
+
+Here are the data. We have 400 monthly accounts. The slide shows the first 20 values, in dollars. At the bottom is the sample mean, about 178 dollars, as in the problem.
+
+Notice that the values are quite different from account to account. Some are lower than 170, and some are higher. That is why we need a test. We cannot decide just by looking at a few numbers.
+
+Let's compute the test statistic.
+
+---
+class:small, palegreen
+# Example: one-sided significance tests
+
+.content-box-blue[
+After a thorough financial analysis, the manager of a department store has determined that a new billing system will be cost-effective only if the mean monthly account is more than 170 dollars. A random sample of 400 monthly accounts has a sample mean of 178 dollars. The manager knows that the accounts are approximately normally distributed with a standard deviation of 65 dollars.
+
+Question: "Can the manager conclude that the new system will be cost-effective?"
+]
+
+.content-box-green[
+n = 400, `\(\overline{x}\)` = 178, `\(\sigma\)` = 65
+
+`$$z=\frac{\overline{x}-\mu_{0}}{\sigma/\sqrt{n}}=\frac{178-170}{65/20}=2.46$$`
+]
+
+???
+
+Here are the numbers again: n is 400, x-bar is 178, and sigma is 65.
+
+First, the standard error. The square root of 400 is 20. So the standard error is 65 divided by 20, which is 3.25.
+
+Next, z. x-bar minus mu-zero is 178 minus 170, which is 8. Then 8 divided by 3.25 is about 2.46. So z equals 2.46. Our sample mean is 2.46 standard errors above 170.
+
+Notice that we use 170 as mu-zero. H-zero says mu is less than or equal to 170. We use the boundary value, 170, because it is the hardest case for H-one. If we can reject 170, we can also reject any value below 170. Now let's decide.
+
+---
+class:small, palegreen
+# Example: one-sided significance tests
+
+&lt;img src="NHST_files/figure-html/billing-p-1.png" alt="" style="display: block; margin: auto;" /&gt;
+
+- **Rejection region**: for a right-tailed test at `\(\alpha = 0.05\)`, reject `\(H_{0}\)` if `\(z &gt; 1.645\)`. Our `\(z = 2.46\)` is in the rejection region.
+- **p-value**: `\(P(Z&gt;2.46) = 1 - .9931 = 0.0069\)`, which is smaller than `\(\alpha = 0.05\)`.
+- Both methods: **reject** `\(H_{0}\)`. There is enough evidence that the mean monthly account is more than 170 dollars, so the new system will be cost-effective.
+
+???
+
+Now we decide, in two ways.
+
+Way one: the rejection region. For a right-tailed test at alpha 0.05, the critical value is 1.645. We reject H-zero if z is greater than 1.645. Our z is 2.46. That is in the rejection region. In the graph, the orange line is to the right of the dashed line.
+
+Way two: the p-value. It is the probability that Z is greater than 2.46. That is 1 minus 0.9931, which is 0.0069. This is the small green area in the right tail. 0.0069 is much smaller than 0.05.
+
+Both ways give the same answer: reject H-zero. There is enough evidence that the mean monthly account is more than 170 dollars. So the new system will be cost-effective. Let's compare these two ways.
+
+---
+class:small
+# Two Ways to Decide: Rejection Region vs. p-value
+
+.pull-left[
+.content-box-blue[
+**Rejection region approach**
+- Find the critical value(s) for `\(\alpha\)`
+- Reject `\(H_{0}\)` if the test statistic falls beyond it
+]
+]
+.pull-right[
+.content-box-blue[
+**p-value approach**
+- Compute the p-value from the test statistic
+- Reject `\(H_{0}\)` if p-value `\(\le \alpha\)`
+]
+]
+
+- The two approaches **always give the same decision**. The p-value gives more information: it tells us *how strong* the evidence is.
+
+| `\(\alpha\)` |One-tailed critical value|Two-tailed critical values|
+|:---:|:---:|:---:|
+|.10|1.28|±1.645|
+|.05|1.645|±1.96|
+|.01|2.33|±2.58|
+
+- For a left-tailed test, use the negative value (e.g., `\(z &lt; -1.645\)` at `\(\alpha = .05\)`).
+
+???
+
+Let's compare the two ways.
+
+In the rejection region approach, we first find the critical value for alpha. Then we reject H-zero if the test statistic is beyond the critical value. In the p-value approach, we compute the p-value. Then we reject H-zero if the p-value is less than or equal to alpha.
+
+These two ways always give the same decision. But the p-value gives more information. It tells us how strong the evidence is. For example, a p-value of 0.04 and a p-value of 0.0001 both lead to "reject." But 0.0001 is much stronger evidence.
+
+Now look at the table. For alpha 0.05, the one-tailed critical value is 1.645. The two-tailed critical values are plus and minus 1.96. For a left-tailed test, use the negative value, minus 1.645. You will use this table in the exercises.
+
+So, when should we use one-sided, and when two-sided?
+
+---
+class:small
+# One-sided vs. two-sided?
+
+- Two-sided tests are more common than one-sided tests
+- Two-sided is more objective: it can detect an effect in either direction
+- Use a one-sided test only when the question clearly asks about one direction ("more than," "less than"), and decide this **before** looking at the data
+
+&lt;img src="NHST_files/figure-html/unnamed-chunk-9-1.png" alt="" style="display: block; margin: auto;" /&gt;
+
+???
+
+When should we use a one-sided test?
+
+Two-sided tests are more common. They are more objective, because they can find an effect in either direction. For example, a new medicine may raise blood pressure, or lower it. Both are important to know.
+
+Use a one-sided test only when the question clearly asks about one direction, like "more than" or "less than." And decide this before you look at the data.
+
+Look at the two graphs. Both use alpha 0.05. On the left, the one-tailed test puts all 5 percent in one tail. The critical value is 1.645. On the right, the two-tailed test splits it: 2.5 percent in each tail. The critical values are plus and minus 1.96.
+
+So in one direction, a one-sided test rejects more easily. That is why it is not fair to choose it after you see the data. Let's review alpha once more.
+
+---
+class:small
+# alpha level
+
+.content-box-blue[
+A number such that we reject `\(H_{0}\)` if the p-value is less than or equal to it. The `\(\alpha\)` -level is also called the **significance level**. In practice, the most common `\(\alpha\)` -levels are 0.05 and 0.01.
+]
+
+- Choice of `\(\alpha\)` reflects how cautious you want to be
+- The smaller the `\(\alpha\)` -level, the stronger the evidence must be to reject `\(H_{0}\)`
+- To avoid bias in the decision-making process, you select `\(\alpha\)` before analyzing the data
+- `\(\alpha\)` is the chance of rejecting `\(H_{0}\)` when `\(H_{0}\)` is actually true (a "false alarm"). We will study this error next class.
+
+???
+
+Let's review alpha. Alpha is the cut-off. We reject H-zero if the p-value is less than or equal to alpha. It is also called the significance level. The most common values are 0.05 and 0.01.
+
+How do we choose? It depends on how careful we want to be. A smaller alpha means we need stronger evidence to reject H-zero. For example, think about a decision to close a restaurant. Closing is very expensive, and it is hard to undo. So the owner may want very strong evidence, and use alpha 0.01.
+
+Also, choose alpha before you analyze the data. This avoids bias. Here, bias means choosing the rule to get the answer you want.
+
+Last point: alpha is the chance of rejecting H-zero when H-zero is actually true. This is a false alarm. Let's see this with a simulation.
+
+---
+class:small
+# What If the Null Is True? A Simulation
+
+- Back to the kiosk: suppose the kiosks really changed **nothing**, so the true mean is still 6.03 dollars ( `\(H_{0}\)` is true).
+- We repeat the study 100 times (a new random sample of 100 customers each time) and run the same two-sided z-test at `\(\alpha = .05\)`.
+
+&lt;img src="NHST_files/figure-html/pval-sim-1.png" alt="" style="display: block; margin: auto;" /&gt;
+
+.soft-box[
+Each orange point is a "significant" result even though nothing changed: a **false alarm**. In the long run, about `\(\alpha = 5\%\)` of tests do this. This mistake is called a **Type I error** (next class).
+]
+
+???
+
+Let's return to the kiosk example. Suppose the kiosks really changed nothing. The true mean is still 6.03 dollars. So H-zero is true.
+
+Now we use the computer to repeat the study 100 times. Each time, we take a new random sample of 100 customers, and we run the same two-sided z-test at alpha 0.05. This is called a simulation.
+
+Look at the graph. Each point is one study. The height of the point is its p-value. The orange dashed line is 0.05. Most points are grey and above the line. But some points are orange, below the line. These tests said "significant," but nothing changed. These are false alarms.
+
+How many orange points are there? The title shows the number. It is about 5 out of 100. That is what alpha 0.05 means. When H-zero is true, about 5 percent of tests give a false alarm in the long run. Next class, we will call this a Type I error. In the court, it is like convicting an innocent person.
+
+---
+class:small
+# Check in
+- Hypothesis testing
+- Null vs. alternative hypothesis
+- p-value
+- Rejection region vs. p-value
+
+???
+
+Let's stop here and check. We learned four main ideas today. First, what hypothesis testing is. Second, the null and the alternative hypothesis. Third, the p-value. Fourth, two ways to decide: the rejection region and the p-value.
+
+Please take one minute. Can you explain each idea to the person next to you, in one or two sentences? For example: "What is a p-value?" Try to say it in your own words.
+
+If something is not clear, please ask me now. Next, we will practice with some exercises.
+
+---
+class:small,palegreen
+# ✏️ Hotel guest bills
+.content-box-blue[
+The manager of the Danvers-Hilton Resort Hotel stated that the mean guest bill for a weekend is 1,200 dollars or less. A member of the hotel's accounting staff noticed that the total charges for guest bills have been increasing in recent months. The accountant will use a sample of future weekend guest bills to test the manager's claim.
+]
+
+- Q1. Which form of the hypotheses should be used to test the manager's claim?
+.pull-left[
+a. `\(H_{0}:\mu \ge 1,200\)`
+
+b. `\(H_{0}:\mu \le 1,200\)`
+
+c. `\(H_{0}:\mu = 1,200\)`
+]
+.pull-right[
+d. `\(H_{a}:\mu &lt; 1,200\)`
+
+e. `\(H_{a}:\mu &gt; 1,200\)`
+
+f. `\(H_{a}:\mu \ne 1,200\)`
+]
+
+???
+
+Now it is your turn. Read the problem. The hotel manager says the mean weekend guest bill is 1,200 dollars or less. An accountant thinks the bills are increasing. The accountant wants to test the manager's claim.
+
+Question 1: which form of the hypotheses should we use? Choose one H-zero from a, b, and c. Then choose one H-a from d, e, and f. H-a means the same as H-one.
+
+Tip: remember the key words table. Which statement has the equal sign? What does the accountant want to show?
+
+Please take two minutes. Talk with the person next to you.
+
+---
+class:small,palegreen
+# ✏️ Hotel guest bills
+.content-box-blue[
+The manager of the Danvers-Hilton Resort Hotel stated that the mean guest bill for a weekend is 1,200 dollars or less. A member of the hotel's accounting staff noticed that the total charges for guest bills have been increasing in recent months. The accountant will use a sample of future weekend guest bills to test the manager's claim.
+]
+
+- Q2. What conclusion is appropriate when `\(H_{0}\)` cannot be rejected?
+
+- Q3. What conclusion is appropriate when `\(H_{0}\)` can be rejected?
+
+
+???
+
+Now two more questions. Question 2: what conclusion is right if we cannot reject H-zero? Question 3: what conclusion is right if we can reject H-zero?
+
+Please write your answers in words, as if you are writing to the hotel manager. Do not just write "reject" or "fail to reject." Say what it means for the guest bills. Remember the court example.
+
+Take three minutes, and talk with your partner.
+
+---
+class:small,palegreen
+# ✏️ Hotel guest bills
+.content-box-blue[
+The manager of the Danvers-Hilton Resort Hotel stated that the mean guest bill for a weekend is 1,200 dollars or less. A member of the hotel's accounting staff noticed that the total charges for guest bills have been increasing in recent months. The accountant will use a sample of future weekend guest bills to test the manager's claim.
+]
+
+- Q1. Answer: **b and e**. `\(H_{0}:\mu \le 1,200\)` (the manager's claim), `\(H_{a}:\mu &gt; 1,200\)` (what the accountant suspects)
+
+???
+
+Let's check the answers. Question 1: the answer is b and e.
+
+H-zero is mu less than or equal to 1,200. This is the manager's claim, and it has the equal sign. H-a is mu greater than 1,200. This is what the accountant suspects, so it needs evidence. Did you get it?
+
+Notice something here. The manager's claim is in H-zero. This happens often. When we want to challenge a claim, the claim goes in H-zero, and the challenge goes in H-one.
+
+--
+
+- Q2. What conclusion is appropriate when `\(H_{0}\)` cannot be rejected?
+.soft-box-grey[
+There is not enough evidence that the mean weekend bill is more than 1,200 dollars. We cannot challenge the manager's claim.
+]
+
+???
+
+Question 2: we cannot reject H-zero. So we say: there is not enough evidence that the mean weekend bill is more than 1,200 dollars. We cannot challenge the manager's claim.
+
+Be careful. We do not say the manager is right. We only say we do not have enough evidence against the claim.
+
+--
+
+- Q3. What conclusion is appropriate when `\(H_{0}\)` can be rejected?
+.soft-box-grey[
+The mean weekend guest bill is significantly greater than 1,200 dollars. The manager's claim is not supported.
+]
+
+
+???
+
+Question 3: we can reject H-zero. So we say: the mean weekend guest bill is significantly greater than 1,200 dollars. The manager's claim is not supported. In this case, the accountant was right to worry.
+
+Notice the difference in strength. Rejecting H-zero gives a strong conclusion. Failing to reject gives a weak conclusion. Let's try another problem.
+
+---
+class:small,palegreen
+# ✏️ Process Improvement
+.content-box-blue[
+Because of high production-changeover time and costs, a director of manufacturing must convince management that a proposed manufacturing method reduces costs before the new method can be implemented. The current production method operates with a mean cost of 220 dollars per hour. A research study will measure the cost of the new method over a sample production period.
+]
+
+- Q1. Develop the null and alternative hypotheses most appropriate for this study.
+- Q2. Comment on the conclusion when `\(H_{0}\)` cannot be rejected.
+- Q3. Comment on the conclusion when `\(H_{0}\)` can be rejected.
+
+???
+
+Here is a problem from a factory. A director of manufacturing wants to use a new production method. Changing methods is expensive. "Changeover" means the time and work needed to switch from one method to another. So management will agree only if the director shows that the new method reduces costs.
+
+The current method costs 220 dollars per hour on average. A study will measure the cost of the new method.
+
+Question 1: write H-zero and H-one. Question 2: what is the conclusion if we cannot reject H-zero? Question 3: what is the conclusion if we can reject H-zero?
+
+Hint: what does the director need to show? Take three minutes, and work with the person next to you.
+
+---
+class:small,palegreen
+# ✏️ Process Improvement
+.content-box-blue[
+Because of high production-changeover time and costs, a director of manufacturing must convince management that a proposed manufacturing method reduces costs before the new method can be implemented. The current production method operates with a mean cost of 220 dollars per hour. A research study will measure the cost of the new method over a sample production period.
+]
+
+- Q1. Develop the null and alternative hypotheses most appropriate for this study.
+`$$H_{0}:\mu \ge 220, H_{1}:\mu &lt; 220$$`
+- Q2. Comment on the conclusion when `\(H_{0}\)` cannot be rejected.
+.soft-box-grey[
+There is not enough evidence that the new method's mean cost is lower than 220 dollars per hour. The director cannot convince management, so the new method should not be implemented (yet).
+]
+- Q3. Comment on the conclusion when `\(H_{0}\)` can be rejected.
+
+???
+
+Let's check. Question 1. The director must show that the new method reduces costs. "Reduces" is our key word. So H-one is mu less than 220. H-zero is mu greater than or equal to 220. Here, mu is the mean cost per hour of the new method.
+
+Question 2. If we cannot reject H-zero, there is not enough evidence that the new mean cost is lower than 220 dollars per hour. The director cannot convince management. So the new method should not be used, at least not yet. Maybe a larger study can give more evidence later.
+
+This is like asking your manager to buy a new software tool for the office. You need data first, to show that it saves time, before the manager agrees to pay for it.
+
+---
+class:small,palegreen
+# ✏️ Process Improvement
+.content-box-blue[
+Because of high production-changeover time and costs, a director of manufacturing must convince management that a proposed manufacturing method reduces costs before the new method can be implemented. The current production method operates with a mean cost of 220 dollars per hour. A research study will measure the cost of the new method over a sample production period.
+]
+
+- Q1. Develop the null and alternative hypotheses most appropriate for this study.
+`$$H_{0}:\mu \ge 220, H_{1}:\mu &lt; 220$$`
+- Q2. Comment on the conclusion when `\(H_{0}\)` cannot be rejected.
+- Q3. Comment on the conclusion when `\(H_{0}\)` can be rejected.
+.soft-box-grey[
+The mean cost of the new method is significantly lower than 220 dollars per hour. There is enough evidence that the new method reduces the production cost, so it can be implemented.
+]
+
+???
+
+Question 3. If we reject H-zero, the mean cost of the new method is significantly lower than 220 dollars per hour. There is enough evidence that the new method reduces cost. So the company can use the new method.
+
+Notice the logic. We put the change in H-one. Then the change needs strong evidence. This protects the company from an expensive change that does not really help.
+
+Now let's run this test with real numbers.
+
+---
+class:small,palegreen
+# ✏️ Process Improvement: Run the Test
+.content-box-blue[
+The study measures the new method over a random sample of 36 production hours. The sample mean cost is 212 dollars per hour. Assume the standard deviation of hourly cost is 24 dollars. Test at `\(\alpha = 0.05\)` whether the new method reduces costs.
+]
+
+- Q1. Compute the test statistic.
+- Q2. Find the p-value. (Which tail?)
+- Q3. What is your decision and conclusion?
+
+???
+
+Now we have data. The study uses a random sample of 36 production hours. The sample mean cost is 212 dollars per hour. The standard deviation is 24 dollars. We test at alpha 0.05.
+
+Question 1: compute the test statistic. Question 2: find the p-value. Which tail do we use? Question 3: what is your decision and your conclusion?
+
+Use the five steps. Please take five minutes. You can work in pairs.
+
+--
+
+- Q1. `\(se = \dfrac{24}{\sqrt{36}} = 4\)`, `\(\quad z = \dfrac{212-220}{4} = -2.00\)`
+- Q2. Left-tailed test ( `\(H_{1}:\mu &lt; 220\)` ): p-value `\(= P(Z&lt;-2.00) = .0228\)`
+- Q3. `\(.0228 &lt; .05\)` (and `\(z = -2.00 &lt; -1.645\)`), so **reject** `\(H_{0}\)`. There is enough evidence that the new method lowers the mean cost.
+
+???
+
+Let's check the answer step by step.
+
+Question 1. The standard error is 24 divided by the square root of 36. The square root of 36 is 6. So 24 divided by 6 is 4. Then z equals 212 minus 220, divided by 4. That is minus 8 divided by 4, which is minus 2.00.
+
+Question 2. H-one is mu less than 220, so this is a left-tailed test. The p-value is the probability that Z is less than minus 2.00. That is 0.0228.
+
+Question 3. 0.0228 is smaller than 0.05. Also, minus 2.00 is less than minus 1.645, the critical value. So we reject H-zero. There is enough evidence that the new method lowers the mean cost.
+
+Did you get the same answer? Let's see the graph.
+
+---
+class:small,palegreen
+# ✏️ Process Improvement: Run the Test
+
+&lt;img src="NHST_files/figure-html/process-p-1.png" alt="" style="display: block; margin: auto;" /&gt;
+
+- Left-tailed test: only the **left** tail counts as evidence for `\(H_{1}:\mu &lt; 220\)`.
+
+???
+
+Here is the picture of this test. The orange line is our z, minus 2.00. The dashed line is the critical value, minus 1.645. Our z is to the left of it, so it is in the rejection region. The green area is the p-value, 0.0228.
+
+Notice that only the left tail is shaded. This is because H-one is mu less than 220. Only values far to the left are evidence that the cost went down. A very large positive z would mean the cost went up. That is not evidence for H-one.
+
+Next, let's see all our tools on one page.
+
+---
+class:small,palegreen
+# FIVE parts of a significance test
+
+&lt;img src="pic/flow5_0.png" alt="" width="95%" style="display: block; margin: auto;" /&gt;
+
+`$$se = \frac{\sigma}{\sqrt{n}} \qquad\qquad z=\frac{\bar{x}-\mu_{0}}{se}$$`
+
+|Alternative|p-value|Reject `\(H_{0}\)` at `\(\alpha = .05\)` if|
+|:---:|:---:|:---:|
+| `\(\mu &gt; \mu_{0}\)` | `\(P(Z &gt; z)\)` | `\(z &gt; 1.645\)` |
+| `\(\mu &lt; \mu_{0}\)` | `\(P(Z &lt; z)\)` | `\(z &lt; -1.645\)` |
+| `\(\mu \ne \mu_{0}\)` | `\(2 \times P(Z &gt; \lvert z \rvert)\)` | `\(\lvert z \rvert &gt; 1.96\)` |
+
+
+???
+
+This slide is a summary of the method. You can use it for the exercises.
+
+On top, you see the five steps again. Then the two formulas: the standard error is sigma over the square root of n, and z is x-bar minus mu-zero, divided by the standard error.
+
+Now the table. Choose the row by looking at H-one. If H-one is mu greater than mu-zero, the p-value is the probability that Z is greater than z. Reject if z is greater than 1.645. If H-one is mu less than mu-zero, the p-value is the probability that Z is less than z. Reject if z is less than minus 1.645.
+
+If H-one is "not equal," the p-value is 2 times the probability that Z is greater than the absolute value of z. The absolute value means the number without its sign. Reject if the absolute value of z is greater than 1.96. These cut-offs are for alpha 0.05. Let's practice.
+
+---
+class:small,palegreen
+# ✏️ MBA students
+.content-box-blue[
+A business student claims that, on average, an MBA student is required to prepare more than five cases per week. To examine the claim, a statistics professor asks a random sample of 10 MBA students to report the number of cases they prepare weekly. The results are exhibited here. Can the professor conclude at the 5% significance level that the claim is true, assuming that the number of cases is normally distributed with a standard deviation of 1.5?
+]
+
+.center[
+.soft-box-grey[2   7   4   8   9   5   11   3   7   4]
+]
+
+`$$z = \frac{\bar{x}-\mu_{0}}{\frac{\sigma}{\sqrt{n}}}$$`
+
+- ztable: https://www.ztable.net/
+
+???
+
+Here is another exercise. A student claims that MBA students prepare more than five cases per week, on average. A case is a business story that students study and discuss in class. A professor asks a random sample of 10 MBA students. The ten numbers are on the slide. Assume the number of cases is normally distributed, with a standard deviation of 1.5. Test at the 5 percent significance level.
+
+Please do all five steps. First, find x-bar. Then write H-zero and H-one. Then compute z, and find the p-value with the z-table. You can use the website on the slide.
+
+Take five minutes. Work with the person next to you.
+
+One question to think about: n is only 10. Why can we still use the z-test? Yes, because we assume the population is normal, and we know sigma.
+
+---
+class:small,palegreen
+# ✏️ MBA students: answer
+.content-box-blue[
+A business student claims that, on average, an MBA student is required to prepare more than five cases per week. To examine the claim, a statistics professor asks a random sample of 10 MBA students to report the number of cases they prepare weekly. The results are exhibited here. Can the professor conclude at the 5% significance level that the claim is true, assuming that the number of cases is normally distributed with a standard deviation of 1.5?
+]
+
+.center[
+.soft-box-grey[2   7   4   8   9   5   11   3   7   4]
+]
+
+- `\(\bar{x} = 60/10 = 6\)`
+`$$H_{0}:\mu \le 5, H_{1}:\mu &gt; 5$$`
+`$$z=\frac{\bar{x}-\mu_{0}}{\frac{\sigma}{\sqrt{n}}}=\frac{6-5}{\frac{1.5}{\sqrt{10}}}=2.11$$`
+
+???
+
+Let's check. First, x-bar. Add the ten numbers. The sum is 60. Divide by 10, so x-bar is 6.
+
+Next, the hypotheses. The claim is "more than five." That has a strict sign, so it goes in H-one. H-one is mu greater than 5. H-zero is mu less than or equal to 5. This is a right-tailed test.
+
+Now z. The standard error is 1.5 divided by the square root of 10. The square root of 10 is about 3.16. So the standard error is about 0.474. Then x-bar minus mu-zero is 6 minus 5, which is 1. And 1 divided by 0.474 is about 2.11. So z equals 2.11.
+
+Now we need the p-value. Let's use the z-table.
+
+---
+class:small,palegreen
+# ✏️ MBA students: answer
+&lt;img src="pic/ztable2.jpg" alt="" width="60%" style="display: block; margin: auto;" /&gt;
+
+???
+
+Here is the z-table. Let's find 2.11. Go down the left column to the row for 2.1. Then go across to the column for 0.01. The value there is 0.9826.
+
+This is the probability that Z is less than 2.11. It is the area to the left. But our test is right-tailed. We need the area to the right. So we compute 1 minus 0.9826.
+
+What do you get? Let's see on the next slide.
+
+---
+class:small,palegreen
+# ✏️ MBA students: answer
+.content-box-blue[
+A business student claims that, on average, an MBA student is required to prepare more than five cases per week. To examine the claim, a statistics professor asks a random sample of 10 MBA students to report the number of cases they prepare weekly. The results are exhibited here. Can the professor conclude at the 5% significance level that the claim is true, assuming that the number of cases is normally distributed with a standard deviation of 1.5?
+]
+
+.pull-left[
+`$$H_{0}:\mu \le 5, H_{1}:\mu &gt; 5$$`
+`$$z=\frac{6-5}{\frac{1.5}{\sqrt{10}}}=2.11$$`
+- p-value: P(Z&gt;2.11) = 1 - .9826 = .0174
+- `\(.0174 &lt; .05\)` (and `\(2.11 &gt; 1.645\)`), so reject `\(H_{0}\)`.
+- There is enough evidence to infer that the mean is greater than 5 cases.
+]
+.pull-right[
+![](NHST_files/figure-html/mba-p-1.png)&lt;!-- --&gt;
+]
+
+???
+
+The p-value is the probability that Z is greater than 2.11. That is 1 minus 0.9826, which is 0.0174.
+
+Compare it with alpha. 0.0174 is smaller than 0.05. Also, 2.11 is greater than the critical value, 1.645. So we reject H-zero.
+
+Look at the graph on the right. The orange line is beyond the dashed line, and the green area is small.
+
+The conclusion in words: there is enough evidence that the mean number of cases is greater than 5 per week. So the student's claim is supported.
+
+Did everyone get the same answer? Now, one last exercise.
+
+---
+class:small,palegreen
+# ✏️ Ball bearing machine
+.content-box-blue[
+A machine that produces ball bearings is set so that the average diameter is .50 inch. A sample of 10 ball bearings was measured, with the results shown here. Assuming that the standard deviation is .05 inch, can we conclude at the 5% significance level that the mean diameter is not .50 inch?
+]
+
+.center[
+.soft-box-grey[.48   .50   .49   .52   .53   .48   .49   .47   .46   .51]
+]
+
+
+???
+
+This is our last exercise. It is a quality control problem. A machine makes ball bearings. A ball bearing is a small steel ball used in machines to reduce friction. The machine is set so that the mean diameter is 0.50 inch.
+
+We measure a sample of 10 bearings. The standard deviation is 0.05 inch. The question: at the 5 percent significance level, can we conclude that the mean diameter is not 0.50 inch? In other words, does the machine need adjustment?
+
+Think first: which key word tells us if the test is one-sided or two-sided? Then do all five steps. Take five minutes, and work with your partner.
+
+---
+class:small,palegreen
+# ✏️ Ball bearing machine: answer
+.content-box-blue[
+A machine that produces ball bearings is set so that the average diameter is .50 inch. A sample of 10 ball bearings was measured, with the results shown here. Assuming that the standard deviation is .05 inch, can we conclude at the 5% significance level that the mean diameter is not .50 inch?
+]
+
+.center[
+.soft-box-grey[.48   .50   .49   .52   .53   .48   .49   .47   .46   .51]
+]
+
+- `\(\bar{x} = 4.93/10 = .493\)`
+`$$H_{0}:\mu = .50, H_{1}:\mu \ne .50$$`
+`$$z=\frac{\bar{x}-\mu_{0}}{\frac{\sigma}{\sqrt{n}}}=\frac{.493-.50}{\frac{.05}{\sqrt{10}}}=-.44$$`
+
+???
+
+Let's check. First, x-bar. The sum of the ten values is 4.93. Divide by 10, so x-bar is 0.493.
+
+Next, the hypotheses. The question says "not 0.50." So this is a two-sided test. H-zero is mu equals 0.50. H-one is mu not equal to 0.50.
+
+Now z. The standard error is 0.05 divided by the square root of 10. That is about 0.0158. x-bar minus mu-zero is 0.493 minus 0.50, which is minus 0.007. Minus 0.007 divided by 0.0158 is about minus 0.44. So z equals minus 0.44.
+
+The sample mean is less than half a standard error below 0.50. That is very close. What do you expect for the p-value?
+
+---
+class:small,palegreen
+# ✏️ Ball bearing machine: answer
+
+.pull-left[
+`$$H_{0}:\mu = .50, H_{1}:\mu \ne .50$$`
+`$$z=\frac{.493-.50}{\frac{.05}{\sqrt{10}}}=-.44$$`
+- p-value: 2 x P(Z&lt;-.44) = 2(.3300) = .6600
+- `\(.66 &gt; .05\)` (and `\(\lvert -.44 \rvert &lt; 1.96\)`), so we fail to reject `\(H_{0}\)`.
+- There is not enough evidence to infer that the mean diameter is not .50 inch.
+]
+.pull-right[
+![](NHST_files/figure-html/ball-p-1.png)&lt;!-- --&gt;
+]
+
+???
+
+The probability that Z is less than minus 0.44 is 0.3300. It is a two-sided test, so we double it. The p-value is 2 times 0.3300, which is 0.66.
+
+That is much larger than 0.05. Also, the absolute value of z, 0.44, is less than 1.96. So we fail to reject H-zero.
+
+Look at the graph. The orange line is near the center, and the green area is large.
+
+The conclusion: there is not enough evidence that the mean diameter is different from 0.50 inch. So we have no reason to stop and adjust the machine. But remember: this does not prove that the mean is exactly 0.50.
+
+Let's summarize today.
+
+---
+class:small
+# Summary
+
+.content-box-blue[
+- A hypothesis test asks: do the data give **enough evidence** against `\(H_{0}\)`?
+- Five parts: assumptions → hypotheses → test statistic → p-value → conclusion
+- `\(H_{1}\)` is what we want to show; `\(H_{0}\)` contains the equal sign
+- Test statistic (σ known): `\(z = \dfrac{\bar{x}-\mu_{0}}{\sigma/\sqrt{n}}\)`
+- p-value: chance of a result this extreme, if `\(H_{0}\)` is true. Small p-value → evidence against `\(H_{0}\)`
+- Decision: reject `\(H_{0}\)` if p-value `\(\le \alpha\)` (same as the test statistic falling in the rejection region)
+- "Fail to reject" is not "accept." A two-sided test matches the confidence interval.
+]
+
+???
+
+Let's summarize today.
+
+A hypothesis test asks one question: do the data give enough evidence against H-zero? We always follow five steps: assumptions, hypotheses, test statistic, p-value, conclusion.
+
+H-one is what we want to show. H-zero contains the equal sign. When sigma is known, the test statistic is z equals x-bar minus mu-zero, divided by sigma over the square root of n.
+
+The p-value is the chance of a result this extreme, or more extreme, if H-zero is true. A small p-value is evidence against H-zero. We reject H-zero if the p-value is less than or equal to alpha. This gives the same decision as the rejection region.
+
+Finally, "fail to reject" is not "accept." And a two-sided test matches the confidence interval, as we saw in the kiosk example. Any questions?
+
+---
+class:small,inverse,center, middle
+# Next
+Error, Power analysis
+
+&lt;img src="pic/weekend.png" alt="" width="25%" style="display: block; margin: auto;" /&gt;
+
+???
+
+That is all for today. Thank you for your hard work.
+
+Next class, we will study errors and power. Today we saw that a test can give a false alarm. That is a Type I error. A test can also miss a real change. That is a Type II error. For example, a person really has COVID, but the COVID test says "negative." Power is the chance that a test finds a real effect.
+
+Think again about the court trial: convicting an innocent person, and freeing a guilty person. These are the two errors.
+
+Before next class, please review today's five steps. Have a good weekend, and see you next time.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "ratio": "16:9",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
