@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOSC449A Syllabus</title>
+<meta name="description" content="Syllabus for SOSC449A-01 ST: The Brain and Mind, Spring 2026, POSTECH.">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1f2933;
+    --muted: #5b6672;
+    --line: #dde2e8;
+    --soft: #f4f6f9;
+    --accent: #1f4e79;
+    --accent-soft: #e8eff7;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15191e;
+      --fg: #e3e7ec;
+      --muted: #9aa4b0;
+      --line: #2e353e;
+      --soft: #1c2229;
+      --accent: #8fb8e3;
+      --accent-soft: #1e2b3a;
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 20px 72px;
+  }
+  h1 {
+    font-size: 1.9rem;
+    line-height: 1.25;
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+  .course { color: var(--muted); margin: 0 0 28px; }
+  h2 {
+    font-size: 1.3rem;
+    margin: 44px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 16px; padding-left: 24px; }
+  li { margin-bottom: 4px; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .key {
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    padding: 14px 18px;
+    margin: 0 0 16px;
+    border-radius: 0 6px 6px 0;
+  }
+  .key p { margin: 0; }
+  .key p + p { margin-top: 6px; }
+  .table-wrap { overflow-x: auto; margin: 0 0 16px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  th, td {
+    text-align: left;
+    vertical-align: top;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  th {
+    background: var(--soft);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  td.num, th.num {
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .highlight {
+    margin: 36px 0 8px;
+    padding: 20px 20px 8px;
+    background: var(--accent-soft);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+  }
+  .highlight h2 { margin-top: 0; border-bottom-color: var(--accent); color: var(--accent); }
+  .highlight .table-wrap { background: var(--bg); border-radius: 6px; }
+  @media (max-width: 560px) { .highlight { padding: 16px 12px 4px; } }
+  .schedule td { border-bottom: 0; }
+  .schedule tr.group-start td { border-top: 1px solid var(--line); }
+  .schedule td[rowspan] { white-space: nowrap; }
+  tr.total td { font-weight: 700; border-bottom: 0; }
+  .journals td:first-child { white-space: nowrap; font-weight: 600; width: 1%; }
+  .note { color: var(--muted); font-size: 0.95rem; }
+  footer {
+    margin-top: 56px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  @media (max-width: 560px) {
+    main { padding-top: 32px; }
+    h1 { font-size: 1.55rem; }
+    .journals td:first-child { white-space: normal; width: auto; }
+  }
+  .info { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; margin: 0 0 8px; }
+  .info dt { font-weight: 600; }
+  .info dd { margin: 0; }
+  .schedule-topics tr.off td { color: var(--muted); }
+  .schedule-topics tr.exam td { font-weight: 700; }
+  .schedule-topics td:first-child, .schedule-topics td:nth-child(2) { white-space: nowrap; }
+  .back { display: inline-block; margin: 0 0 20px; font-size: 0.95rem; }
+  @media (max-width: 560px) { .info { grid-template-columns: 1fr; gap: 0; } .info dd { margin-bottom: 8px; } .schedule-topics th, .schedule-topics td { padding: 8px 6px; } }
+  .topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0 0 20px; }
+  .topbar .back { margin: 0; }
+  .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .lang button { font: inherit; font-size: 0.9rem; padding: 4px 12px; border: 0; background: var(--bg); color: var(--muted); cursor: pointer; }
+  .lang button[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+  .lang button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  [data-lang-block][hidden] { display: none; }
+  .faculty { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 0 0 16px; }
+  .faculty div { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .faculty h3 { margin: 0 0 2px; font-size: 1rem; }
+  .faculty p { margin: 0; font-size: 0.92rem; }
+  .faculty .aff { color: var(--muted); margin-bottom: 6px; }
+  .schedule-topics td:nth-child(2) { white-space: normal; }
+  .warn { border-left: 4px solid #b4442c; background: var(--soft); padding: 12px 16px; margin: 0 0 16px; border-radius: 0 6px 6px 0; }
+  .warn p { margin: 0; }
+</style>
+</head>
+<body>
+<main>
+
+  <div class="topbar">
+    <a class="back" href="index.html#teaching">← POCOS Lab · Teaching</a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-set-lang="ko" aria-pressed="true">한국어</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">English</button>
+    </div>
+  </div>
+
+  <div data-lang-block="ko" lang="ko">
+  <h1>심리학 특강: 뇌와 나의 세계 (SOSC449A-01)</h1>
+  <p class="course">강의계획서 · 2026학년도 1학기 · Mind &amp; Brain: Brain Science for World Leaders</p>
+
+  <dl class="info">
+    <dt>과목명</dt><dd>심리학 특강: 뇌와 나의 세계</dd>
+    <dt>강의 형식</dt><dd>온라인 녹화강의 (실시간 강의 진행 시 사전 고지)</dd>
+    <dt>담당 교수 (POSTECH)</dt><dd>서지현 · <a href="mailto:jihyunsuh@postech.ac.kr">jihyunsuh@postech.ac.kr</a></dd>
+    <dt>질문</dt><dd>각 학교 LMS 강의실의 Q&amp;A 게시판 (해당 주의 질문만 받음)</dd>
+  </dl>
+
+  <h2>교수진</h2>
+  <p>네 개 대학의 심리학, 뇌과학 분야 교수진이 함께 진행하는 공동 강의입니다.</p>
+  <div class="faculty">
+    <div><h3>김소연</h3><p class="aff">덕성여자대학교 심리학과</p><p>연구분야: Neurodevelopmental disorders, Cognitive development, Developmental/Clinical neuroscience, Cognitive aging</p></div>
+    <div><h3>서지현</h3><p class="aff">POSTECH 인문사회학부</p><p>연구분야: Cognitive control, Attention, Learning, Age-related cognitive change</p></div>
+    <div><h3>이새별</h3><p class="aff">충북대학교 심리학과</p><p>연구분야: Cognitive development, Developmental neuroscience, Cognitive modeling</p></div>
+    <div><h3>한상훈</h3><p class="aff">연세대학교 심리학과</p><p>연구분야: Applied brain cognition, Memory, Decision making, Cognitive neuroscience</p></div>
+  </div>
+
+  <h2>과목 소개</h2>
+  <p>인지과학을 중심으로 뇌과학 연구법, 인지과정 및 발달, 의사결정, 정신병리를 다루고, 이를 컴퓨터 비전, 의학, 인공지능, 로보틱스 등 관련 분야와 연결합니다.</p>
+
+  <h2>수업 목표</h2>
+  <ol>
+    <li>인간의 인지, 정서, 행동과 관련된 뇌과학 연구에 대한 이해 증진</li>
+    <li>인지과학, 심리학, 뇌과학 분야의 융합적 연구를 통해 축적된 인간의 사고 과정에 대한 이해 증진</li>
+    <li>인공지능, 뇌과학, 심리학, 정신병리 분야의 융합적 지식과 전문성이 필요한 진로 분야 탐색 기회 제공</li>
+  </ol>
+
+  <h2>관련 교과</h2>
+  <p>생리심리학, 인지신경심리학, 인지심리학, 발달심리학, 심리학개론 관련 전공/교양 과목</p>
+
+  <h2>교재</h2>
+  <ul>
+    <li>핸드아웃 (강의 자료)</li>
+    <li>『신경심리학의 기초』(7판). 시그마프레스</li>
+  </ul>
+
+  <h2>강좌 운영 방식</h2>
+  <ul>
+    <li>녹화강의 (필요할 경우 오피스 아워 운영)</li>
+    <li>각 학교 LMS 강의실의 Q&amp;A 게시판 활용 (해당 주의 질문만 받음)</li>
+  </ul>
+
+  <h2>성적 평가</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>항목</th><th class="num">비율</th></tr></thead>
+      <tbody>
+        <tr><td>중간고사</td><td class="num">40%</td></tr>
+        <tr><td>기말고사</td><td class="num">40%</td></tr>
+        <tr><td>출석</td><td class="num">15%</td></tr>
+        <tr><td>출석 퀴즈</td><td class="num">5%</td></tr>
+        <tr class="total"><td>합계</td><td class="num">100%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">성적 정정은 불가합니다.</p>
+
+  <h3>출석 및 수업 참여 (20%)</h3>
+  <ul>
+    <li>각 주의 수업 동영상은 게시 후 1주일 동안 학습하는 것이 원칙입니다.</li>
+    <li>출석 인정 기간은 게시 후 1주일이며, 이 기간 동안 시청 기록이 없으면 결석으로 처리합니다.</li>
+    <li>동영상을 기간 내에 시청하고 학습을 완료해야 퀴즈 응시(또는 과제 열람)가 가능합니다. 출석 15% + 퀴즈 5%.</li>
+    <li>토론 및 질문 과제가 부여될 때에는 적극적으로 참여하기 바랍니다.</li>
+    <li>녹화 강의는 지각 구분 없이 출석/결석으로만 처리합니다.</li>
+    <li>출석 규정은 각 학교 규정을 따릅니다. 출석 관련 F 규정은 학교별로 다르므로 미리 확인하기 바랍니다.</li>
+  </ul>
+  <h3>중간고사 (40%), 기말고사 (40%)</h3>
+  <ul>
+    <li>객관식, 타임어택(Time-attack) 형식으로 진행합니다.</li>
+    <li>상황에 따라 중간/기말고사 방식 및 실시 날짜가 조정될 수 있습니다 (추후 공지).</li>
+  </ul>
+
+  <h2>유의사항</h2>
+  <div class="warn">
+    <p><strong>수업 중 녹화, 녹음, 사진 촬영을 금지합니다 (예외 없음).</strong></p>
+  </div>
+  <ul>
+    <li>공동 강의의 강의와 자료는 저작권 문제로 엄격히 관리합니다.</li>
+    <li>녹음/녹화 등이 적발되면 F 학점을 부여합니다.</li>
+    <li>시험, 출석, 퀴즈 등과 관련한 부정행위가 발각되면 예외 없이 F 학점을 부여합니다.</li>
+    <li>질문은 해당 주의 Q&amp;A 게시판을 이용하기 바랍니다.</li>
+  </ul>
+
+  <h2>강의 구성</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>주차</th><th>단원</th><th>내용</th></tr></thead>
+      <tbody>
+        <tr><td>2–4주차</td><td>연구 방법론 및 기술의 이해</td><td>신경영상 기술의 이해, 신경조절 기술의 이해, 연구 윤리</td></tr>
+        <tr><td>5–12주차</td><td>인지과학의 이해</td><td>인지과정에 대한 이해, 뇌의 구조와 기능에 대한 이해, 인지 발달 및 노화와 관련한 뇌의 변화 이해</td></tr>
+        <tr><td>13–14주차</td><td>인지과학의 확장과 응용</td><td>중독의 뇌기전, 뇌과학과 경영학·경제학의 만남</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>강의 일정</h2>
+  <div class="table-wrap">
+    <table class="schedule schedule-topics">
+      <thead><tr><th>주차</th><th>주제</th><th>담당</th></tr></thead>
+      <tbody>
+        <tr class="group-start "><td>1주차</td><td>오리엔테이션 / 뇌의 작동원리를 들여다본다 [뉴로툴]</td><td>한상훈</td></tr>
+        <tr class="group-start "><td>2주차</td><td>뇌의 작동원리를 들여다본다 [신경영상기술의 이해]</td><td>한상훈</td></tr>
+        <tr class="group-start "><td>3주차</td><td>더 나은 뇌를 만드는 뇌기능 향상기술 [신경조절기술의 이해]</td><td>한상훈</td></tr>
+        <tr class="group-start "><td>4주차</td><td>뇌과학과 윤리</td><td>이새별</td></tr>
+        <tr class="group-start "><td>5주차</td><td>사회적 두뇌의 발달</td><td>이새별</td></tr>
+        <tr class="group-start "><td>6주차</td><td>오늘도 “경로를 이탈하셨습니다” — 인지통제의 신경학적 기전</td><td>서지현</td></tr>
+        <tr class="group-start "><td>7주차</td><td>뇌에도 휴식이 필요하다? — 인지통제능력 향상 방법</td><td>서지현</td></tr>
+        <tr class="group-start exam"><td>8주차</td><td>중간고사 (4월 24일 금요일 3시, 실시간 평가)</td><td></td></tr>
+        <tr class="group-start "><td>9주차</td><td>내 머릿속의 지우개 — 알츠하이머 치매의 신경 기전과 조기진단 및 치료법</td><td>서지현</td></tr>
+        <tr class="group-start "><td>10주차</td><td>아이의 머릿속엔 무엇이 있을까? — 뇌와 인지의 발달과정</td><td>김소연</td></tr>
+        <tr class="group-start "><td>11주차</td><td>인지와 뇌의 훈련 — 발달장애 및 정상발달 아동을 위한 인지 훈련</td><td>김소연</td></tr>
+        <tr class="group-start "><td>12주차</td><td>지금의 나와 미래의 나, 지금의 뇌와 미래의 뇌 — 인지노화와 신경기전</td><td>김소연</td></tr>
+        <tr class="group-start "><td>13주차</td><td>중독의 뇌과학</td><td>이새별</td></tr>
+        <tr class="group-start "><td>14주차</td><td>뇌과학과 경영학, 경제학의 만남</td><td>한상훈</td></tr>
+        <tr class="group-start exam"><td>15주차</td><td>기말고사 (6월 12일 금요일 3시, 실시간 평가)</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  <div data-lang-block="en" lang="en" hidden>
+  <h1>ST: The Brain and Mind (SOSC449A-01)</h1>
+  <p class="course">Syllabus · Spring Semester, 2026 · Mind &amp; Brain: Brain Science for World Leaders</p>
+
+  <dl class="info">
+    <dt>Course title</dt><dd>Special Topics in Psychology: The Brain and Mind</dd>
+    <dt>Format</dt><dd>Online, pre-recorded lectures (any live session will be announced in advance)</dd>
+    <dt>Instructor (POSTECH)</dt><dd>Jihyun Suh · <a href="mailto:jihyunsuh@postech.ac.kr">jihyunsuh@postech.ac.kr</a></dd>
+    <dt>Questions</dt><dd>Q&amp;A board in each university’s LMS course page (questions about the current week only)</dd>
+  </dl>
+
+  <h2>Faculty</h2>
+  <p>This course is co-taught by faculty in psychology and brain science from four universities.</p>
+  <div class="faculty">
+    <div><h3>Soyeon Kim</h3><p class="aff">Department of Psychology, Duksung Women’s University</p><p>Research: Neurodevelopmental disorders, Cognitive development, Developmental/Clinical neuroscience, Cognitive aging</p></div>
+    <div><h3>Jihyun Suh</h3><p class="aff">Department of Humanities and Social Sciences, POSTECH</p><p>Research: Cognitive control, Attention, Learning, Age-related cognitive change</p></div>
+    <div><h3>Saebyul Lee</h3><p class="aff">Department of Psychology, Chungbuk National University</p><p>Research: Cognitive development, Developmental neuroscience, Cognitive modeling</p></div>
+    <div><h3>Sanghoon Han</h3><p class="aff">Department of Psychology, Yonsei University</p><p>Research: Applied brain cognition, Memory, Decision making, Cognitive neuroscience</p></div>
+  </div>
+
+  <h2>Course overview</h2>
+  <p>Centered on cognitive science, the course covers research methods in brain science, cognitive processes and development, decision making, and psychopathology, and connects them to related fields such as computer vision, medical science, artificial intelligence, and robotics.</p>
+
+  <h2>Course objectives</h2>
+  <ol>
+    <li>Understand brain science research related to human cognition, emotion, and behavior.</li>
+    <li>Understand human thought processes as revealed by interdisciplinary research in cognitive science, psychology, and brain science.</li>
+    <li>Explore career paths that require interdisciplinary knowledge and expertise in artificial intelligence, brain science, psychology, and psychopathology.</li>
+  </ol>
+
+  <h2>Related courses</h2>
+  <p>Physiological psychology, cognitive neuropsychology, cognitive psychology, developmental psychology, and introduction to psychology (major or general education courses)</p>
+
+  <h2>Textbook</h2>
+  <ul>
+    <li>Handouts (lecture materials)</li>
+    <li><em>Fundamentals of Human Neuropsychology</em> (7th ed., Korean edition). Sigma Press.</li>
+  </ul>
+
+  <h2>Course format</h2>
+  <ul>
+    <li>Pre-recorded lectures (office hours held when needed)</li>
+    <li>Q&amp;A board in each university’s LMS course page (questions about the current week only)</li>
+  </ul>
+
+  <h2>Grading</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Component</th><th class="num">% of grade</th></tr></thead>
+      <tbody>
+        <tr><td>Midterm exam</td><td class="num">40%</td></tr>
+        <tr><td>Final exam</td><td class="num">40%</td></tr>
+        <tr><td>Attendance</td><td class="num">15%</td></tr>
+        <tr><td>Attendance quizzes</td><td class="num">5%</td></tr>
+        <tr class="total"><td>Total</td><td class="num">100%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Grade corrections are not accepted.</p>
+
+  <h3>Attendance and participation (20%)</h3>
+  <ul>
+    <li>Each week’s lecture video should be studied within one week of posting.</li>
+    <li>Attendance is credited only during that one-week period. If there is no viewing record during the period, you are marked absent.</li>
+    <li>You must finish watching the video within the period before you can take the quiz (or view the assignment). Attendance 15% + quizzes 5%.</li>
+    <li>When discussion or question assignments are given, active participation is expected.</li>
+    <li>For recorded lectures there is no late category; you are marked present or absent.</li>
+    <li>Attendance rules follow each university’s regulations. The rules for failing due to absences differ by university, so check yours.</li>
+  </ul>
+  <h3>Midterm exam (40%), final exam (40%)</h3>
+  <ul>
+    <li>Multiple-choice, time-attack format.</li>
+    <li>Exam format and dates may be adjusted depending on circumstances (to be announced).</li>
+  </ul>
+
+  <h2>Important notes</h2>
+  <div class="warn">
+    <p><strong>Recording video or audio, and taking photos, during class is prohibited (no exceptions).</strong></p>
+  </div>
+  <ul>
+    <li>Lectures and materials in this co-taught course are strictly protected for copyright reasons.</li>
+    <li>Anyone found recording will receive a grade of F.</li>
+    <li>Any cheating related to exams, attendance, or quizzes will result in a grade of F, without exception.</li>
+    <li>Use the Q&amp;A board for the current week for questions.</li>
+  </ul>
+
+  <h2>Course structure</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Weeks</th><th>Unit</th><th>Content</th></tr></thead>
+      <tbody>
+        <tr><td>Weeks 2–4</td><td>Research methods and techniques</td><td>Neuroimaging techniques, neuromodulation techniques, research ethics</td></tr>
+        <tr><td>Weeks 5–12</td><td>Understanding cognitive science</td><td>Cognitive processes, structure and function of the brain, brain changes in cognitive development and aging</td></tr>
+        <tr><td>Weeks 13–14</td><td>Extensions and applications</td><td>Brain mechanisms of addiction, brain science meets business and economics</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Schedule</h2>
+  <div class="table-wrap">
+    <table class="schedule schedule-topics">
+      <thead><tr><th>Week</th><th>Topic</th><th>Instructor</th></tr></thead>
+      <tbody>
+        <tr class="group-start "><td>Week 1</td><td>Orientation / Looking into how the brain works [Neurotools]</td><td>Sanghoon Han</td></tr>
+        <tr class="group-start "><td>Week 2</td><td>Looking into how the brain works [Understanding neuroimaging techniques]</td><td>Sanghoon Han</td></tr>
+        <tr class="group-start "><td>Week 3</td><td>Technologies for enhancing brain function [Understanding neuromodulation techniques]</td><td>Sanghoon Han</td></tr>
+        <tr class="group-start "><td>Week 4</td><td>Brain science and ethics</td><td>Saebyul Lee</td></tr>
+        <tr class="group-start "><td>Week 5</td><td>Development of the social brain</td><td>Saebyul Lee</td></tr>
+        <tr class="group-start "><td>Week 6</td><td>“You have left the route” again — Neural mechanisms of cognitive control</td><td>Jihyun Suh</td></tr>
+        <tr class="group-start "><td>Week 7</td><td>Does the brain need rest, too? — Ways to improve cognitive control</td><td>Jihyun Suh</td></tr>
+        <tr class="group-start exam"><td>Week 8</td><td>Midterm exam (Friday, April 24, 3:00 PM, live)</td><td></td></tr>
+        <tr class="group-start "><td>Week 9</td><td>An eraser in my head — Neural mechanisms, early diagnosis, and treatment of Alzheimer’s dementia</td><td>Jihyun Suh</td></tr>
+        <tr class="group-start "><td>Week 10</td><td>What is in a child’s mind? — Development of the brain and cognition</td><td>Soyeon Kim</td></tr>
+        <tr class="group-start "><td>Week 11</td><td>Training cognition and the brain — Cognitive training for children with and without developmental disorders</td><td>Soyeon Kim</td></tr>
+        <tr class="group-start "><td>Week 12</td><td>Me now and me in the future, my brain now and in the future — Cognitive aging and its neural mechanisms</td><td>Soyeon Kim</td></tr>
+        <tr class="group-start "><td>Week 13</td><td>The brain science of addiction</td><td>Saebyul Lee</td></tr>
+        <tr class="group-start "><td>Week 14</td><td>Where brain science meets business and economics</td><td>Sanghoon Han</td></tr>
+        <tr class="group-start exam"><td>Week 15</td><td>Final exam (Friday, June 12, 3:00 PM, live)</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  <footer>SOSC449A-01 · Spring 2026 · POSTECH · Instructor: Jihyun Suh</footer>
+
+</main>
+<script>
+(function () {
+  function setLang(lang) {
+    document.querySelectorAll('[data-lang-block]').forEach(function (el) {
+      el.hidden = el.getAttribute('data-lang-block') !== lang;
+    });
+    document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === lang));
+    });
+    document.documentElement.lang = lang;
+    try { localStorage.setItem('sosc449a-lang', lang); } catch (e) {}
+  }
+  document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+    b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang')); });
+  });
+  var saved = null;
+  try { saved = localStorage.getItem('sosc449a-lang'); } catch (e) {}
+  var hash = location.hash.replace('#', '');
+  setLang(hash === 'en' || hash === 'ko' ? hash : (saved === 'en' ? 'en' : 'ko'));
+})();
+</script>
+</body>
+</html>
